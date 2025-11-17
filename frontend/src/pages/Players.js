@@ -238,7 +238,7 @@ const Players = () => {
             <thead className="bg-gradient-to-r from-green-700 to-green-800">
               <tr>
                 <th className="px-6 py-4 text-center text-yellow-300 font-semibold">Foto</th>
-                <th className="px-6 py-4 text-right text-yellow-300 font-semibold pr-12">Player</th>
+                <th className="px-6 py-4 text-left text-yellow-300 font-semibold pl-20">Player</th>
                 <th className="px-6 py-4 text-center text-yellow-300 font-semibold">Email</th>
                 <th className="px-6 py-4 text-center text-yellow-300 font-semibold">Team</th>
                 <th className="px-6 py-4 text-center text-yellow-300 font-semibold">Handicap</th>
