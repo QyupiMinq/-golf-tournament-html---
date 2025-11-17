@@ -9,6 +9,20 @@ const Layout = ({ children }) => {
   const { user, logout } = useContext(AuthContext);
   const location = useLocation();
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [settings, setSettings] = useState({ dashboard_logo: null, footer_signature: null });
+
+  React.useEffect(() => {
+    fetchSettings();
+  }, []);
+
+  const fetchSettings = async () => {
+    try {
+      const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/settings`);
+      setSettings(response.data);
+    } catch (error) {
+      console.error('Failed to fetch settings:', error);
+    }
+  };
 
   const navigation = [
     { name: 'Dashboard', path: '/', icon: Trophy },
