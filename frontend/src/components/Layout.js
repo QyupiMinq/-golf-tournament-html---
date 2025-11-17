@@ -26,7 +26,7 @@ const Layout = ({ children }) => {
         <Button
           data-testid="mobile-menu-btn"
           onClick={() => setSidebarOpen(!sidebarOpen)}
-          className="bg-emerald-600 hover:bg-emerald-700"
+          className="bg-gradient-to-r from-green-700 to-green-800 hover:from-green-800 hover:to-green-900 text-yellow-300"
         >
           <Menu className="h-5 w-5" />
         </Button>
