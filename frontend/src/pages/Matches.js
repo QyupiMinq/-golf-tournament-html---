@@ -96,7 +96,6 @@ const Matches = () => {
 
   const openResultDialog = (match) => {
     setSelectedMatch(match);
-    // Initialize with all players
     const initialResults = players.map((player) => ({
       player_id: player.id,
       player_name: player.name,
@@ -148,12 +147,12 @@ const Matches = () => {
       <div className="flex justify-between items-center mb-8">
         <div>
           <h1
-            className="text-4xl sm:text-5xl font-bold text-emerald-800 mb-2"
+            className="text-4xl sm:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-green-700 to-green-900 mb-2"
             style={{ fontFamily: 'Playfair Display, serif' }}
           >
             Matches
           </h1>
-          <p className="text-emerald-600">Jadwal dan hasil pertandingan</p>
+          <p className="text-gray-600">Jadwal dan hasil pertandingan</p>
         </div>
         {isAdmin && (
           <Dialog open={open} onOpenChange={setOpen}>
@@ -161,7 +160,7 @@ const Matches = () => {
               <Button
                 data-testid="add-match-btn"
                 onClick={resetForm}
-                className="bg-emerald-600 hover:bg-emerald-700"
+                className="bg-gradient-to-r from-green-700 to-green-800 hover:from-green-800 hover:to-green-900 text-yellow-300 shadow-lg"
               >
                 <Plus className="h-4 w-4 mr-2" />
                 Tambah Match
@@ -169,11 +168,11 @@ const Matches = () => {
             </DialogTrigger>
             <DialogContent>
               <DialogHeader>
-                <DialogTitle>{editingMatch ? 'Edit Match' : 'Tambah Match Baru'}</DialogTitle>
+                <DialogTitle className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-green-700 to-green-900">  {editingMatch ? 'Edit Match' : 'Tambah Match Baru'}</DialogTitle>
               </DialogHeader>
               <form onSubmit={handleSubmit} className="space-y-4">
                 <div>
-                  <Label>Nomor Match</Label>
+                  <Label className="text-gray-700 font-semibold">Nomor Match</Label>
                   <Input
                     data-testid="match-number-input"
                     type="number"
@@ -185,7 +184,7 @@ const Matches = () => {
                   />
                 </div>
                 <div>
-                  <Label>Tanggal</Label>
+                  <Label className="text-gray-700 font-semibold">Tanggal</Label>
                   <Input
                     data-testid="match-date-input"
                     type="date"
@@ -195,7 +194,7 @@ const Matches = () => {
                   />
                 </div>
                 <div>
-                  <Label>Tipe Match</Label>
+                  <Label className="text-gray-700 font-semibold">Tipe Match</Label>
                   <Select
                     value={formData.match_type}
                     onValueChange={(value) => setFormData({ ...formData, match_type: value })}
@@ -209,8 +208,8 @@ const Matches = () => {
                     </SelectContent>
                   </Select>
                 </div>
-                <Button data-testid="match-submit-btn" type="submit" className="w-full">
-                  {editingMatch ? 'Update' : 'Tambah'}
+                <Button data-testid="match-submit-btn" type="submit" className="w-full bg-gradient-to-r from-green-700 to-green-800 hover:from-green-800 hover:to-green-900 text-yellow-300 font-semibold shadow-lg">
+                  {editingMatch ? 'Update Match' : 'Tambah Match'}
                 </Button>
               </form>
             </DialogContent>
@@ -224,12 +223,12 @@ const Matches = () => {
           <div
             key={match.id}
             data-testid={`match-card-${match.id}`}
-            className="bg-white rounded-2xl shadow-lg p-6 hover:shadow-xl transition-shadow"
+            className="bg-white rounded-2xl shadow-lg p-6 hover:shadow-xl transition-shadow border border-gray-200"
           >
             <div className="flex items-start justify-between mb-4">
               <div className="flex items-center gap-3">
-                <div className="w-12 h-12 rounded-full bg-emerald-100 flex items-center justify-center">
-                  <Trophy className="h-6 w-6 text-emerald-600" />
+                <div className="w-12 h-12 rounded-full bg-gradient-to-br from-yellow-400 to-yellow-600 flex items-center justify-center shadow-md">
+                  <Trophy className="h-6 w-6 text-gray-900" />
                 </div>
                 <div>
                   <h3 className="text-xl font-bold text-gray-800">Match #{match.match_number}</h3>
@@ -266,7 +265,7 @@ const Matches = () => {
                   <Button
                     data-testid={`input-result-${match.id}`}
                     onClick={() => openResultDialog(match)}
-                    className="flex-1 bg-green-600 hover:bg-green-700"
+                    className="flex-1 bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 text-white"
                     size="sm"
                   >
                     Input Hasil
@@ -277,6 +276,7 @@ const Matches = () => {
                   onClick={() => openEditDialog(match)}
                   variant="outline"
                   size="sm"
+                  className="border-green-700 text-green-700 hover:bg-green-50"
                 >
                   <Edit className="h-4 w-4" />
                 </Button>
@@ -285,7 +285,7 @@ const Matches = () => {
                   onClick={() => handleDelete(match.id)}
                   variant="outline"
                   size="sm"
-                  className="border-red-200 text-red-600 hover:bg-red-50"
+                  className="border-red-500 text-red-600 hover:bg-red-50"
                 >
                   <Trash2 className="h-4 w-4" />
                 </Button>
@@ -305,16 +305,16 @@ const Matches = () => {
       <Dialog open={resultDialogOpen} onOpenChange={setResultDialogOpen}>
         <DialogContent className="max-w-2xl max-h-[80vh] overflow-y-auto">
           <DialogHeader>
-            <DialogTitle>Input Hasil Match #{selectedMatch?.match_number}</DialogTitle>
+            <DialogTitle className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-green-700 to-green-900">Input Hasil Match #{selectedMatch?.match_number}</DialogTitle>
           </DialogHeader>
           <div className="space-y-4">
             {results.map((result) => (
-              <div key={result.player_id} className="flex items-center gap-3 p-3 bg-gray-50 rounded-lg">
+              <div key={result.player_id} className="flex items-center gap-3 p-3 bg-gray-50 rounded-lg border border-gray-200">
                 <input
                   type="checkbox"
                   checked={result.attended}
                   onChange={(e) => handleResultChange(result.player_id, 'attended', e.target.checked)}
-                  className="rounded"
+                  className="rounded text-green-700 focus:ring-green-600"
                 />
                 <div className="flex-1">
                   <p className="font-semibold">{result.player_name}</p>
@@ -355,7 +355,7 @@ const Matches = () => {
                 )}
               </div>
             ))}
-            <Button onClick={handleSubmitResults} className="w-full" data-testid="submit-results-btn">
+            <Button onClick={handleSubmitResults} className="w-full bg-gradient-to-r from-green-700 to-green-800 hover:from-green-800 hover:to-green-900 text-yellow-300 font-semibold shadow-lg" data-testid="submit-results-btn">
               Simpan Hasil
             </Button>
           </div>
