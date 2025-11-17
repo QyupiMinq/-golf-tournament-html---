@@ -237,9 +237,10 @@ const Players = () => {
           <table className="w-full">
             <thead className="bg-gradient-to-r from-green-700 to-green-800">
               <tr>
-                <th className="px-6 py-4 text-left text-yellow-300 font-semibold">Nama</th>
-                <th className="px-6 py-4 text-left text-yellow-300 font-semibold">Email</th>
-                <th className="px-6 py-4 text-left text-yellow-300 font-semibold">Team</th>
+                <th className="px-6 py-4 text-center text-yellow-300 font-semibold">Foto</th>
+                <th className="px-6 py-4 text-center text-yellow-300 font-semibold">Player</th>
+                <th className="px-6 py-4 text-center text-yellow-300 font-semibold">Email</th>
+                <th className="px-6 py-4 text-center text-yellow-300 font-semibold">Team</th>
                 <th className="px-6 py-4 text-center text-yellow-300 font-semibold">Handicap</th>
                 <th className="px-6 py-4 text-center text-yellow-300 font-semibold">Pembayaran</th>
                 {isAdmin && <th className="px-6 py-4 text-center text-yellow-300 font-semibold">Actions</th>}
@@ -250,9 +251,20 @@ const Players = () => {
                 const team = teams.find((t) => t.id === player.team_id);
                 return (
                   <tr key={player.id} data-testid={`player-row-${player.id}`} className={index % 2 === 0 ? 'bg-gray-50' : 'bg-white'}>
-                    <td className="px-6 py-4 font-semibold text-gray-800">{player.name}</td>
-                    <td className="px-6 py-4 text-gray-600">{player.email || '-'}</td>
-                    <td className="px-6 py-4 text-gray-600">{team?.name || 'No Team'}</td>
+                    <td className="px-6 py-4">
+                      <div className="flex justify-center">
+                        {player.photo ? (
+                          <img src={player.photo} alt={player.name} className="h-12 w-12 rounded-full object-cover border-2 border-yellow-400 shadow-md" />
+                        ) : (
+                          <div className="h-12 w-12 rounded-full bg-gradient-to-br from-green-100 to-green-200 flex items-center justify-center border-2 border-gray-300">
+                            <span className="text-lg font-bold text-green-700">{player.name.charAt(0)}</span>
+                          </div>
+                        )}
+                      </div>
+                    </td>
+                    <td className="px-6 py-4 text-center font-semibold text-gray-800">{player.name}</td>
+                    <td className="px-6 py-4 text-center text-gray-600">{player.email || '-'}</td>
+                    <td className="px-6 py-4 text-center text-gray-600">{team?.name || 'No Team'}</td>
                     <td className="px-6 py-4 text-center text-gray-800 font-semibold">{player.handicap}</td>
                     <td className="px-6 py-4 text-center">
                       {player.payment_status ? (
@@ -273,6 +285,7 @@ const Players = () => {
                             onClick={() => openEditDialog(player)}
                             variant="ghost"
                             size="sm"
+                            className="text-green-700 hover:text-green-800 hover:bg-green-50"
                           >
                             <Edit className="h-4 w-4" />
                           </Button>
