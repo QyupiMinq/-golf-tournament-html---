@@ -131,21 +131,21 @@ const Dashboard = () => {
           <div className="space-y-4">
             <h3 className="text-xl font-semibold text-gray-800 mb-3">Format Pertandingan</h3>
             <div className="space-y-3 text-gray-700">
-              <div className="bg-emerald-50 p-4 rounded-lg">
-                <p className="font-semibold">Total: 12 Matches</p>
-                <p className="text-sm mt-1">3x seminggu selama 4 minggu</p>
+              <div className="bg-gradient-to-br from-green-50 to-green-100 p-4 rounded-lg border border-green-200">
+                <p className="font-semibold text-green-800">Total: 12 Matches</p>
+                <p className="text-sm mt-1 text-green-700">3x seminggu selama 4 minggu</p>
               </div>
-              <div className="bg-teal-50 p-4 rounded-lg">
-                <p className="font-semibold">Match Days</p>
-                <p className="text-sm mt-1">Senin, Jumat, Sabtu</p>
+              <div className="bg-gradient-to-br from-yellow-50 to-yellow-100 p-4 rounded-lg border border-yellow-200">
+                <p className="font-semibold text-yellow-800">Match Days</p>
+                <p className="text-sm mt-1 text-yellow-700">Senin, Jumat, Sabtu</p>
               </div>
-              <div className="bg-blue-50 p-4 rounded-lg">
-                <p className="font-semibold">Penilaian MPV</p>
-                <p className="text-sm mt-1">6 match terbaik dari setiap peserta</p>
+              <div className="bg-gradient-to-br from-gray-50 to-gray-100 p-4 rounded-lg border border-gray-200">
+                <p className="font-semibold text-gray-800">Penilaian MPV</p>
+                <p className="text-sm mt-1 text-gray-700">6 match terbaik dari setiap peserta</p>
               </div>
-              <div className="bg-purple-50 p-4 rounded-lg">
-                <p className="font-semibold">Penilaian Team</p>
-                <p className="text-sm mt-1">2 match terbaik per anggota team</p>
+              <div className="bg-gradient-to-br from-green-50 to-yellow-50 p-4 rounded-lg border border-green-200">
+                <p className="font-semibold text-green-800">Penilaian Team</p>
+                <p className="text-sm mt-1 text-green-700">2 match terbaik per anggota team</p>
               </div>
             </div>
           </div>
