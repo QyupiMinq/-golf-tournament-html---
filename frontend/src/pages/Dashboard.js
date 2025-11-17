@@ -88,9 +88,9 @@ const Dashboard = () => {
       </div>
 
       {/* Tournament Info */}
-      <div className="bg-white rounded-2xl shadow-lg p-8">
+      <div className="bg-white rounded-2xl shadow-lg p-8 border border-gray-200">
         <h2
-          className="text-3xl font-bold text-emerald-800 mb-6"
+          className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-green-700 to-green-900 mb-6"
           style={{ fontFamily: 'Playfair Display, serif' }}
         >
           Informasi Turnamen
