@@ -110,6 +110,7 @@ function App() {
                     <Route path="/matches" element={<Matches />} />
                     <Route path="/leaderboard" element={<Leaderboard />} />
                     <Route path="/transfers" element={<Transfers />} />
+                    <Route path="/settings" element={<Settings />} />
                   </Routes>
                 </Layout>
               ) : (
