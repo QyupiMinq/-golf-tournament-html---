@@ -139,36 +139,57 @@ const Players = () => {
                 Tambah Player
               </Button>
             </DialogTrigger>
-            <DialogContent>
+            <DialogContent className="max-h-[90vh] overflow-y-auto">
               <DialogHeader>
-                <DialogTitle>{editingPlayer ? 'Edit Player' : 'Tambah Player Baru'}</DialogTitle>
+                <DialogTitle className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-green-700 to-green-900">
+                  {editingPlayer ? 'Edit Player' : 'Tambah Player Baru'}
+                </DialogTitle>
               </DialogHeader>
               <form onSubmit={handleSubmit} className="space-y-4">
                 <div>
-                  <Label>Nama Lengkap</Label>
+                  <Label className="text-gray-700 font-semibold">Nama Lengkap</Label>
                   <Input
                     data-testid="player-name-input"
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                    className="border-gray-300 focus:border-green-600 focus:ring-green-600"
                     required
                   />
                 </div>
                 <div>
-                  <Label>Email (Opsional)</Label>
+                  <Label className="text-gray-700 font-semibold">Email (Opsional)</Label>
                   <Input
                     data-testid="player-email-input"
                     type="email"
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                    className="border-gray-300 focus:border-green-600 focus:ring-green-600"
                   />
                 </div>
                 <div>
-                  <Label>Team</Label>
+                  <Label className="text-gray-700 font-semibold">Foto Player</Label>
+                  <div className="mt-2 p-4 border-2 border-dashed border-gray-300 rounded-lg hover:border-green-500 transition-colors">
+                    <Input
+                      data-testid="player-photo-input"
+                      type="file"
+                      accept="image/*"
+                      onChange={handlePhotoUpload}
+                      className="border-0 p-0"
+                    />
+                  </div>
+                  {formData.photo && (
+                    <div className="mt-3 flex justify-center">
+                      <img src={formData.photo} alt="Photo preview" className="h-24 w-24 object-cover rounded-full border-4 border-yellow-400 shadow-lg" />
+                    </div>
+                  )}
+                </div>
+                <div>
+                  <Label className="text-gray-700 font-semibold">Team</Label>
                   <Select
                     value={formData.team_id}
                     onValueChange={(value) => setFormData({ ...formData, team_id: value })}
                   >
-                    <SelectTrigger data-testid="player-team-select">
+                    <SelectTrigger data-testid="player-team-select" className="border-gray-300">
                       <SelectValue placeholder="Pilih team" />
                     </SelectTrigger>
                     <SelectContent>
@@ -181,27 +202,28 @@ const Players = () => {
                   </Select>
                 </div>
                 <div>
-                  <Label>Handicap</Label>
+                  <Label className="text-gray-700 font-semibold">Handicap</Label>
                   <Input
                     data-testid="player-handicap-input"
                     type="number"
                     value={formData.handicap}
                     onChange={(e) => setFormData({ ...formData, handicap: parseInt(e.target.value) || 0 })}
+                    className="border-gray-300 focus:border-green-600 focus:ring-green-600"
                   />
                 </div>
-                <div className="flex items-center space-x-2">
+                <div className="flex items-center space-x-2 bg-yellow-50 p-3 rounded-lg border border-yellow-200">
                   <input
                     data-testid="player-payment-checkbox"
                     type="checkbox"
                     id="payment"
                     checked={formData.payment_status}
                     onChange={(e) => setFormData({ ...formData, payment_status: e.target.checked })}
-                    className="rounded border-gray-300"
+                    className="rounded border-gray-300 text-green-700 focus:ring-green-600"
                   />
-                  <Label htmlFor="payment">Pembayaran Lunas (Rp 100.000)</Label>
+                  <Label htmlFor="payment" className="text-gray-700 font-medium">Pembayaran Lunas (Rp 100.000)</Label>
                 </div>
-                <Button data-testid="player-submit-btn" type="submit" className="w-full">
-                  {editingPlayer ? 'Update' : 'Tambah'}
+                <Button data-testid="player-submit-btn" type="submit" className="w-full bg-gradient-to-r from-green-700 to-green-800 hover:from-green-800 hover:to-green-900 text-yellow-300 font-semibold shadow-lg">
+                  {editingPlayer ? 'Update Player' : 'Tambah Player'}
                 </Button>
               </form>
             </DialogContent>
