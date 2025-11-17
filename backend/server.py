@@ -403,18 +403,28 @@ async def get_individual_leaderboard(current_user: User = Depends(get_current_us
     # Get all players
     players = await db.players.find({}, {"_id": 0}).to_list(1000)
     
+    # Fetch all teams once
+    teams_list = await db.teams.find({}, {"_id": 0}).to_list(1000)
+    teams_dict = {t["id"]: t for t in teams_list}
+    
+    # Fetch all match results once
+    all_results = await db.match_results.find({}, {"_id": 0}).to_list(10000)
+    results_by_player = {}
+    for r in all_results:
+        results_by_player.setdefault(r["player_id"], []).append(r)
+    
     # Calculate points for each player
     leaderboard = []
     for player in players:
-        results = await db.match_results.find({"player_id": player["id"]}, {"_id": 0}).to_list(1000)
+        results = results_by_player.get(player["id"], [])
         
         # Sort by points descending and take top 6
         sorted_results = sorted(results, key=lambda x: x["points"], reverse=True)[:6]
         total_points = sum(r["points"] for r in sorted_results)
         matches_played = len(results)
         
-        # Get team info
-        team = await db.teams.find_one({"id": player["team_id"]}, {"_id": 0})
+        # Get team info from dict
+        team = teams_dict.get(player["team_id"])
         
         leaderboard.append({
             "player_id": player["id"],
