@@ -150,7 +150,7 @@ const Login = () => {
                 <Button
                   data-testid="register-submit-btn"
                   type="submit"
-                  className="w-full bg-emerald-600 hover:bg-emerald-700 text-white"
+                  className="w-full bg-gradient-to-r from-green-700 to-green-800 hover:from-green-800 hover:to-green-900 text-yellow-300 font-semibold shadow-lg"
                 >
                   Register
                 </Button>
