@@ -42,14 +42,16 @@ const Dashboard = () => {
       {/* Header */}
       <div className="mb-8 bg-gradient-to-r from-gray-800 via-green-800 to-gray-800 rounded-2xl p-8 shadow-xl relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-yellow-600/10 to-transparent"></div>
-        <div className="relative">
-          <div className="flex items-center gap-4 mb-3">
-            <div className="w-16 h-16 rounded-full bg-gradient-to-br from-yellow-400 to-yellow-600 flex items-center justify-center shadow-lg">
-              <Trophy className="h-9 w-9 text-gray-900" />
+        <div className="relative text-center">
+          <div className="flex items-center justify-center gap-6 mb-4">
+            {/* Club Logo */}
+            <div className="w-20 h-20 rounded-full bg-gradient-to-br from-yellow-400 to-yellow-600 flex items-center justify-center shadow-lg border-4 border-yellow-500/30">
+              <Trophy className="h-10 w-10 text-gray-900" />
             </div>
+            
             <div>
               <h1
-                className="text-4xl sm:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 via-yellow-400 to-yellow-300 mb-1"
+                className="text-4xl sm:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 via-yellow-400 to-yellow-300 mb-2"
                 style={{ fontFamily: 'Playfair Display, serif' }}
               >
                 MANADO GOLF LEAGUE
@@ -58,8 +60,13 @@ const Dashboard = () => {
                 ONE SPIRIT - ONE FAIRWAY
               </p>
             </div>
+            
+            {/* Club Logo (right side for symmetry) */}
+            <div className="w-20 h-20 rounded-full bg-gradient-to-br from-yellow-400 to-yellow-600 flex items-center justify-center shadow-lg border-4 border-yellow-500/30">
+              <Trophy className="h-10 w-10 text-gray-900" />
+            </div>
           </div>
-          <p className="text-lg text-gray-300 ml-20" style={{ fontFamily: 'Inter, sans-serif' }}>
+          <p className="text-lg text-gray-300" style={{ fontFamily: 'Inter, sans-serif' }}>
             Selamat datang, {user?.name}!
           </p>
         </div>
