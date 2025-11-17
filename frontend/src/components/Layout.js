@@ -40,16 +40,21 @@ const Layout = ({ children }) => {
       >
         <div className="h-full flex flex-col">
           {/* Logo/Header */}
-          <div className="p-6 bg-gradient-to-r from-emerald-600 to-teal-600">
-            <div className="flex items-center space-x-3">
-              <div className="w-12 h-12 rounded-full bg-white flex items-center justify-center">
-                <Trophy className="h-7 w-7 text-emerald-600" />
+          <div className="p-6 bg-gradient-to-br from-gray-800 via-green-800 to-gray-900 relative overflow-hidden">
+            <div className="absolute inset-0 bg-gradient-to-br from-yellow-600/10 to-transparent"></div>
+            <div className="relative">
+              <div className="flex items-center justify-center mb-3">
+                <div className="w-16 h-16 rounded-full bg-gradient-to-br from-yellow-400 to-yellow-600 flex items-center justify-center shadow-xl ring-4 ring-yellow-500/30">
+                  <Trophy className="h-9 w-9 text-gray-900" />
+                </div>
               </div>
-              <div>
-                <h1 className="text-xl font-bold text-white" style={{ fontFamily: 'Space Grotesk, sans-serif' }}>
-                  Manado Golf
+              <div className="text-center">
+                <h1 className="text-xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 via-yellow-400 to-yellow-300 mb-1" style={{ fontFamily: 'Space Grotesk, sans-serif' }}>
+                  MANADO GOLF LEAGUE
                 </h1>
-                <p className="text-emerald-100 text-sm">League System</p>
+                <p className="text-yellow-200 text-xs font-semibold tracking-widest" style={{ fontFamily: 'Inter, sans-serif' }}>
+                  ONE SPIRIT - ONE FAIRWAY
+                </p>
               </div>
             </div>
           </div>
