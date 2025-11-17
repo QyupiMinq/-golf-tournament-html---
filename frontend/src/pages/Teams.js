@@ -14,6 +14,7 @@ const Teams = () => {
   const [teams, setTeams] = useState([]);
   const [players, setPlayers] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [submitting, setSubmitting] = useState(false);
   const [open, setOpen] = useState(false);
   const [editingTeam, setEditingTeam] = useState(null);
   const [formData, setFormData] = useState({
