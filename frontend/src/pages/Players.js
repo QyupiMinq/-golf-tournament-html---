@@ -53,6 +53,8 @@ const Players = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setSubmitting(true);
+    
     try {
       if (editingPlayer) {
         await axios.put(`${API}/players/${editingPlayer.id}`, formData);
@@ -66,6 +68,8 @@ const Players = () => {
       resetForm();
     } catch (error) {
       toast.error(error.response?.data?.detail || 'Gagal menyimpan player');
+    } finally {
+      setSubmitting(false);
     }
   };
 
