@@ -224,10 +224,20 @@ const Settings = () => {
           <Button
             data-testid="save-settings-btn"
             onClick={handleSave}
-            className="bg-gradient-to-r from-green-700 to-green-800 hover:from-green-800 hover:to-green-900 text-yellow-300 shadow-lg px-8 py-6 text-lg"
+            disabled={saving}
+            className="bg-gradient-to-r from-green-700 to-green-800 hover:from-green-800 hover:to-green-900 text-yellow-300 shadow-lg px-8 py-6 text-lg disabled:opacity-50 disabled:cursor-not-allowed"
           >
-            <Save className="h-5 w-5 mr-2" />
-            Simpan Settings
+            {saving ? (
+              <div className="flex items-center gap-2">
+                <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-yellow-300"></div>
+                <span>Menyimpan...</span>
+              </div>
+            ) : (
+              <>
+                <Save className="h-5 w-5 mr-2" />
+                Simpan Settings
+              </>
+            )}
           </Button>
         </div>
       </div>
