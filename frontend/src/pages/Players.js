@@ -268,8 +268,20 @@ const Players = () => {
                   />
                   <Label htmlFor="payment" className="text-gray-700 font-medium">Pembayaran Lunas (Rp 100.000)</Label>
                 </div>
-                <Button data-testid="player-submit-btn" type="submit" className="w-full bg-gradient-to-r from-green-700 to-green-800 hover:from-green-800 hover:to-green-900 text-yellow-300 font-semibold shadow-lg">
-                  {editingPlayer ? 'Update Player' : 'Tambah Player'}
+                <Button 
+                  data-testid="player-submit-btn" 
+                  type="submit" 
+                  disabled={submitting}
+                  className="w-full bg-gradient-to-r from-green-700 to-green-800 hover:from-green-800 hover:to-green-900 text-yellow-300 font-semibold shadow-lg disabled:opacity-50 disabled:cursor-not-allowed"
+                >
+                  {submitting ? (
+                    <div className="flex items-center gap-2">
+                      <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-yellow-300"></div>
+                      <span>Menyimpan...</span>
+                    </div>
+                  ) : (
+                    <span>{editingPlayer ? 'Update Player' : 'Tambah Player'}</span>
+                  )}
                 </Button>
               </form>
             </DialogContent>
