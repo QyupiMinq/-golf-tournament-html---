@@ -445,17 +445,29 @@ async def get_team_leaderboard(current_user: User = Depends(get_current_user)):
     # Get all teams
     teams = await db.teams.find({}, {"_id": 0}).to_list(1000)
     
+    # Fetch all players once
+    all_players = await db.players.find({}, {"_id": 0}).to_list(1000)
+    players_by_team = {}
+    for p in all_players:
+        players_by_team.setdefault(p["team_id"], []).append(p)
+    
+    # Fetch all match results once
+    all_results = await db.match_results.find({}, {"_id": 0}).to_list(10000)
+    results_by_player = {}
+    for r in all_results:
+        results_by_player.setdefault(r["player_id"], []).append(r)
+    
     leaderboard = []
     for team in teams:
-        # Get all players in team
-        players = await db.players.find({"team_id": team["id"]}, {"_id": 0}).to_list(1000)
+        # Get all players in team from dict
+        players = players_by_team.get(team["id"], [])
         
         team_total = 0
         player_details = []
         
         for player in players:
-            # Get player results
-            results = await db.match_results.find({"player_id": player["id"]}, {"_id": 0}).to_list(1000)
+            # Get player results from dict
+            results = results_by_player.get(player["id"], [])
             
             # Sort by points and take top 2
             sorted_results = sorted(results, key=lambda x: x["points"], reverse=True)[:2]
