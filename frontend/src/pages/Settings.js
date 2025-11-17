@@ -96,13 +96,17 @@ const Settings = () => {
   };
 
   const handleSave = async () => {
+    setSaving(true);
     try {
       await axios.post(`${API}/settings`, settings);
       toast.success('Settings berhasil disimpan!');
       // Reload page to see changes
-      window.location.reload();
+      setTimeout(() => {
+        window.location.reload();
+      }, 1000);
     } catch (error) {
       toast.error('Gagal menyimpan settings');
+      setSaving(false);
     }
   };
 
