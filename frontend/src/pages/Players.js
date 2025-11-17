@@ -22,6 +22,7 @@ const Players = () => {
     team_id: '',
     handicap: 0,
     payment_status: false,
+    photo: '',
   });
 
   useEffect(() => {
