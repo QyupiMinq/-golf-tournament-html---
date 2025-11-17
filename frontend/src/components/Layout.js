@@ -66,7 +66,7 @@ const Layout = ({ children }) => {
 
           {/* Navigation */}
           <nav className="flex-1 p-4 space-y-2">
-            {navigation.map((item) => {
+            {adminNavigation.map((item) => {
               const isActive = location.pathname === item.path;
               const Icon = item.icon;
               return (
