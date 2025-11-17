@@ -25,11 +25,11 @@ const Dashboard = () => {
 
   const statCards = stats
     ? [
-        { icon: Users, label: 'Total Teams', value: stats.teams_count, color: 'bg-blue-500' },
-        { icon: UserCheck, label: 'Total Players', value: stats.players_count, color: 'bg-emerald-500' },
-        { icon: CalendarDays, label: 'Total Matches', value: stats.matches_count, color: 'bg-purple-500' },
-        { icon: Trophy, label: 'Completed', value: stats.completed_matches, color: 'bg-amber-500' },
-        { icon: TrendingUp, label: 'Pending', value: stats.pending_matches, color: 'bg-rose-500' },
+        { icon: Users, label: 'Total Teams', value: stats.teams_count, color: 'bg-gradient-to-br from-green-600 to-green-700' },
+        { icon: UserCheck, label: 'Total Players', value: stats.players_count, color: 'bg-gradient-to-br from-yellow-500 to-yellow-600' },
+        { icon: CalendarDays, label: 'Total Matches', value: stats.matches_count, color: 'bg-gradient-to-br from-gray-600 to-gray-700' },
+        { icon: Trophy, label: 'Completed', value: stats.completed_matches, color: 'bg-gradient-to-br from-green-700 to-green-800' },
+        { icon: TrendingUp, label: 'Pending', value: stats.pending_matches, color: 'bg-gradient-to-br from-yellow-600 to-yellow-700' },
       ]
     : [];
 
