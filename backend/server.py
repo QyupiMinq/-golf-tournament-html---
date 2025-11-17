@@ -162,6 +162,13 @@ class TransferCreate(BaseModel):
     to_team_id: str
     notes: Optional[str] = None
 
+class AppSettings(BaseModel):
+    model_config = ConfigDict(extra="ignore")
+    id: str = "app_settings"  # Single document ID
+    dashboard_logo: Optional[str] = None
+    footer_signature: Optional[str] = None
+    updated_at: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
+
 # ==================== Helper Functions ====================
 
 def create_access_token(data: dict):
