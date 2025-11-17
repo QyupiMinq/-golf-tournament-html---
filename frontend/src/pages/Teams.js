@@ -85,9 +85,50 @@ const Teams = () => {
   const handleLogoUpload = (e) => {
     const file = e.target.files[0];
     if (file) {
+      // Check file size (limit to 2MB)
+      if (file.size > 2 * 1024 * 1024) {
+        toast.error('Ukuran logo maksimal 2MB');
+        return;
+      }
+
+      // Compress and resize image
       const reader = new FileReader();
-      reader.onloadend = () => {
-        setFormData({ ...formData, logo: reader.result });
+      reader.onload = (event) => {
+        const img = new Image();
+        img.onload = () => {
+          // Create canvas to resize
+          const canvas = document.createElement('canvas');
+          const MAX_WIDTH = 400;
+          const MAX_HEIGHT = 400;
+          
+          let width = img.width;
+          let height = img.height;
+          
+          // Calculate new dimensions
+          if (width > height) {
+            if (width > MAX_WIDTH) {
+              height *= MAX_WIDTH / width;
+              width = MAX_WIDTH;
+            }
+          } else {
+            if (height > MAX_HEIGHT) {
+              width *= MAX_HEIGHT / height;
+              height = MAX_HEIGHT;
+            }
+          }
+          
+          canvas.width = width;
+          canvas.height = height;
+          
+          const ctx = canvas.getContext('2d');
+          ctx.drawImage(img, 0, 0, width, height);
+          
+          // Convert to base64 with compression (0.7 quality)
+          const compressedBase64 = canvas.toDataURL('image/jpeg', 0.7);
+          setFormData({ ...formData, logo: compressedBase64 });
+          toast.success('Logo berhasil diupload');
+        };
+        img.src = event.target.result;
       };
       reader.readAsDataURL(file);
     }
