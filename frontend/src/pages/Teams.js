@@ -273,7 +273,7 @@ const Teams = () => {
                     onClick={() => openEditDialog(team)}
                     variant="outline"
                     size="sm"
-                    className="flex-1"
+                    className="flex-1 border-green-700 text-green-700 hover:bg-green-50"
                   >
                     <Edit className="h-4 w-4 mr-1" /> Edit
                   </Button>
@@ -282,7 +282,7 @@ const Teams = () => {
                     onClick={() => handleDelete(team.id)}
                     variant="outline"
                     size="sm"
-                    className="border-red-200 text-red-600 hover:bg-red-50"
+                    className="border-red-500 text-red-600 hover:bg-red-50"
                   >
                     <Trash2 className="h-4 w-4" />
                   </Button>
