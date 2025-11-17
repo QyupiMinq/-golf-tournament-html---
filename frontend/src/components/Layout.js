@@ -72,8 +72,8 @@ const Layout = ({ children }) => {
                   onClick={() => setSidebarOpen(false)}
                   className={`flex items-center space-x-3 px-4 py-3 rounded-lg transition-all ${
                     isActive
-                      ? 'bg-emerald-100 text-emerald-700 font-semibold shadow-sm'
-                      : 'text-gray-600 hover:bg-gray-100'
+                      ? 'bg-gradient-to-r from-green-700 to-green-800 text-yellow-300 font-semibold shadow-lg'
+                      : 'text-gray-600 hover:bg-gray-100 hover:text-green-700'
                   }`}
                 >
                   <Icon className="h-5 w-5" />
