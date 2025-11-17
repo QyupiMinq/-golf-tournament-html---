@@ -6,10 +6,12 @@ import { Users, UserCheck, CalendarDays, Trophy, TrendingUp } from 'lucide-react
 const Dashboard = () => {
   const { user } = useContext(AuthContext);
   const [stats, setStats] = useState(null);
+  const [settings, setSettings] = useState({ dashboard_logo: null });
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     fetchStats();
+    fetchSettings();
   }, []);
 
   const fetchStats = async () => {
@@ -20,6 +22,15 @@ const Dashboard = () => {
       console.error('Failed to fetch stats:', error);
     } finally {
       setLoading(false);
+    }
+  };
+
+  const fetchSettings = async () => {
+    try {
+      const response = await axios.get(`${API}/settings`);
+      setSettings(response.data);
+    } catch (error) {
+      console.error('Failed to fetch settings:', error);
     }
   };
 
