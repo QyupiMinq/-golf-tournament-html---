@@ -222,10 +222,15 @@ const Teams = () => {
               {/* Team Logo & Name */}
               <div className="flex items-center space-x-4 mb-4">
                 {team.logo ? (
-                  <img src={team.logo} alt={team.name} className="h-16 w-16 rounded-full object-cover" />
+                  <div className="relative">
+                    <img src={team.logo} alt={team.name} className="h-16 w-16 rounded-full object-cover border-4 border-yellow-400 shadow-lg" />
+                    <div className="absolute -bottom-1 -right-1 w-6 h-6 bg-gradient-to-br from-yellow-400 to-yellow-600 rounded-full flex items-center justify-center">
+                      <Trophy className="h-3 w-3 text-gray-900" />
+                    </div>
+                  </div>
                 ) : (
-                  <div className="h-16 w-16 rounded-full bg-emerald-100 flex items-center justify-center">
-                    <span className="text-2xl font-bold text-emerald-600">{team.name.charAt(0)}</span>
+                  <div className="h-16 w-16 rounded-full bg-gradient-to-br from-green-100 to-green-200 flex items-center justify-center border-4 border-gray-300 shadow-md">
+                    <span className="text-2xl font-bold text-green-700">{team.name.charAt(0)}</span>
                   </div>
                 )}
                 <div className="flex-1">
