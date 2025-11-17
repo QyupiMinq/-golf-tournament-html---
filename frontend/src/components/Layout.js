@@ -20,7 +20,7 @@ const Layout = ({ children }) => {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-emerald-50 via-teal-50 to-green-100">
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-green-50 to-gray-100">
       {/* Mobile menu button */}
       <div className="lg:hidden fixed top-4 left-4 z-50">
         <Button
