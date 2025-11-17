@@ -49,11 +49,11 @@ const Login = () => {
         </div>
 
         {/* Auth Card */}
-        <div className="bg-white rounded-2xl shadow-2xl p-8">
+        <div className="bg-white/95 backdrop-blur-sm rounded-2xl shadow-2xl p-8 border border-gray-200">
           <Tabs defaultValue="login" className="w-full">
-            <TabsList className="grid w-full grid-cols-2 mb-6">
-              <TabsTrigger value="login" data-testid="tab-login">Login</TabsTrigger>
-              <TabsTrigger value="register" data-testid="tab-register">Register</TabsTrigger>
+            <TabsList className="grid w-full grid-cols-2 mb-6 bg-gray-100">
+              <TabsTrigger value="login" data-testid="tab-login" className="data-[state=active]:bg-gradient-to-r data-[state=active]:from-green-700 data-[state=active]:to-green-800 data-[state=active]:text-yellow-300">Login</TabsTrigger>
+              <TabsTrigger value="register" data-testid="tab-register" className="data-[state=active]:bg-gradient-to-r data-[state=active]:from-green-700 data-[state=active]:to-green-800 data-[state=active]:text-yellow-300">Register</TabsTrigger>
             </TabsList>
 
             {/* Login Tab */}
