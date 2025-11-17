@@ -103,6 +103,7 @@ const Players = () => {
       team_id: player.team_id,
       handicap: player.handicap,
       payment_status: player.payment_status,
+      photo: player.photo || '',
     });
     setOpen(true);
   };
