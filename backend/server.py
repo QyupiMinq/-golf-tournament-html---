@@ -509,6 +509,27 @@ async def get_dashboard_stats(current_user: User = Depends(get_current_user)):
         "pending_matches": matches_count - completed_matches
     }
 
+# ==================== Settings Routes ====================
+
+@api_router.get("/settings")
+async def get_settings(current_user: User = Depends(get_current_user)):
+    settings = await db.settings.find_one({"id": "app_settings"}, {"_id": 0})
+    if not settings:
+        return {"id": "app_settings", "dashboard_logo": None, "footer_signature": None}
+    return settings
+
+@api_router.post("/settings")
+async def update_settings(settings_data: AppSettings, current_user: User = Depends(get_admin_user)):
+    settings_dict = settings_data.model_dump()
+    settings_dict['updated_at'] = settings_dict['updated_at'].isoformat()
+    
+    await db.settings.update_one(
+        {"id": "app_settings"},
+        {"$set": settings_dict},
+        upsert=True
+    )
+    return {"message": "Settings updated successfully"}
+
 # Include the router in the main app
 app.include_router(api_router)
 
