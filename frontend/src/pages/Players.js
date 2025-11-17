@@ -80,8 +80,19 @@ const Players = () => {
   };
 
   const resetForm = () => {
-    setFormData({ name: '', email: '', team_id: '', handicap: 0, payment_status: false });
+    setFormData({ name: '', email: '', team_id: '', handicap: 0, payment_status: false, photo: '' });
     setEditingPlayer(null);
+  };
+
+  const handlePhotoUpload = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setFormData({ ...formData, photo: reader.result });
+      };
+      reader.readAsDataURL(file);
+    }
   };
 
   const openEditDialog = (player) => {
