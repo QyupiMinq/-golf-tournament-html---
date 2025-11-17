@@ -137,25 +137,28 @@ const Teams = () => {
             </DialogTrigger>
             <DialogContent>
               <DialogHeader>
-                <DialogTitle>{editingTeam ? 'Edit Team' : 'Tambah Team Baru'}</DialogTitle>
+                <DialogTitle className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-green-700 to-green-900">
+                  {editingTeam ? 'Edit Team' : 'Tambah Team Baru'}
+                </DialogTitle>
               </DialogHeader>
               <form onSubmit={handleSubmit} className="space-y-4">
                 <div>
-                  <Label>Nama Team</Label>
+                  <Label className="text-gray-700 font-semibold">Nama Team</Label>
                   <Input
                     data-testid="team-name-input"
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                    className="border-gray-300 focus:border-green-600 focus:ring-green-600"
                     required
                   />
                 </div>
                 <div>
-                  <Label>Captain</Label>
+                  <Label className="text-gray-700 font-semibold">Captain</Label>
                   <Select
                     value={formData.captain_id}
                     onValueChange={(value) => setFormData({ ...formData, captain_id: value })}
                   >
-                    <SelectTrigger data-testid="team-captain-select">
+                    <SelectTrigger data-testid="team-captain-select" className="border-gray-300">
                       <SelectValue placeholder="Pilih captain" />
                     </SelectTrigger>
                     <SelectContent>
@@ -168,30 +171,35 @@ const Teams = () => {
                   </Select>
                 </div>
                 <div>
-                  <Label>Logo Team</Label>
-                  <Input
-                    data-testid="team-logo-input"
-                    type="file"
-                    accept="image/*"
-                    onChange={handleLogoUpload}
-                  />
+                  <Label className="text-gray-700 font-semibold">Logo Team</Label>
+                  <div className="mt-2 p-4 border-2 border-dashed border-gray-300 rounded-lg hover:border-green-500 transition-colors">
+                    <Input
+                      data-testid="team-logo-input"
+                      type="file"
+                      accept="image/*"
+                      onChange={handleLogoUpload}
+                      className="border-0 p-0"
+                    />
+                  </div>
                   {formData.logo && (
-                    <img src={formData.logo} alt="Logo preview" className="mt-2 h-20 w-20 object-cover rounded" />
+                    <div className="mt-3 flex justify-center">
+                      <img src={formData.logo} alt="Logo preview" className="h-24 w-24 object-cover rounded-full border-4 border-yellow-400 shadow-lg" />
+                    </div>
                   )}
                 </div>
-                <div className="flex items-center space-x-2">
+                <div className="flex items-center space-x-2 bg-yellow-50 p-3 rounded-lg border border-yellow-200">
                   <input
                     data-testid="team-payment-checkbox"
                     type="checkbox"
                     id="payment"
                     checked={formData.payment_status}
                     onChange={(e) => setFormData({ ...formData, payment_status: e.target.checked })}
-                    className="rounded border-gray-300"
+                    className="rounded border-gray-300 text-green-700 focus:ring-green-600"
                   />
-                  <Label htmlFor="payment">Pembayaran Lunas (Rp 500.000)</Label>
+                  <Label htmlFor="payment" className="text-gray-700 font-medium">Pembayaran Lunas (Rp 500.000)</Label>
                 </div>
-                <Button data-testid="team-submit-btn" type="submit" className="w-full">
-                  {editingTeam ? 'Update' : 'Tambah'}
+                <Button data-testid="team-submit-btn" type="submit" className="w-full bg-gradient-to-r from-green-700 to-green-800 hover:from-green-800 hover:to-green-900 text-yellow-300 font-semibold shadow-lg">
+                  {editingTeam ? 'Update Team' : 'Tambah Team'}
                 </Button>
               </form>
             </DialogContent>
