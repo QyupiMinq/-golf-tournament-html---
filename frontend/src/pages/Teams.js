@@ -51,6 +51,8 @@ const Teams = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setSubmitting(true);
+    
     try {
       if (editingTeam) {
         await axios.put(`${API}/teams/${editingTeam.id}`, formData);
@@ -64,6 +66,8 @@ const Teams = () => {
       resetForm();
     } catch (error) {
       toast.error(error.response?.data?.detail || 'Gagal menyimpan team');
+    } finally {
+      setSubmitting(false);
     }
   };
 
