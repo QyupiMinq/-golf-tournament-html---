@@ -89,6 +89,7 @@ class Player(BaseModel):
     email: Optional[EmailStr] = None
     team_id: str
     handicap: Optional[int] = 0
+    photo: Optional[str] = None  # Base64 encoded image
     registration_fee: float = 100000
     payment_status: bool = False
     created_at: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
@@ -98,6 +99,7 @@ class PlayerCreate(BaseModel):
     email: Optional[EmailStr] = None
     team_id: str
     handicap: Optional[int] = 0
+    photo: Optional[str] = None
 
 class PlayerUpdate(BaseModel):
     name: Optional[str] = None
@@ -105,6 +107,7 @@ class PlayerUpdate(BaseModel):
     team_id: Optional[str] = None
     handicap: Optional[int] = None
     payment_status: Optional[bool] = None
+    photo: Optional[str] = None
 
 class Match(BaseModel):
     model_config = ConfigDict(extra="ignore")
