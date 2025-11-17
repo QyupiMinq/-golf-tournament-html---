@@ -131,12 +131,16 @@ const Layout = ({ children }) => {
         {/* Footer */}
         <div className="fixed bottom-0 left-0 lg:left-64 right-0 bg-gradient-to-r from-gray-800 via-green-800 to-gray-800 py-4 px-6 shadow-lg z-10">
           <div className="max-w-7xl mx-auto flex items-center justify-center gap-3">
-            <div className="w-8 h-8 rounded-full bg-gradient-to-br from-yellow-400 to-yellow-600 flex items-center justify-center shadow-md">
-              <Trophy className="h-4 w-4 text-gray-900" />
-            </div>
             <p className="text-yellow-200 font-semibold text-sm" style={{ fontFamily: 'Inter, sans-serif' }}>
               Created By Onedhee 2025
             </p>
+            {settings.footer_signature ? (
+              <img src={settings.footer_signature} alt="Signature" className="h-8 w-auto object-contain" />
+            ) : (
+              <div className="w-8 h-8 rounded-full bg-gradient-to-br from-yellow-400 to-yellow-600 flex items-center justify-center shadow-md">
+                <Trophy className="h-4 w-4 text-gray-900" />
+              </div>
+            )}
           </div>
         </div>
       </main>
