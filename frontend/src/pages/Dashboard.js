@@ -102,23 +102,23 @@ const Dashboard = () => {
             <div className="space-y-2 text-gray-700">
               <div className="flex justify-between items-center py-2 border-b border-gray-200">
                 <span>Terbaik 1</span>
-                <span className="font-bold text-emerald-600">4 Poin</span>
+                <span className="font-bold text-transparent bg-clip-text bg-gradient-to-r from-yellow-600 to-yellow-700">4 Poin</span>
               </div>
               <div className="flex justify-between items-center py-2 border-b border-gray-200">
                 <span>Terbaik 2</span>
-                <span className="font-bold text-emerald-600">3 Poin</span>
+                <span className="font-bold text-transparent bg-clip-text bg-gradient-to-r from-yellow-600 to-yellow-700">3 Poin</span>
               </div>
               <div className="flex justify-between items-center py-2 border-b border-gray-200">
                 <span>Terbaik 3</span>
-                <span className="font-bold text-emerald-600">2 Poin</span>
+                <span className="font-bold text-transparent bg-clip-text bg-gradient-to-r from-yellow-600 to-yellow-700">2 Poin</span>
               </div>
               <div className="flex justify-between items-center py-2 border-b border-gray-200">
                 <span>Terbaik 4</span>
-                <span className="font-bold text-emerald-600">1 Poin</span>
+                <span className="font-bold text-transparent bg-clip-text bg-gradient-to-r from-yellow-600 to-yellow-700">1 Poin</span>
               </div>
               <div className="flex justify-between items-center py-2 border-b border-gray-200">
                 <span>Partisipasi</span>
-                <span className="font-bold text-emerald-600">1 Poin</span>
+                <span className="font-bold text-transparent bg-clip-text bg-gradient-to-r from-yellow-600 to-yellow-700">1 Poin</span>
               </div>
               <div className="flex justify-between items-center py-2">
                 <span>WO / Tidak Hadir</span>
