@@ -160,7 +160,7 @@ const Login = () => {
         </div>
 
         {/* Info Footer */}
-        <div className="mt-6 text-center text-sm text-emerald-700">
+        <div className="mt-6 text-center text-sm text-gray-400">
           <p>Default Admin: admin@golf.com / admin123</p>
         </div>
       </div>
