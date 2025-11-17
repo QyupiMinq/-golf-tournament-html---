@@ -200,14 +200,14 @@ const Players = () => {
       <div className="bg-white rounded-2xl shadow-lg overflow-hidden">
         <div className="overflow-x-auto">
           <table className="w-full">
-            <thead className="bg-emerald-600 text-white">
+            <thead className="bg-gradient-to-r from-green-700 to-green-800">
               <tr>
-                <th className="px-6 py-4 text-left">Nama</th>
-                <th className="px-6 py-4 text-left">Email</th>
-                <th className="px-6 py-4 text-left">Team</th>
-                <th className="px-6 py-4 text-center">Handicap</th>
-                <th className="px-6 py-4 text-center">Pembayaran</th>
-                {isAdmin && <th className="px-6 py-4 text-center">Actions</th>}
+                <th className="px-6 py-4 text-left text-yellow-300 font-semibold">Nama</th>
+                <th className="px-6 py-4 text-left text-yellow-300 font-semibold">Email</th>
+                <th className="px-6 py-4 text-left text-yellow-300 font-semibold">Team</th>
+                <th className="px-6 py-4 text-center text-yellow-300 font-semibold">Handicap</th>
+                <th className="px-6 py-4 text-center text-yellow-300 font-semibold">Pembayaran</th>
+                {isAdmin && <th className="px-6 py-4 text-center text-yellow-300 font-semibold">Actions</th>}
               </tr>
             </thead>
             <tbody>
