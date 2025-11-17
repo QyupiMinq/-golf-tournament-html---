@@ -1,0 +1,273 @@
+import React, { useState, useEffect, useContext } from 'react';
+import axios from 'axios';
+import { API, AuthContext } from '@/App';
+import { Plus, Edit, Trash2, Check, X } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { toast } from 'sonner';
+
+const Players = () => {
+  const { user } = useContext(AuthContext);
+  const [players, setPlayers] = useState([]);
+  const [teams, setTeams] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [open, setOpen] = useState(false);
+  const [editingPlayer, setEditingPlayer] = useState(null);
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    team_id: '',
+    handicap: 0,
+    payment_status: false,
+  });
+
+  useEffect(() => {
+    fetchPlayers();
+    fetchTeams();
+  }, []);
+
+  const fetchPlayers = async () => {
+    try {
+      const response = await axios.get(`${API}/players`);
+      setPlayers(response.data);
+    } catch (error) {
+      toast.error('Gagal memuat players');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const fetchTeams = async () => {
+    try {
+      const response = await axios.get(`${API}/teams`);
+      setTeams(response.data);
+    } catch (error) {
+      console.error('Failed to fetch teams:', error);
+    }
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      if (editingPlayer) {
+        await axios.put(`${API}/players/${editingPlayer.id}`, formData);
+        toast.success('Player berhasil diupdate');
+      } else {
+        await axios.post(`${API}/players`, formData);
+        toast.success('Player berhasil ditambahkan');
+      }
+      fetchPlayers();
+      setOpen(false);
+      resetForm();
+    } catch (error) {
+      toast.error(error.response?.data?.detail || 'Gagal menyimpan player');
+    }
+  };
+
+  const handleDelete = async (id) => {
+    if (!window.confirm('Hapus player ini?')) return;
+    try {
+      await axios.delete(`${API}/players/${id}`);
+      toast.success('Player berhasil dihapus');
+      fetchPlayers();
+    } catch (error) {
+      toast.error('Gagal menghapus player');
+    }
+  };
+
+  const resetForm = () => {
+    setFormData({ name: '', email: '', team_id: '', handicap: 0, payment_status: false });
+    setEditingPlayer(null);
+  };
+
+  const openEditDialog = (player) => {
+    setEditingPlayer(player);
+    setFormData({
+      name: player.name,
+      email: player.email || '',
+      team_id: player.team_id,
+      handicap: player.handicap,
+      payment_status: player.payment_status,
+    });
+    setOpen(true);
+  };
+
+  const isAdmin = user?.role === 'admin';
+
+  if (loading) {
+    return <div className="text-center py-12">Loading...</div>;
+  }
+
+  return (
+    <div data-testid="players-page">
+      {/* Header */}
+      <div className="flex justify-between items-center mb-8">
+        <div>
+          <h1
+            className="text-4xl sm:text-5xl font-bold text-emerald-800 mb-2"
+            style={{ fontFamily: 'Playfair Display, serif' }}
+          >
+            Players
+          </h1>
+          <p className="text-emerald-600">Manajemen pemain golf league</p>
+        </div>
+        {isAdmin && (
+          <Dialog open={open} onOpenChange={setOpen}>
+            <DialogTrigger asChild>
+              <Button
+                data-testid="add-player-btn"
+                onClick={resetForm}
+                className="bg-emerald-600 hover:bg-emerald-700"
+              >
+                <Plus className="h-4 w-4 mr-2" />
+                Tambah Player
+              </Button>
+            </DialogTrigger>
+            <DialogContent>
+              <DialogHeader>
+                <DialogTitle>{editingPlayer ? 'Edit Player' : 'Tambah Player Baru'}</DialogTitle>
+              </DialogHeader>
+              <form onSubmit={handleSubmit} className="space-y-4">
+                <div>
+                  <Label>Nama Lengkap</Label>
+                  <Input
+                    data-testid="player-name-input"
+                    value={formData.name}
+                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                    required
+                  />
+                </div>
+                <div>
+                  <Label>Email (Opsional)</Label>
+                  <Input
+                    data-testid="player-email-input"
+                    type="email"
+                    value={formData.email}
+                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                  />
+                </div>
+                <div>
+                  <Label>Team</Label>
+                  <Select
+                    value={formData.team_id}
+                    onValueChange={(value) => setFormData({ ...formData, team_id: value })}
+                  >
+                    <SelectTrigger data-testid="player-team-select">
+                      <SelectValue placeholder="Pilih team" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {teams.map((team) => (
+                        <SelectItem key={team.id} value={team.id}>
+                          {team.name}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                </div>
+                <div>
+                  <Label>Handicap</Label>
+                  <Input
+                    data-testid="player-handicap-input"
+                    type="number"
+                    value={formData.handicap}
+                    onChange={(e) => setFormData({ ...formData, handicap: parseInt(e.target.value) || 0 })}
+                  />
+                </div>
+                <div className="flex items-center space-x-2">
+                  <input
+                    data-testid="player-payment-checkbox"
+                    type="checkbox"
+                    id="payment"
+                    checked={formData.payment_status}
+                    onChange={(e) => setFormData({ ...formData, payment_status: e.target.checked })}
+                    className="rounded border-gray-300"
+                  />
+                  <Label htmlFor="payment">Pembayaran Lunas (Rp 100.000)</Label>
+                </div>
+                <Button data-testid="player-submit-btn" type="submit" className="w-full">
+                  {editingPlayer ? 'Update' : 'Tambah'}
+                </Button>
+              </form>
+            </DialogContent>
+          </Dialog>
+        )}
+      </div>
+
+      {/* Players Table */}
+      <div className="bg-white rounded-2xl shadow-lg overflow-hidden">
+        <div className="overflow-x-auto">
+          <table className="w-full">
+            <thead className="bg-emerald-600 text-white">
+              <tr>
+                <th className="px-6 py-4 text-left">Nama</th>
+                <th className="px-6 py-4 text-left">Email</th>
+                <th className="px-6 py-4 text-left">Team</th>
+                <th className="px-6 py-4 text-center">Handicap</th>
+                <th className="px-6 py-4 text-center">Pembayaran</th>
+                {isAdmin && <th className="px-6 py-4 text-center">Actions</th>}
+              </tr>
+            </thead>
+            <tbody>
+              {players.map((player, index) => {
+                const team = teams.find((t) => t.id === player.team_id);
+                return (
+                  <tr key={player.id} data-testid={`player-row-${player.id}`} className={index % 2 === 0 ? 'bg-gray-50' : 'bg-white'}>
+                    <td className="px-6 py-4 font-semibold text-gray-800">{player.name}</td>
+                    <td className="px-6 py-4 text-gray-600">{player.email || '-'}</td>
+                    <td className="px-6 py-4 text-gray-600">{team?.name || 'No Team'}</td>
+                    <td className="px-6 py-4 text-center text-gray-800 font-semibold">{player.handicap}</td>
+                    <td className="px-6 py-4 text-center">
+                      {player.payment_status ? (
+                        <span className="inline-flex items-center gap-1 px-3 py-1 bg-green-100 text-green-700 rounded-full text-sm font-semibold">
+                          <Check className="h-3 w-3" /> Lunas
+                        </span>
+                      ) : (
+                        <span className="inline-flex items-center gap-1 px-3 py-1 bg-rose-100 text-rose-700 rounded-full text-sm font-semibold">
+                          <X className="h-3 w-3" /> Belum
+                        </span>
+                      )}
+                    </td>
+                    {isAdmin && (
+                      <td className="px-6 py-4 text-center">
+                        <div className="flex justify-center gap-2">
+                          <Button
+                            data-testid={`edit-player-${player.id}`}
+                            onClick={() => openEditDialog(player)}
+                            variant="ghost"
+                            size="sm"
+                          >
+                            <Edit className="h-4 w-4" />
+                          </Button>
+                          <Button
+                            data-testid={`delete-player-${player.id}`}
+                            onClick={() => handleDelete(player.id)}
+                            variant="ghost"
+                            size="sm"
+                            className="text-red-600 hover:text-red-700 hover:bg-red-50"
+                          >
+                            <Trash2 className="h-4 w-4" />
+                          </Button>
+                        </div>
+                      </td>
+                    )}
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        </div>
+
+        {players.length === 0 && (
+          <div className="text-center py-12 text-gray-500">
+            <p>Belum ada player. Tambahkan player pertama!</p>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+};
+
+export default Players;
