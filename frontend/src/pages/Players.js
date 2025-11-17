@@ -262,7 +262,7 @@ const Players = () => {
                         )}
                       </div>
                     </td>
-                    <td className="px-6 py-4 text-right font-semibold text-gray-800 pr-12">{player.name}</td>
+                    <td className="px-6 py-4 text-left font-semibold text-gray-800 pl-20">{player.name}</td>
                     <td className="px-6 py-4 text-center text-gray-600">{player.email || '-'}</td>
                     <td className="px-6 py-4 text-center text-gray-600">{team?.name || 'No Team'}</td>
                     <td className="px-6 py-4 text-center text-gray-800 font-semibold">{player.handicap}</td>
