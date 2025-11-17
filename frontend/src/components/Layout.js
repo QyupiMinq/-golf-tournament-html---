@@ -19,6 +19,11 @@ const Layout = ({ children }) => {
     { name: 'Transfers', path: '/transfers', icon: Repeat },
   ];
 
+  // Add Settings for admin
+  const adminNavigation = user?.role === 'admin' 
+    ? [...navigation, { name: 'Settings', path: '/settings', icon: Settings }]
+    : navigation;
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-green-50 to-gray-100">
       {/* Mobile menu button */}
