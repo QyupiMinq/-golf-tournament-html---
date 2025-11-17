@@ -14,6 +14,7 @@ const Settings = () => {
     footer_signature: '',
   });
   const [loading, setLoading] = useState(true);
+  const [saving, setSaving] = useState(false);
 
   useEffect(() => {
     fetchSettings();
