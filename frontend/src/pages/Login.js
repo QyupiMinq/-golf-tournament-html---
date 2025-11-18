@@ -49,10 +49,10 @@ const Login = () => {
       <div className="w-full max-w-md relative z-10">
         {/* Header */}
         <div className="text-center mb-8">
-          {settings.dashboard_logo ? (
+          {settings.login_logo ? (
             <div className="inline-block mb-6">
               <img 
-                src={settings.dashboard_logo} 
+                src={settings.login_logo} 
                 alt="Club Logo" 
                 className="h-32 w-32 object-contain mx-auto rounded-xl shadow-2xl bg-white/10 p-3" 
               />
