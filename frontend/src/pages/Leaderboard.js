@@ -227,10 +227,6 @@ const Leaderboard = () => {
               );
             })}
           </div>
-          {teamLeaderboard.length === 0 && (
-            <div className="text-center py-12 text-gray-500 bg-white rounded-2xl">
-              <p>Belum ada data leaderboard team</p>
-            </div>
           )}
         </TabsContent>
       </Tabs>
