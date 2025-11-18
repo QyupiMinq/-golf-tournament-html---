@@ -64,9 +64,17 @@ const Layout = ({ children }) => {
             <div className="absolute inset-0 bg-gradient-to-br from-yellow-600/10 to-transparent"></div>
             <div className="relative">
               <div className="flex items-center justify-center mb-3">
-                <div className="w-16 h-16 rounded-full bg-gradient-to-br from-yellow-400 to-yellow-600 flex items-center justify-center shadow-xl ring-4 ring-yellow-500/30">
-                  <Trophy className="h-9 w-9 text-gray-900" />
-                </div>
+                {settings.dashboard_logo ? (
+                  <img 
+                    src={settings.dashboard_logo} 
+                    alt="Club Logo" 
+                    className="h-20 w-20 object-contain rounded-xl shadow-xl bg-white/10 p-2" 
+                  />
+                ) : (
+                  <div className="w-16 h-16 rounded-full bg-gradient-to-br from-yellow-400 to-yellow-600 flex items-center justify-center shadow-xl ring-4 ring-yellow-500/30">
+                    <Trophy className="h-9 w-9 text-gray-900" />
+                  </div>
+                )}
               </div>
               <div className="text-center">
                 <h1 className="text-xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 via-yellow-400 to-yellow-300 mb-1" style={{ fontFamily: 'Space Grotesk, sans-serif' }}>
