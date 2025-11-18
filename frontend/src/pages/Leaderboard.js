@@ -94,6 +94,19 @@ const Leaderboard = () => {
 
         {/* Individual Leaderboard */}
         <TabsContent value="individual">
+          {individualLeaderboard.length === 0 || individualLeaderboard.every(p => p.total_points === 0) ? (
+            <div className="bg-white rounded-2xl shadow-lg p-12 text-center">
+              <Trophy className="h-20 w-20 text-gray-300 mx-auto mb-4" />
+              <h3 className="text-2xl font-bold text-gray-700 mb-2">Belum Ada Data Leaderboard</h3>
+              <p className="text-gray-500 mb-6">Input hasil match terlebih dahulu untuk melihat leaderboard</p>
+              <Button
+                onClick={() => window.location.href = '/matches'}
+                className="bg-gradient-to-r from-green-700 to-green-800 hover:from-green-800 hover:to-green-900 text-yellow-300"
+              >
+                Pergi ke Matches
+              </Button>
+            </div>
+          ) : (
           <div className="bg-white rounded-2xl shadow-lg overflow-hidden">
             <div className="bg-gradient-to-r from-emerald-600 to-teal-600 p-6">
               <h2 className="text-2xl font-bold text-white">Peringkat Individual</h2>
