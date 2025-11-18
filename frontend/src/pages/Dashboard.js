@@ -58,6 +58,30 @@ const Dashboard = () => {
     }
   };
 
+  const handleDeleteGallery = async (itemId) => {
+    if (!window.confirm('Hapus foto ini dari gallery?')) return;
+    
+    try {
+      await axios.delete(`${API}/match-gallery/${itemId}`);
+      toast.success('Gallery item deleted successfully!');
+      fetchGallery(); // Refresh gallery
+    } catch (error) {
+      toast.error('Failed to delete gallery item');
+    }
+  };
+
+  const handleDeleteAnnouncement = async (announcementId) => {
+    if (!window.confirm('Hapus announcement ini?')) return;
+    
+    try {
+      await axios.delete(`${API}/announcements/${announcementId}`);
+      toast.success('Announcement deleted successfully!');
+      fetchAnnouncements(); // Refresh announcements
+    } catch (error) {
+      toast.error('Failed to delete announcement');
+    }
+  };
+
   const statCards = stats
     ? [
         { icon: Users, label: 'Total Teams', value: stats.teams_count, color: 'bg-gradient-to-br from-green-600 to-green-700' },
