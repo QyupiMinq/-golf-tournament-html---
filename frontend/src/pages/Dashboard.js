@@ -121,10 +121,10 @@ const Dashboard = () => {
             <span className="font-bold text-gray-900 whitespace-nowrap">📢 INFO:</span>
             <div className="flex-1 overflow-hidden">
               <div className="animate-marquee whitespace-nowrap inline-block">
-                {announcements.map((ann, idx) => (
-                  <span key={ann.id} className="text-gray-900 font-semibold mx-8">
-                    {ann.title} - {ann.content}
-                    {idx < announcements.length - 1 && ' • '}
+                {/* Duplicate for smooth loop */}
+                {[...announcements, ...announcements].map((ann, idx) => (
+                  <span key={`${ann.id}-${idx}`} className="text-gray-900 font-semibold mx-8">
+                    {ann.title} - {ann.content} •
                   </span>
                 ))}
               </div>
