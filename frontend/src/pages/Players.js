@@ -91,53 +91,74 @@ const Players = () => {
 
   const handlePhotoUpload = (e) => {
     const file = e.target.files[0];
-    if (file) {
-      // Check file size (limit to 2MB)
-      if (file.size > 2 * 1024 * 1024) {
-        toast.error('Ukuran foto maksimal 2MB');
-        return;
-      }
+    if (!file) return;
+    
+    // Check file size (limit to 2MB)
+    if (file.size > 2 * 1024 * 1024) {
+      toast.error('Ukuran foto maksimal 2MB');
+      return;
+    }
 
+    try {
       // Compress and resize image
       const reader = new FileReader();
       reader.onload = (event) => {
-        const img = new Image();
-        img.onload = () => {
-          // Create canvas to resize
-          const canvas = document.createElement('canvas');
-          const MAX_WIDTH = 400;
-          const MAX_HEIGHT = 400;
-          
-          let width = img.width;
-          let height = img.height;
-          
-          // Calculate new dimensions
-          if (width > height) {
-            if (width > MAX_WIDTH) {
-              height *= MAX_WIDTH / width;
-              width = MAX_WIDTH;
+        try {
+          const img = new Image();
+          img.onload = () => {
+            try {
+              // Create canvas to resize
+              const canvas = document.createElement('canvas');
+              const MAX_WIDTH = 400;
+              const MAX_HEIGHT = 400;
+              
+              let width = img.width;
+              let height = img.height;
+              
+              // Calculate new dimensions
+              if (width > height) {
+                if (width > MAX_WIDTH) {
+                  height *= MAX_WIDTH / width;
+                  width = MAX_WIDTH;
+                }
+              } else {
+                if (height > MAX_HEIGHT) {
+                  width *= MAX_HEIGHT / height;
+                  height = MAX_HEIGHT;
+                }
+              }
+              
+              canvas.width = width;
+              canvas.height = height;
+              
+              const ctx = canvas.getContext('2d');
+              ctx.drawImage(img, 0, 0, width, height);
+              
+              // Convert to base64 with compression (0.7 quality)
+              const compressedBase64 = canvas.toDataURL('image/jpeg', 0.7);
+              setFormData(prev => ({ ...prev, photo: compressedBase64 }));
+              toast.success('Foto berhasil diupload');
+            } catch (err) {
+              console.error('Canvas error:', err);
+              toast.error('Gagal memproses foto');
             }
-          } else {
-            if (height > MAX_HEIGHT) {
-              width *= MAX_HEIGHT / height;
-              height = MAX_HEIGHT;
-            }
-          }
-          
-          canvas.width = width;
-          canvas.height = height;
-          
-          const ctx = canvas.getContext('2d');
-          ctx.drawImage(img, 0, 0, width, height);
-          
-          // Convert to base64 with compression (0.7 quality)
-          const compressedBase64 = canvas.toDataURL('image/jpeg', 0.7);
-          setFormData({ ...formData, photo: compressedBase64 });
-          toast.success('Foto berhasil diupload');
-        };
-        img.src = event.target.result;
+          };
+          img.onerror = () => {
+            toast.error('Gagal memuat foto');
+          };
+          img.src = event.target.result;
+        } catch (err) {
+          console.error('Image error:', err);
+          toast.error('Gagal memuat foto');
+        }
+      };
+      reader.onerror = () => {
+        toast.error('Gagal membaca file');
       };
       reader.readAsDataURL(file);
+    } catch (err) {
+      console.error('Upload error:', err);
+      toast.error('Gagal mengupload foto');
     }
   };
 
