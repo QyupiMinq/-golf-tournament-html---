@@ -1,5 +1,6 @@
 import React, { useState, useContext } from 'react';
 import { AuthContext } from '@/App';
+import axios from 'axios';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
