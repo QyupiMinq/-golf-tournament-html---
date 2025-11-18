@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { API } from '@/App';
-import { Trophy, Medal, Award } from 'lucide-react';
+import { Trophy, Medal, Award, TrendingUp } from 'lucide-react';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { Button } from '@/components/ui/button';
 import { toast } from 'sonner';
 
 const Leaderboard = () => {
