@@ -20,7 +20,9 @@ const Login = () => {
 
   const fetchSettings = async () => {
     try {
-      const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/settings`);
+      // Add timestamp to prevent caching
+      const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/settings?t=${Date.now()}`);
+      console.log('Fetched settings:', response.data);
       setSettings(response.data);
     } catch (error) {
       console.error('Failed to fetch settings:', error);
