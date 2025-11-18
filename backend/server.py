@@ -239,6 +239,10 @@ async def get_admin_user(current_user: User = Depends(get_current_user)):
 
 @api_router.post("/auth/register", response_model=Token)
 async def register(user_data: UserCreate):
+    # Prevent admin self-registration - admin must be created manually
+    if user_data.role == "admin":
+        raise HTTPException(status_code=403, detail="Admin accounts cannot be self-registered. Contact system administrator.")
+    
     # Check if user exists
     existing = await db.users.find_one({"email": user_data.email}, {"_id": 0})
     if existing:
@@ -247,15 +251,21 @@ async def register(user_data: UserCreate):
     # Hash password
     hashed = bcrypt.hashpw(user_data.password.encode('utf-8'), bcrypt.gensalt())
     
-    # Create user
-    user = User(email=user_data.email, name=user_data.name, role=user_data.role)
+    # Create user with pending approval status
+    user = User(
+        email=user_data.email, 
+        name=user_data.name, 
+        role="player",  # Force role to player
+        is_approved=False,  # Requires admin approval
+        approval_status="pending"
+    )
     user_dict = user.model_dump()
     user_dict['created_at'] = user_dict['created_at'].isoformat()
     user_dict['password'] = hashed.decode('utf-8')
     
     await db.users.insert_one(user_dict)
     
-    # Create token
+    # Create token (but user can't access most features until approved)
     access_token = create_access_token(data={"sub": user.id})
     return Token(access_token=access_token, token_type="bearer", user=user)
 
