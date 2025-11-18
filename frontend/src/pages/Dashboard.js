@@ -38,6 +38,24 @@ const Dashboard = () => {
     }
   };
 
+  const fetchAnnouncements = async () => {
+    try {
+      const response = await axios.get(`${API}/announcements`);
+      setAnnouncements(response.data);
+    } catch (error) {
+      console.error('Failed to fetch announcements:', error);
+    }
+  };
+
+  const fetchGallery = async () => {
+    try {
+      const response = await axios.get(`${API}/match-gallery`);
+      setGallery(response.data);
+    } catch (error) {
+      console.error('Failed to fetch gallery:', error);
+    }
+  };
+
   const statCards = stats
     ? [
         { icon: Users, label: 'Total Teams', value: stats.teams_count, color: 'bg-gradient-to-br from-green-600 to-green-700' },
