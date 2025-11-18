@@ -114,6 +114,25 @@ const Dashboard = () => {
         </div>
       </div>
 
+      {/* Running Text Announcements */}
+      {announcements.length > 0 && (
+        <div className="bg-gradient-to-r from-yellow-400 to-yellow-500 rounded-xl shadow-lg p-4 mb-8 overflow-hidden">
+          <div className="flex items-center gap-4">
+            <span className="font-bold text-gray-900 whitespace-nowrap">📢 INFO:</span>
+            <div className="flex-1 overflow-hidden">
+              <div className="animate-marquee whitespace-nowrap inline-block">
+                {announcements.map((ann, idx) => (
+                  <span key={ann.id} className="text-gray-900 font-semibold mx-8">
+                    {ann.title} - {ann.content}
+                    {idx < announcements.length - 1 && ' • '}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* Stats Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6 mb-8">
         {statCards.map((card, index) => {
