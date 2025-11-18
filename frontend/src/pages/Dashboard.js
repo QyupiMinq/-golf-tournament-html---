@@ -1,18 +1,13 @@
 import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import { API, AuthContext } from '@/App';
-import { Users, UserCheck, CalendarDays, Trophy, TrendingUp, Upload, X as CloseIcon } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { toast } from 'sonner';
+import { Users, UserCheck, CalendarDays, Trophy, TrendingUp } from 'lucide-react';
 
 const Dashboard = () => {
   const { user } = useContext(AuthContext);
   const [stats, setStats] = useState(null);
   const [settings, setSettings] = useState({ organization_logo: null, club_logo: null });
   const [loading, setLoading] = useState(true);
-  const [uploadingLogo, setUploadingLogo] = useState(false);
-  const [showLogoUpload, setShowLogoUpload] = useState(false);
 
   useEffect(() => {
     fetchStats();
