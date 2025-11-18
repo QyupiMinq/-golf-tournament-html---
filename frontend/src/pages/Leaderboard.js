@@ -157,12 +157,8 @@ const Leaderboard = () => {
                 </tbody>
               </table>
             </div>
-            {individualLeaderboard.length === 0 && (
-              <div className="text-center py-12 text-gray-500">
-                <p>Belum ada data leaderboard</p>
-              </div>
-            )}
           </div>
+          )}
         </TabsContent>
 
         {/* Team Leaderboard */}
