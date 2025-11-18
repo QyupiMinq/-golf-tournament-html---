@@ -273,20 +273,25 @@ const Players = () => {
                   )}
                 </div>
                 <div>
-                  <Label className="text-gray-700 font-semibold">Team</Label>
+                  <Label className="text-gray-700 font-semibold">Team <span className="text-red-500">*</span></Label>
                   <Select
                     value={formData.team_id}
                     onValueChange={(value) => setFormData({ ...formData, team_id: value })}
+                    required
                   >
                     <SelectTrigger data-testid="player-team-select" className="border-gray-300">
                       <SelectValue placeholder="Pilih team" />
                     </SelectTrigger>
                     <SelectContent>
-                      {teams.map((team) => (
-                        <SelectItem key={team.id} value={team.id}>
-                          {team.name}
-                        </SelectItem>
-                      ))}
+                      {teams.length > 0 ? (
+                        teams.map((team) => (
+                          <SelectItem key={team.id} value={team.id}>
+                            {team.name}
+                          </SelectItem>
+                        ))
+                      ) : (
+                        <div className="p-2 text-sm text-gray-500">Tidak ada team tersedia</div>
+                      )}
                     </SelectContent>
                   </Select>
                 </div>
