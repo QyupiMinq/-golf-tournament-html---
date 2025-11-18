@@ -428,48 +428,77 @@ class GolfLeagueAPITester:
             self.log_result("GET /api/leaderboard/team", False, f"Exception: {str(e)}")
     
     def test_settings_endpoint(self):
-        """Test settings endpoint with focus on login_logo field"""
-        print("\n=== Testing Settings Endpoint (Login Logo Feature) ===")
+        """Test settings endpoint with focus on dual logo feature (organization_logo + club_logo)"""
+        print("\n=== Testing Settings Endpoint (Dual Logo Feature) ===")
         
-        # Test GET /api/settings - verify login_logo field exists
+        # Test GET /api/settings - verify new dual logo fields exist
         try:
             response = self.session.get(f"{self.base_url}/settings", timeout=10)
             
             if response.status_code == 200:
                 settings = response.json()
+                has_organization_logo = "organization_logo" in settings
+                has_club_logo = "club_logo" in settings
                 has_login_logo = "login_logo" in settings
+                has_dashboard_logo = "dashboard_logo" in settings  # Backward compatibility
+                has_footer_signature = "footer_signature" in settings
+                
                 self.log_result(
-                    "GET /api/settings", 
+                    "GET /api/settings - New Fields Check", 
                     True, 
-                    f"Settings retrieved successfully. login_logo field present: {has_login_logo}", 
+                    f"Settings retrieved. organization_logo: {has_organization_logo}, club_logo: {has_club_logo}", 
                     {
+                        "organization_logo_present": has_organization_logo,
+                        "organization_logo_value": settings.get("organization_logo"),
+                        "club_logo_present": has_club_logo,
+                        "club_logo_value": settings.get("club_logo"),
                         "login_logo_present": has_login_logo,
-                        "login_logo_value": settings.get("login_logo"),
-                        "dashboard_logo_present": "dashboard_logo" in settings,
-                        "footer_signature_present": "footer_signature" in settings
+                        "dashboard_logo_present": has_dashboard_logo,  # Backward compatibility
+                        "footer_signature_present": has_footer_signature
                     }
                 )
+                
+                # Verify backward compatibility - existing fields should still be present
+                backward_compatible = has_dashboard_logo and has_footer_signature and has_login_logo
+                self.log_result(
+                    "GET /api/settings - Backward Compatibility", 
+                    backward_compatible, 
+                    f"Existing fields preserved: dashboard_logo={has_dashboard_logo}, footer_signature={has_footer_signature}, login_logo={has_login_logo}", 
+                    {
+                        "backward_compatible": backward_compatible,
+                        "existing_fields": {
+                            "dashboard_logo": has_dashboard_logo,
+                            "footer_signature": has_footer_signature,
+                            "login_logo": has_login_logo
+                        }
+                    }
+                )
+                
             else:
                 self.log_result(
-                    "GET /api/settings", 
+                    "GET /api/settings - New Fields Check", 
                     False, 
                     f"Failed with status {response.status_code}", 
                     response.json() if response.content else None
                 )
                 
         except Exception as e:
-            self.log_result("GET /api/settings", False, f"Exception: {str(e)}")
+            self.log_result("GET /api/settings - New Fields Check", False, f"Exception: {str(e)}")
         
-        # Test POST /api/settings - update with login_logo
+        # Test POST /api/settings - update with dual logos
         try:
-            # Dummy base64 string for testing
-            dummy_logo_base64 = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkYPhfDwAChwGA60e6kgAAAABJRU5ErkJggg=="
+            # Dummy base64 strings for testing (different for each logo)
+            dummy_org_logo = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkYPhfDwAChwGA60e6kgAAAABJRU5ErkJggg=="
+            dummy_club_logo = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAIAAAACCAYAAABytg0kAAAAEklEQVR42mNkYGBgYGBgYAAAAAUAAY27m/MAAAAASUVORK5CYII="
+            dummy_login_logo = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAMAAAADCAYAAABWKLW/AAAAFElEQVR42mNkYGBgYGBgYGBgYGBgAAACAAEAAY27m/MAAAAASUVORK5CYII="
             
             settings_data = {
                 "id": "app_settings",
-                "dashboard_logo": None,
-                "footer_signature": None,
-                "login_logo": dummy_logo_base64
+                "dashboard_logo": None,  # Keep for backward compatibility
+                "organization_logo": dummy_org_logo,  # New field
+                "club_logo": dummy_club_logo,  # New field
+                "footer_signature": "Manado Golf League 2025",
+                "login_logo": dummy_login_logo  # Existing field
             }
             
             response = self.session.post(
@@ -481,9 +510,9 @@ class GolfLeagueAPITester:
             if response.status_code == 200:
                 result = response.json()
                 self.log_result(
-                    "POST /api/settings", 
+                    "POST /api/settings - Dual Logo Update", 
                     True, 
-                    "Settings updated successfully with login_logo", 
+                    "Settings updated successfully with organization_logo and club_logo", 
                     result
                 )
                 
@@ -491,24 +520,80 @@ class GolfLeagueAPITester:
                 verify_response = self.session.get(f"{self.base_url}/settings", timeout=10)
                 if verify_response.status_code == 200:
                     updated_settings = verify_response.json()
-                    login_logo_saved = updated_settings.get("login_logo") == dummy_logo_base64
+                    org_logo_saved = updated_settings.get("organization_logo") == dummy_org_logo
+                    club_logo_saved = updated_settings.get("club_logo") == dummy_club_logo
+                    login_logo_saved = updated_settings.get("login_logo") == dummy_login_logo
+                    
+                    all_logos_saved = org_logo_saved and club_logo_saved and login_logo_saved
+                    
                     self.log_result(
-                        "POST /api/settings (verification)", 
-                        login_logo_saved, 
-                        f"login_logo data saved correctly: {login_logo_saved}", 
-                        {"login_logo_matches": login_logo_saved}
+                        "POST /api/settings - Dual Logo Verification", 
+                        all_logos_saved, 
+                        f"Logo data persistence: org_logo={org_logo_saved}, club_logo={club_logo_saved}, login_logo={login_logo_saved}", 
+                        {
+                            "organization_logo_saved": org_logo_saved,
+                            "club_logo_saved": club_logo_saved,
+                            "login_logo_saved": login_logo_saved,
+                            "all_logos_saved": all_logos_saved
+                        }
                     )
+                    
+                    # Test individual logo updates
+                    self.test_individual_logo_updates(updated_settings)
                 
             else:
                 self.log_result(
-                    "POST /api/settings", 
+                    "POST /api/settings - Dual Logo Update", 
                     False, 
                     f"Failed with status {response.status_code}", 
                     response.json() if response.content else None
                 )
                 
         except Exception as e:
-            self.log_result("POST /api/settings", False, f"Exception: {str(e)}")
+            self.log_result("POST /api/settings - Dual Logo Update", False, f"Exception: {str(e)}")
+    
+    def test_individual_logo_updates(self, current_settings):
+        """Test updating individual logo fields without affecting others"""
+        print("\n=== Testing Individual Logo Field Updates ===")
+        
+        try:
+            # Test updating only organization_logo
+            new_org_logo = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAECAYAAACp8Z5+AAAAFklEQVR42mNkYGBgYGBgYGBgYGBgYAAAAAUAAY27m/MAAAAASUVORK5CYII="
+            
+            update_data = current_settings.copy()
+            update_data["organization_logo"] = new_org_logo
+            
+            response = self.session.post(
+                f"{self.base_url}/settings",
+                json=update_data,
+                timeout=10
+            )
+            
+            if response.status_code == 200:
+                # Verify only organization_logo changed
+                verify_response = self.session.get(f"{self.base_url}/settings", timeout=10)
+                if verify_response.status_code == 200:
+                    updated = verify_response.json()
+                    org_updated = updated.get("organization_logo") == new_org_logo
+                    club_unchanged = updated.get("club_logo") == current_settings.get("club_logo")
+                    login_unchanged = updated.get("login_logo") == current_settings.get("login_logo")
+                    
+                    individual_update_success = org_updated and club_unchanged and login_unchanged
+                    
+                    self.log_result(
+                        "Individual Logo Update Test", 
+                        individual_update_success, 
+                        f"Organization logo updated independently: org_changed={org_updated}, club_unchanged={club_unchanged}, login_unchanged={login_unchanged}", 
+                        {
+                            "organization_logo_updated": org_updated,
+                            "club_logo_unchanged": club_unchanged,
+                            "login_logo_unchanged": login_unchanged,
+                            "individual_update_success": individual_update_success
+                        }
+                    )
+                    
+        except Exception as e:
+            self.log_result("Individual Logo Update Test", False, f"Exception: {str(e)}")
     
     def test_database_cleanup_verification(self):
         """Test database collections to verify cleanup"""
