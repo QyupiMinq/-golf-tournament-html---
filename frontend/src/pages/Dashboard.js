@@ -267,7 +267,17 @@ const Dashboard = () => {
             ) : (
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {gallery.map((item) => (
-                  <div key={item.id} className="bg-gray-50 rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow">
+                  <div key={item.id} className="bg-gray-50 rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow relative group">
+                    {user?.role === 'admin' && (
+                      <Button
+                        onClick={() => handleDeleteGallery(item.id)}
+                        size="sm"
+                        variant="destructive"
+                        className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity z-10"
+                      >
+                        <Trash2 className="h-4 w-4" />
+                      </Button>
+                    )}
                     <img src={item.photo} alt={item.title} className="w-full h-48 object-cover" />
                     <div className="p-4">
                       <h3 className="font-bold text-gray-800 mb-2">{item.title}</h3>
