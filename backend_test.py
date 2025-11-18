@@ -612,6 +612,7 @@ class GolfLeagueAPITester:
         self.test_dashboard_stats()
         self.test_leaderboard_endpoints()
         self.test_settings_endpoint()
+        self.test_database_cleanup_verification()
         
         # Print summary
         self.print_summary()
