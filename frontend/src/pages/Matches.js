@@ -154,18 +154,29 @@ const Matches = () => {
           </h1>
           <p className="text-gray-600">Jadwal dan hasil pertandingan</p>
         </div>
-        {isAdmin && (
-          <Dialog open={open} onOpenChange={setOpen}>
-            <DialogTrigger asChild>
-              <Button
-                data-testid="add-match-btn"
-                onClick={resetForm}
-                className="bg-gradient-to-r from-green-700 to-green-800 hover:from-green-800 hover:to-green-900 text-yellow-300 shadow-lg"
-              >
-                <Plus className="h-4 w-4 mr-2" />
-                Tambah Match
-              </Button>
-            </DialogTrigger>
+        <div className="flex gap-3">
+          <Button
+            onClick={() => { setLoading(true); fetchMatches(); fetchPlayers(); }}
+            disabled={loading}
+            variant="outline"
+            className="border-green-700 text-green-700 hover:bg-green-50"
+            data-testid="refresh-matches-btn"
+          >
+            <RefreshCw className={`h-4 w-4 mr-2 ${loading ? 'animate-spin' : ''}`} />
+            Refresh
+          </Button>
+          {isAdmin && (
+            <Dialog open={open} onOpenChange={setOpen}>
+              <DialogTrigger asChild>
+                <Button
+                  data-testid="add-match-btn"
+                  onClick={resetForm}
+                  className="bg-gradient-to-r from-green-700 to-green-800 hover:from-green-800 hover:to-green-900 text-yellow-300 shadow-lg"
+                >
+                  <Plus className="h-4 w-4 mr-2" />
+                  Tambah Match
+                </Button>
+              </DialogTrigger>
             <DialogContent>
               <DialogHeader>
                 <DialogTitle className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-green-700 to-green-900">  {editingMatch ? 'Edit Match' : 'Tambah Match Baru'}</DialogTitle>
