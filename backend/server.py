@@ -172,6 +172,34 @@ class AppSettings(BaseModel):
     login_logo: Optional[str] = None  # Logo untuk halaman login
     updated_at: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
 
+class Announcement(BaseModel):
+    model_config = ConfigDict(extra="ignore")
+    id: str = Field(default_factory=lambda: str(uuid.uuid4()))
+    title: str
+    content: str
+    created_at: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
+    is_active: bool = True
+
+class AnnouncementCreate(BaseModel):
+    title: str
+    content: str
+    is_active: bool = True
+
+class MatchGallery(BaseModel):
+    model_config = ConfigDict(extra="ignore")
+    id: str = Field(default_factory=lambda: str(uuid.uuid4()))
+    match_id: Optional[str] = None  # Optional link to specific match
+    title: str
+    description: str
+    photo: str  # Base64 image
+    created_at: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
+
+class MatchGalleryCreate(BaseModel):
+    match_id: Optional[str] = None
+    title: str
+    description: str
+    photo: str
+
 # ==================== Helper Functions ====================
 
 def create_access_token(data: dict):
