@@ -12,6 +12,7 @@ const Settings = () => {
   const [settings, setSettings] = useState({
     dashboard_logo: '',
     footer_signature: '',
+    login_logo: '',
   });
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
