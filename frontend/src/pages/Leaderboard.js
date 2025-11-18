@@ -48,17 +48,42 @@ const Leaderboard = () => {
     return <div className="text-center py-12">Loading...</div>;
   }
 
+  const handleRefresh = () => {
+    setLoading(true);
+    fetchLeaderboards();
+  };
+
   return (
     <div data-testid="leaderboard-page">
       {/* Header */}
-      <div className="mb-8">
-        <h1
-          className="text-4xl sm:text-5xl font-bold text-emerald-800 mb-2"
-          style={{ fontFamily: 'Playfair Display, serif' }}
+      <div className="mb-8 flex justify-between items-center">
+        <div>
+          <h1
+            className="text-4xl sm:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-green-700 to-green-900 mb-2"
+            style={{ fontFamily: 'Playfair Display, serif' }}
+          >
+            Leaderboard
+          </h1>
+          <p className="text-gray-600">Peringkat pemain dan tim</p>
+        </div>
+        <Button
+          onClick={handleRefresh}
+          disabled={loading}
+          className="bg-gradient-to-r from-green-700 to-green-800 hover:from-green-800 hover:to-green-900 text-yellow-300 shadow-lg"
+          data-testid="refresh-leaderboard-btn"
         >
-          Leaderboard
-        </h1>
-        <p className="text-emerald-600">Peringkat pemain dan tim</p>
+          {loading ? (
+            <div className="flex items-center gap-2">
+              <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-yellow-300"></div>
+              <span>Refresh...</span>
+            </div>
+          ) : (
+            <>
+              <TrendingUp className="h-4 w-4 mr-2" />
+              Refresh Data
+            </>
+          )}
+        </Button>
       </div>
 
       <Tabs defaultValue="individual" className="w-full">
