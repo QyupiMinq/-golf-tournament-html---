@@ -45,6 +45,10 @@ class User(BaseModel):
     email: EmailStr
     name: str
     role: str = "player"  # admin or player
+    is_approved: bool = False  # Approval status for player registrations
+    approval_status: str = "pending"  # pending, approved, rejected
+    approved_by: Optional[str] = None  # Admin ID who approved
+    approved_at: Optional[datetime] = None
     created_at: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
 
 class UserCreate(BaseModel):
