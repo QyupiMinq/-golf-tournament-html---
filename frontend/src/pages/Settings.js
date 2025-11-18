@@ -11,6 +11,8 @@ const Settings = () => {
   const { user } = useContext(AuthContext);
   const [settings, setSettings] = useState({
     dashboard_logo: '',
+    organization_logo: '',
+    club_logo: '',
     footer_signature: '',
     login_logo: '',
   });
