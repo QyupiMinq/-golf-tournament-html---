@@ -96,6 +96,15 @@ const Settings = () => {
     }
   };
 
+  const handleLoginLogoUpload = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      compressImage(file, (compressedBase64) => {
+        setSettings({ ...settings, login_logo: compressedBase64 });
+      });
+    }
+  };
+
   const handleSave = async () => {
     setSaving(true);
     try {
