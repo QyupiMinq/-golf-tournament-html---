@@ -1,7 +1,9 @@
 import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import { API, AuthContext } from '@/App';
-import { Users, UserCheck, CalendarDays, Trophy, TrendingUp } from 'lucide-react';
+import { Users, UserCheck, CalendarDays, Trophy, TrendingUp, Trash2, X } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { toast } from 'sonner';
 
 const Dashboard = () => {
   const { user } = useContext(AuthContext);
