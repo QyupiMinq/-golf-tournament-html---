@@ -540,7 +540,14 @@ async def get_dashboard_stats(current_user: User = Depends(get_current_user)):
 async def get_settings(current_user: User = Depends(get_current_user)):
     settings = await db.settings.find_one({"id": "app_settings"}, {"_id": 0})
     if not settings:
-        return {"id": "app_settings", "dashboard_logo": None, "footer_signature": None, "login_logo": None}
+        return {
+            "id": "app_settings", 
+            "dashboard_logo": None, 
+            "organization_logo": None,
+            "club_logo": None,
+            "footer_signature": None, 
+            "login_logo": None
+        }
     return settings
 
 @api_router.post("/settings")
