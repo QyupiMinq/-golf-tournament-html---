@@ -10,11 +10,11 @@ import { toast } from 'sonner';
 const Settings = () => {
   const { user } = useContext(AuthContext);
   const [settings, setSettings] = useState({
-    dashboard_logo: '',
-    organization_logo: '',
-    club_logo: '',
-    footer_signature: '',
-    login_logo: '',
+    dashboard_logo: null,
+    organization_logo: null,
+    club_logo: null,
+    footer_signature: null,
+    login_logo: null,
   });
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
