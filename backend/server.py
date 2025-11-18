@@ -167,6 +167,7 @@ class AppSettings(BaseModel):
     id: str = "app_settings"  # Single document ID
     dashboard_logo: Optional[str] = None
     footer_signature: Optional[str] = None
+    login_logo: Optional[str] = None  # Logo untuk halaman login
     updated_at: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
 
 # ==================== Helper Functions ====================
