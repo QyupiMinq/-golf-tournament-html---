@@ -315,6 +315,7 @@ const Teams = () => {
             </DialogContent>
           </Dialog>
         )}
+        </div>
       </div>
 
       {/* Teams Grid */}
