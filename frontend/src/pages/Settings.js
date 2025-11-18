@@ -189,6 +189,46 @@ const Settings = () => {
           </div>
         </div>
 
+        {/* Login Logo */}
+        <div className="bg-white rounded-2xl shadow-lg p-8 border border-gray-200">
+          <div className="flex items-center gap-3 mb-6">
+            <div className="w-12 h-12 rounded-full bg-gradient-to-br from-blue-600 to-blue-700 flex items-center justify-center">
+              <Upload className="h-6 w-6 text-white" />
+            </div>
+            <div>
+              <h2 className="text-2xl font-bold text-gray-800">Logo Login Page</h2>
+              <p className="text-sm text-gray-600">Logo yang ditampilkan di halaman login</p>
+            </div>
+          </div>
+
+          <div className="space-y-4">
+            <div>
+              <Label className="text-gray-700 font-semibold mb-2">Upload Logo Login</Label>
+              <div className="mt-2 p-6 border-2 border-dashed border-gray-300 rounded-lg hover:border-green-500 transition-colors">
+                <Input
+                  data-testid="login-logo-input"
+                  type="file"
+                  accept="image/*"
+                  onChange={handleLoginLogoUpload}
+                  className="border-0 p-0"
+                />
+              </div>
+              {settings.login_logo && (
+                <div className="mt-4 flex justify-center">
+                  <div className="text-center">
+                    <img 
+                      src={settings.login_logo} 
+                      alt="Login Logo" 
+                      className="h-32 w-32 object-contain rounded-xl border-4 border-blue-400 shadow-lg bg-white p-2" 
+                    />
+                    <p className="text-sm text-gray-600 mt-2">Preview Logo Login</p>
+                  </div>
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
+
         {/* Footer Signature */}
         <div className="bg-white rounded-2xl shadow-lg p-8 border border-gray-200">
           <div className="flex items-center gap-3 mb-6">
