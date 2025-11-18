@@ -636,6 +636,59 @@ async def delete_announcement(announcement_id: str, current_user: User = Depends
         raise HTTPException(status_code=404, detail="Announcement not found")
     return {"message": "Announcement deleted successfully"}
 
+# ==================== User Management (Admin Only) ====================
+
+@api_router.get("/users/pending")
+async def get_pending_users(current_user: User = Depends(get_admin_user)):
+    """Get all pending user registrations"""
+    users = await db.users.find(
+        {"approval_status": "pending", "role": "player"}, 
+        {"_id": 0, "password": 0}
+    ).to_list(100)
+    return users
+
+@api_router.get("/users")
+async def get_all_users(current_user: User = Depends(get_admin_user)):
+    """Get all users (admin only)"""
+    users = await db.users.find({}, {"_id": 0, "password": 0}).to_list(1000)
+    return users
+
+@api_router.post("/users/{user_id}/approve")
+async def approve_user(user_id: str, current_user: User = Depends(get_admin_user)):
+    """Approve a pending user registration"""
+    result = await db.users.update_one(
+        {"id": user_id},
+        {"$set": {
+            "is_approved": True,
+            "approval_status": "approved",
+            "approved_by": current_user.id,
+            "approved_at": datetime.now(timezone.utc).isoformat()
+        }}
+    )
+    
+    if result.modified_count == 0:
+        raise HTTPException(status_code=404, detail="User not found")
+    
+    return {"message": "User approved successfully"}
+
+@api_router.post("/users/{user_id}/reject")
+async def reject_user(user_id: str, current_user: User = Depends(get_admin_user)):
+    """Reject a pending user registration"""
+    result = await db.users.update_one(
+        {"id": user_id},
+        {"$set": {
+            "is_approved": False,
+            "approval_status": "rejected",
+            "approved_by": current_user.id,
+            "approved_at": datetime.now(timezone.utc).isoformat()
+        }}
+    )
+    
+    if result.modified_count == 0:
+        raise HTTPException(status_code=404, detail="User not found")
+    
+    return {"message": "User rejected"}
+
 # ==================== Match Gallery ====================
 
 @api_router.get("/match-gallery")
