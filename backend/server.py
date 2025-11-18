@@ -590,6 +590,53 @@ async def update_settings(settings_data: AppSettings, current_user: User = Depen
     )
     return {"message": "Settings updated successfully"}
 
+
+# ==================== Announcements ====================
+
+@api_router.get("/announcements")
+async def get_announcements(current_user: User = Depends(get_current_user)):
+    announcements = await db.announcements.find({"is_active": True}, {"_id": 0}).sort("created_at", -1).to_list(10)
+    return announcements
+
+@api_router.post("/announcements")
+async def create_announcement(announcement: AnnouncementCreate, current_user: User = Depends(get_admin_user)):
+    announcement_dict = announcement.model_dump()
+    announcement_dict['id'] = str(uuid.uuid4())
+    announcement_dict['created_at'] = datetime.now(timezone.utc).isoformat()
+    
+    await db.announcements.insert_one(announcement_dict)
+    return {"message": "Announcement created successfully", "id": announcement_dict['id']}
+
+@api_router.delete("/announcements/{announcement_id}")
+async def delete_announcement(announcement_id: str, current_user: User = Depends(get_admin_user)):
+    result = await db.announcements.delete_one({"id": announcement_id})
+    if result.deleted_count == 0:
+        raise HTTPException(status_code=404, detail="Announcement not found")
+    return {"message": "Announcement deleted successfully"}
+
+# ==================== Match Gallery ====================
+
+@api_router.get("/match-gallery")
+async def get_match_gallery(current_user: User = Depends(get_current_user)):
+    gallery = await db.match_gallery.find({}, {"_id": 0}).sort("created_at", -1).to_list(20)
+    return gallery
+
+@api_router.post("/match-gallery")
+async def create_gallery_item(item: MatchGalleryCreate, current_user: User = Depends(get_admin_user)):
+    item_dict = item.model_dump()
+    item_dict['id'] = str(uuid.uuid4())
+    item_dict['created_at'] = datetime.now(timezone.utc).isoformat()
+    
+    await db.match_gallery.insert_one(item_dict)
+    return {"message": "Gallery item created successfully", "id": item_dict['id']}
+
+@api_router.delete("/match-gallery/{item_id}")
+async def delete_gallery_item(item_id: str, current_user: User = Depends(get_admin_user)):
+    result = await db.match_gallery.delete_one({"id": item_id})
+    if result.deleted_count == 0:
+        raise HTTPException(status_code=404, detail="Gallery item not found")
+    return {"message": "Gallery item deleted successfully"}
+
 # Include the router in the main app
 app.include_router(api_router)
 
