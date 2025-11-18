@@ -10,7 +10,7 @@ const Layout = ({ children }) => {
   const { user, logout } = useContext(AuthContext);
   const location = useLocation();
   const [sidebarOpen, setSidebarOpen] = useState(false);
-  const [settings, setSettings] = useState({ dashboard_logo: null, footer_signature: null });
+  const [settings, setSettings] = useState({ organization_logo: null, footer_signature: null });
 
   React.useEffect(() => {
     fetchSettings();
