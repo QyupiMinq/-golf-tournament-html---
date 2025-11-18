@@ -226,6 +226,7 @@ const Matches = () => {
             </DialogContent>
           </Dialog>
         )}
+        </div>
       </div>
 
       {/* Matches Grid */}
