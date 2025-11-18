@@ -152,6 +152,53 @@ const Settings = () => {
     }
   };
 
+  const handleAnnouncementSubmit = async (e) => {
+    e.preventDefault();
+    if (!announcementForm.title || !announcementForm.content) {
+      toast.error('Please fill all fields');
+      return;
+    }
+    
+    setSubmittingAnnouncement(true);
+    try {
+      await axios.post(`${API}/announcements`, announcementForm);
+      toast.success('Announcement added successfully!');
+      setAnnouncementForm({ title: '', content: '' });
+    } catch (error) {
+      toast.error('Failed to add announcement');
+    } finally {
+      setSubmittingAnnouncement(false);
+    }
+  };
+
+  const handleGalleryPhotoUpload = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      compressImage(file, (compressedBase64) => {
+        setGalleryForm({ ...galleryForm, photo: compressedBase64 });
+      });
+    }
+  };
+
+  const handleGallerySubmit = async (e) => {
+    e.preventDefault();
+    if (!galleryForm.title || !galleryForm.description || !galleryForm.photo) {
+      toast.error('Please fill all fields and upload a photo');
+      return;
+    }
+    
+    setSubmittingGallery(true);
+    try {
+      await axios.post(`${API}/match-gallery`, galleryForm);
+      toast.success('Gallery item added successfully!');
+      setGalleryForm({ title: '', description: '', photo: null });
+    } catch (error) {
+      toast.error('Failed to add gallery item');
+    } finally {
+      setSubmittingGallery(false);
+    }
+  };
+
   const isAdmin = user?.role === 'admin';
 
   if (!isAdmin) {
