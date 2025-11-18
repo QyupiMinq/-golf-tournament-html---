@@ -376,19 +376,26 @@ class GolfLeagueAPITester:
             self.log_result("GET /api/leaderboard/team", False, f"Exception: {str(e)}")
     
     def test_settings_endpoint(self):
-        """Test settings endpoint"""
-        print("\n=== Testing Settings Endpoint ===")
+        """Test settings endpoint with focus on login_logo field"""
+        print("\n=== Testing Settings Endpoint (Login Logo Feature) ===")
         
+        # Test GET /api/settings - verify login_logo field exists
         try:
             response = self.session.get(f"{self.base_url}/settings", timeout=10)
             
             if response.status_code == 200:
                 settings = response.json()
+                has_login_logo = "login_logo" in settings
                 self.log_result(
                     "GET /api/settings", 
                     True, 
-                    "Settings retrieved successfully", 
-                    settings
+                    f"Settings retrieved successfully. login_logo field present: {has_login_logo}", 
+                    {
+                        "login_logo_present": has_login_logo,
+                        "login_logo_value": settings.get("login_logo"),
+                        "dashboard_logo_present": "dashboard_logo" in settings,
+                        "footer_signature_present": "footer_signature" in settings
+                    }
                 )
             else:
                 self.log_result(
@@ -400,6 +407,56 @@ class GolfLeagueAPITester:
                 
         except Exception as e:
             self.log_result("GET /api/settings", False, f"Exception: {str(e)}")
+        
+        # Test POST /api/settings - update with login_logo
+        try:
+            # Dummy base64 string for testing
+            dummy_logo_base64 = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkYPhfDwAChwGA60e6kgAAAABJRU5ErkJggg=="
+            
+            settings_data = {
+                "id": "app_settings",
+                "dashboard_logo": None,
+                "footer_signature": None,
+                "login_logo": dummy_logo_base64
+            }
+            
+            response = self.session.post(
+                f"{self.base_url}/settings",
+                json=settings_data,
+                timeout=10
+            )
+            
+            if response.status_code == 200:
+                result = response.json()
+                self.log_result(
+                    "POST /api/settings", 
+                    True, 
+                    "Settings updated successfully with login_logo", 
+                    result
+                )
+                
+                # Verify the update by getting settings again
+                verify_response = self.session.get(f"{self.base_url}/settings", timeout=10)
+                if verify_response.status_code == 200:
+                    updated_settings = verify_response.json()
+                    login_logo_saved = updated_settings.get("login_logo") == dummy_logo_base64
+                    self.log_result(
+                        "POST /api/settings (verification)", 
+                        login_logo_saved, 
+                        f"login_logo data saved correctly: {login_logo_saved}", 
+                        {"login_logo_matches": login_logo_saved}
+                    )
+                
+            else:
+                self.log_result(
+                    "POST /api/settings", 
+                    False, 
+                    f"Failed with status {response.status_code}", 
+                    response.json() if response.content else None
+                )
+                
+        except Exception as e:
+            self.log_result("POST /api/settings", False, f"Exception: {str(e)}")
     
     def run_all_tests(self):
         """Run all backend API tests"""
