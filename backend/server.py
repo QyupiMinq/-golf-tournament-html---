@@ -280,6 +280,14 @@ async def login(credentials: UserLogin):
         raise HTTPException(status_code=401, detail="Invalid credentials")
     
     user = User(**user_dict)
+    
+    # Check if user is approved (skip check for admin)
+    if user.role != "admin" and not user.is_approved:
+        if user.approval_status == "rejected":
+            raise HTTPException(status_code=403, detail="Your registration has been rejected. Please contact administrator.")
+        else:
+            raise HTTPException(status_code=403, detail="Your registration is pending approval. Please wait for admin to approve your account.")
+    
     access_token = create_access_token(data={"sub": user.id})
     return Token(access_token=access_token, token_type="bearer", user=user)
 
