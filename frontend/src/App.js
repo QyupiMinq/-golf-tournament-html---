@@ -68,10 +68,10 @@ function App() {
   const register = async (email, password, name, role) => {
     try {
       const response = await axios.post(`${API}/auth/register`, { email, password, name, role });
-      localStorage.setItem('token', response.data.access_token);
-      axios.defaults.headers.common['Authorization'] = `Bearer ${response.data.access_token}`;
-      setUser(response.data.user);
-      toast.success('Registrasi berhasil!');
+      // Don't auto-login after registration, show pending approval message
+      toast.success('Registration successful! Your account is pending approval. Please wait for admin to approve your account before you can login.', {
+        duration: 8000
+      });
       return true;
     } catch (error) {
       toast.error(error.response?.data?.detail || 'Registrasi gagal');
