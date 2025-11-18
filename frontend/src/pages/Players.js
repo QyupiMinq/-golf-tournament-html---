@@ -347,6 +347,7 @@ const Players = () => {
             </DialogContent>
           </Dialog>
         )}
+        </div>
       </div>
 
       {/* Players Table */}
