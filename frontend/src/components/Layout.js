@@ -64,10 +64,10 @@ const Layout = ({ children }) => {
             <div className="absolute inset-0 bg-gradient-to-br from-yellow-600/10 to-transparent"></div>
             <div className="relative">
               <div className="flex items-center justify-center mb-3">
-                {settings.dashboard_logo ? (
+                {settings.organization_logo ? (
                   <img 
-                    src={settings.dashboard_logo} 
-                    alt="Club Logo" 
+                    src={settings.organization_logo} 
+                    alt="Organization Logo" 
                     className="h-20 w-20 object-contain rounded-xl shadow-xl bg-white/10 p-2" 
                   />
                 ) : (
