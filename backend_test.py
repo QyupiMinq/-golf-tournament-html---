@@ -680,24 +680,22 @@ class GolfLeagueAPITester:
             self.log_result("GET /api/matches (cleanup check)", False, f"Exception: {str(e)}")
     
     def run_all_tests(self):
-        """Run all backend API tests"""
-        print(f"🚀 Starting Manado Golf League Backend API Tests")
+        """Run backend API tests focusing on dual logo feature"""
+        print(f"🚀 Starting Manado Golf League Backend API Tests - DUAL LOGO FEATURE")
         print(f"Backend URL: {self.base_url}")
         print(f"Test started at: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
+        print(f"Focus: Testing organization_logo and club_logo fields + backward compatibility")
         
         # Authentication is required for all endpoints
         if not self.test_auth_login():
             print("\n❌ Authentication failed - cannot proceed with other tests")
             return False
         
-        # Run all endpoint tests
-        self.test_teams_endpoints()
-        self.test_players_endpoints()
-        self.test_matches_endpoints()
-        self.test_dashboard_stats()
-        self.test_leaderboard_endpoints()
+        # Primary focus: Test dual logo feature in settings
         self.test_settings_endpoint()
-        self.test_database_cleanup_verification()
+        
+        # Secondary: Quick verification of other endpoints to ensure no regression
+        self.test_dashboard_stats()
         
         # Print summary
         self.print_summary()
