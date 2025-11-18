@@ -309,8 +309,18 @@ const Dashboard = () => {
                 </div>
               ) : (
                 announcements.map((ann) => (
-                  <div key={ann.id} className="bg-white rounded-lg p-4 border border-yellow-300 shadow-sm">
-                    <h3 className="font-bold text-gray-800 mb-1">{ann.title}</h3>
+                  <div key={ann.id} className="bg-white rounded-lg p-4 border border-yellow-300 shadow-sm relative group">
+                    {user?.role === 'admin' && (
+                      <Button
+                        onClick={() => handleDeleteAnnouncement(ann.id)}
+                        size="sm"
+                        variant="ghost"
+                        className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity h-6 w-6 p-0"
+                      >
+                        <X className="h-4 w-4 text-red-600" />
+                      </Button>
+                    )}
+                    <h3 className="font-bold text-gray-800 mb-1 pr-6">{ann.title}</h3>
                     <p className="text-sm text-gray-600">{ann.content}</p>
                     <p className="text-xs text-gray-400 mt-2">
                       {new Date(ann.created_at).toLocaleDateString('id-ID', { day: 'numeric', month: 'short', year: 'numeric' })}
