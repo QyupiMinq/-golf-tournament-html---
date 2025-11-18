@@ -51,20 +51,40 @@ const Teams = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    
+    // Validation
+    if (!formData.name || !formData.name.trim()) {
+      toast.error('Nama team harus diisi');
+      return;
+    }
+    
+    if (!formData.captain_id) {
+      toast.error('Captain harus dipilih');
+      return;
+    }
+    
     setSubmitting(true);
     
     try {
+      const submitData = {
+        name: formData.name.trim(),
+        captain_id: formData.captain_id,
+        logo: formData.logo || null,
+        payment_status: formData.payment_status || false
+      };
+      
       if (editingTeam) {
-        await axios.put(`${API}/teams/${editingTeam.id}`, formData);
+        await axios.put(`${API}/teams/${editingTeam.id}`, submitData);
         toast.success('Team berhasil diupdate');
       } else {
-        await axios.post(`${API}/teams`, formData);
+        await axios.post(`${API}/teams`, submitData);
         toast.success('Team berhasil ditambahkan');
       }
       fetchTeams();
       setOpen(false);
       resetForm();
     } catch (error) {
+      console.error('Submit error:', error);
       toast.error(error.response?.data?.detail || 'Gagal menyimpan team');
     } finally {
       setSubmitting(false);
