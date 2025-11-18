@@ -54,50 +54,6 @@ const Dashboard = () => {
       <div className="mb-8 bg-gradient-to-r from-gray-800 via-green-800 to-gray-800 rounded-2xl p-8 shadow-xl relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-yellow-600/10 to-transparent"></div>
         
-        {/* Upload Logo Button for Admin */}
-        {user?.role === 'admin' && (
-          <div className="absolute top-4 right-4 z-10">
-            {!showLogoUpload ? (
-              <Button
-                onClick={() => setShowLogoUpload(true)}
-                size="sm"
-                className="bg-yellow-500 hover:bg-yellow-600 text-gray-900 font-semibold"
-                data-testid="show-logo-upload-btn"
-              >
-                <Upload className="h-4 w-4 mr-2" />
-                Upload Logo Club
-              </Button>
-            ) : (
-              <div className="bg-white rounded-lg p-4 shadow-xl">
-                <div className="flex items-center justify-between mb-3">
-                  <span className="font-semibold text-gray-800">Upload Logo</span>
-                  <Button
-                    onClick={() => setShowLogoUpload(false)}
-                    size="sm"
-                    variant="ghost"
-                  >
-                    <CloseIcon className="h-4 w-4" />
-                  </Button>
-                </div>
-                <Input
-                  type="file"
-                  accept="image/*"
-                  onChange={handleLogoUpload}
-                  disabled={uploadingLogo}
-                  className="text-sm"
-                  data-testid="dashboard-logo-upload"
-                />
-                {uploadingLogo && (
-                  <div className="mt-2 flex items-center gap-2 text-sm text-gray-600">
-                    <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-green-600"></div>
-                    <span>Mengupload...</span>
-                  </div>
-                )}
-              </div>
-            )}
-          </div>
-        )}
-        
         <div className="relative text-center">
           <div className="flex items-center justify-center gap-6 mb-4">
             {/* Logo Organisasi (Kiri) */}
