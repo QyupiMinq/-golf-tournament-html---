@@ -232,11 +232,25 @@ const Dashboard = () => {
             >
               Gallery
             </h2>
-            <div className="text-center py-12">
-              <Trophy className="h-20 w-20 text-gray-300 mx-auto mb-4" />
-              <p className="text-gray-600 mb-2">No photos yet</p>
-              <p className="text-sm text-gray-500">Admin can add match photos via Settings</p>
-            </div>
+            {gallery.length === 0 ? (
+              <div className="text-center py-12">
+                <Trophy className="h-20 w-20 text-gray-300 mx-auto mb-4" />
+                <p className="text-gray-600 mb-2">No photos yet</p>
+                <p className="text-sm text-gray-500">Admin can add match photos via Settings</p>
+              </div>
+            ) : (
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {gallery.map((item) => (
+                  <div key={item.id} className="bg-gray-50 rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow">
+                    <img src={item.photo} alt={item.title} className="w-full h-48 object-cover" />
+                    <div className="p-4">
+                      <h3 className="font-bold text-gray-800 mb-2">{item.title}</h3>
+                      <p className="text-sm text-gray-600">{item.description}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
           </div>
         </div>
 
