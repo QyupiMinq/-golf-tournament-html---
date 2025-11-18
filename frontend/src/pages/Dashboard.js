@@ -8,6 +8,8 @@ const Dashboard = () => {
   const [stats, setStats] = useState(null);
   const [settings, setSettings] = useState({ dashboard_logo: null });
   const [loading, setLoading] = useState(true);
+  const [uploadingLogo, setUploadingLogo] = useState(false);
+  const [showLogoUpload, setShowLogoUpload] = useState(false);
 
   useEffect(() => {
     fetchStats();
