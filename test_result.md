@@ -213,6 +213,18 @@ backend:
         agent: "testing"
         comment: "✅ Database cleanup successful. match_results collection is empty (0 documents). All 31 players show 0 points in individual leaderboard. All 7 teams show 0 points in team leaderboard. No invalid points displayed - cleanup of 60 invalid match_results completed successfully."
 
+  - task: "Dual Logo Feature - Organization & Club Logos"
+    implemented: true
+    working: true
+    file: "backend/server.py"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: false
+    status_history:
+      - working: true
+        agent: "testing"
+        comment: "✅ Dual logo feature fully functional. GET /api/settings returns organization_logo and club_logo fields correctly. POST /api/settings successfully updates both organization_logo (dashboard kiri + sidebar menu) and club_logo (dashboard kanan) with base64 data. Data persistence verified - both logo values saved and retrieved correctly. Individual logo updates work independently without affecting other fields. Backward compatibility maintained - existing fields (dashboard_logo, login_logo, footer_signature) still present and functional. AppSettings model updated with new dual logo fields."
+
 frontend:
   - task: "Fix Unterminated JSX Error in Matches.js"
     implemented: true
