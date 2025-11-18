@@ -34,9 +34,12 @@ const Layout = ({ children }) => {
     { name: 'Transfers', path: '/transfers', icon: Repeat },
   ];
 
-  // Add Settings for admin
+  // Add admin-only menu items
   const adminNavigation = user?.role === 'admin' 
-    ? [...navigation, { name: 'Settings', path: '/settings', icon: Settings }]
+    ? [...navigation, 
+       { name: 'User Management', path: '/user-management', icon: UserCheck },
+       { name: 'Settings', path: '/settings', icon: Settings }
+      ]
     : navigation;
 
   return (
