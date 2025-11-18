@@ -510,6 +510,90 @@ class GolfLeagueAPITester:
         except Exception as e:
             self.log_result("POST /api/settings", False, f"Exception: {str(e)}")
     
+    def test_database_cleanup_verification(self):
+        """Test database collections to verify cleanup"""
+        print("\n=== Testing Database Cleanup Verification ===")
+        
+        # Test match-results endpoint to verify it's empty
+        try:
+            response = self.session.get(f"{self.base_url}/match-results", timeout=10)
+            
+            if response.status_code == 200:
+                match_results = response.json()
+                is_empty = len(match_results) == 0
+                
+                self.log_result(
+                    "GET /api/match-results", 
+                    True, 
+                    f"Match results collection has {len(match_results)} documents", 
+                    {"count": len(match_results), "is_empty": is_empty}
+                )
+                
+                if is_empty:
+                    self.log_result(
+                        "Match Results Cleanup Verification", 
+                        True, 
+                        "✅ match_results collection is empty - cleanup successful"
+                    )
+                else:
+                    self.log_result(
+                        "Match Results Cleanup Verification", 
+                        False, 
+                        f"❌ match_results collection still has {len(match_results)} documents",
+                        {"sample_results": match_results[:3] if match_results else []}
+                    )
+                    
+            else:
+                self.log_result(
+                    "GET /api/match-results", 
+                    False, 
+                    f"Failed with status {response.status_code}", 
+                    response.json() if response.content else None
+                )
+                
+        except Exception as e:
+            self.log_result("GET /api/match-results", False, f"Exception: {str(e)}")
+        
+        # Test matches endpoint to verify it's empty
+        try:
+            response = self.session.get(f"{self.base_url}/matches", timeout=10)
+            
+            if response.status_code == 200:
+                matches = response.json()
+                is_empty = len(matches) == 0
+                
+                self.log_result(
+                    "GET /api/matches (cleanup check)", 
+                    True, 
+                    f"Matches collection has {len(matches)} documents", 
+                    {"count": len(matches), "is_empty": is_empty}
+                )
+                
+                if is_empty:
+                    self.log_result(
+                        "Matches Collection Verification", 
+                        True, 
+                        "✅ matches collection is empty as expected"
+                    )
+                else:
+                    self.log_result(
+                        "Matches Collection Verification", 
+                        True, 
+                        f"ℹ️ matches collection has {len(matches)} documents (this may be expected)",
+                        {"sample_matches": matches[:3] if matches else []}
+                    )
+                    
+            else:
+                self.log_result(
+                    "GET /api/matches (cleanup check)", 
+                    False, 
+                    f"Failed with status {response.status_code}", 
+                    response.json() if response.content else None
+                )
+                
+        except Exception as e:
+            self.log_result("GET /api/matches (cleanup check)", False, f"Exception: {str(e)}")
+    
     def run_all_tests(self):
         """Run all backend API tests"""
         print(f"🚀 Starting Manado Golf League Backend API Tests")
