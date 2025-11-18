@@ -11,6 +11,20 @@ const Login = () => {
   const { login, register } = useContext(AuthContext);
   const [loginData, setLoginData] = useState({ email: '', password: '' });
   const [registerData, setRegisterData] = useState({ email: '', password: '', name: '', role: 'player' });
+  const [settings, setSettings] = useState({ dashboard_logo: null });
+
+  React.useEffect(() => {
+    fetchSettings();
+  }, []);
+
+  const fetchSettings = async () => {
+    try {
+      const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/settings`);
+      setSettings(response.data);
+    } catch (error) {
+      console.error('Failed to fetch settings:', error);
+    }
+  };
 
   const handleLogin = async (e) => {
     e.preventDefault();
