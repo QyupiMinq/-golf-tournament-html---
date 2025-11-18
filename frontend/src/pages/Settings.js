@@ -169,15 +169,55 @@ const Settings = () => {
 
       {/* Settings Cards */}
       <div className="space-y-6">
-        {/* Dashboard Logo */}
+        {/* Organization Logo (Dashboard Kiri + Sidebar) */}
         <div className="bg-white rounded-2xl shadow-lg p-8 border border-gray-200">
           <div className="flex items-center gap-3 mb-6">
             <div className="w-12 h-12 rounded-full bg-gradient-to-br from-green-600 to-green-700 flex items-center justify-center">
               <Upload className="h-6 w-6 text-white" />
             </div>
             <div>
-              <h2 className="text-2xl font-bold text-gray-800">Logo Dashboard</h2>
-              <p className="text-sm text-gray-600">Logo utama yang ditampilkan di dashboard header</p>
+              <h2 className="text-2xl font-bold text-gray-800">Logo Organisasi</h2>
+              <p className="text-sm text-gray-600">Ditampilkan di dashboard (kiri) dan sidebar menu</p>
+            </div>
+          </div>
+
+          <div className="space-y-4">
+            <div>
+              <Label className="text-gray-700 font-semibold mb-2">Upload Logo Organisasi</Label>
+              <div className="mt-2 p-6 border-2 border-dashed border-gray-300 rounded-lg hover:border-green-500 transition-colors">
+                <Input
+                  data-testid="organization-logo-input"
+                  type="file"
+                  accept="image/*"
+                  onChange={handleOrganizationLogoUpload}
+                  className="border-0 p-0"
+                />
+              </div>
+              {settings.organization_logo && (
+                <div className="mt-4 flex justify-center">
+                  <div className="text-center">
+                    <img 
+                      src={settings.organization_logo} 
+                      alt="Organization Logo" 
+                      className="h-32 w-32 object-contain rounded-xl border-4 border-green-400 shadow-lg bg-white p-2" 
+                    />
+                    <p className="text-sm text-gray-600 mt-2">Preview Logo Organisasi</p>
+                  </div>
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
+
+        {/* Club Logo (Dashboard Kanan) */}
+        <div className="bg-white rounded-2xl shadow-lg p-8 border border-gray-200">
+          <div className="flex items-center gap-3 mb-6">
+            <div className="w-12 h-12 rounded-full bg-gradient-to-br from-yellow-500 to-yellow-600 flex items-center justify-center">
+              <Upload className="h-6 w-6 text-gray-900" />
+            </div>
+            <div>
+              <h2 className="text-2xl font-bold text-gray-800">Logo Club</h2>
+              <p className="text-sm text-gray-600">Ditampilkan di dashboard (kanan)</p>
             </div>
           </div>
 
@@ -186,22 +226,22 @@ const Settings = () => {
               <Label className="text-gray-700 font-semibold mb-2">Upload Logo Club</Label>
               <div className="mt-2 p-6 border-2 border-dashed border-gray-300 rounded-lg hover:border-green-500 transition-colors">
                 <Input
-                  data-testid="dashboard-logo-input"
+                  data-testid="club-logo-input"
                   type="file"
                   accept="image/*"
-                  onChange={handleLogoUpload}
+                  onChange={handleClubLogoUpload}
                   className="border-0 p-0"
                 />
               </div>
-              {settings.dashboard_logo && (
+              {settings.club_logo && (
                 <div className="mt-4 flex justify-center">
                   <div className="text-center">
                     <img 
-                      src={settings.dashboard_logo} 
-                      alt="Dashboard Logo" 
+                      src={settings.club_logo} 
+                      alt="Club Logo" 
                       className="h-32 w-32 object-contain rounded-xl border-4 border-yellow-400 shadow-lg bg-white p-2" 
                     />
-                    <p className="text-sm text-gray-600 mt-2">Preview Logo Dashboard</p>
+                    <p className="text-sm text-gray-600 mt-2">Preview Logo Club</p>
                   </div>
                 </div>
               )}
