@@ -236,12 +236,13 @@ const Players = () => {
               </DialogHeader>
               <form onSubmit={handleSubmit} className="space-y-4">
                 <div>
-                  <Label className="text-gray-700 font-semibold">Nama Lengkap</Label>
+                  <Label className="text-gray-700 font-semibold">Nama Lengkap <span className="text-red-500">*</span></Label>
                   <Input
                     data-testid="player-name-input"
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                     className="border-gray-300 focus:border-green-600 focus:ring-green-600"
+                    placeholder="Masukkan nama lengkap"
                     required
                   />
                 </div>
