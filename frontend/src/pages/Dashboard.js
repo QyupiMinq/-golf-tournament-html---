@@ -188,12 +188,12 @@ const Dashboard = () => {
         
         <div className="relative text-center">
           <div className="flex items-center justify-center gap-6 mb-4">
-            {/* Club Logo Left */}
-            {settings.dashboard_logo ? (
-              <img src={settings.dashboard_logo} alt="Club Logo" className="h-24 w-24 object-contain rounded-xl shadow-lg bg-white/10 p-2" />
+            {/* Logo Organisasi (Kiri) */}
+            {settings.organization_logo ? (
+              <img src={settings.organization_logo} alt="Organization Logo" className="h-24 w-24 object-contain rounded-xl shadow-lg bg-white/10 p-2" />
             ) : (
-              <div className="w-20 h-20 rounded-full bg-gradient-to-br from-yellow-400 to-yellow-600 flex items-center justify-center shadow-lg border-4 border-yellow-500/30">
-                <Trophy className="h-10 w-10 text-gray-900" />
+              <div className="w-20 h-20 rounded-full bg-gradient-to-br from-green-500 to-green-700 flex items-center justify-center shadow-lg border-4 border-green-500/30">
+                <Trophy className="h-10 w-10 text-white" />
               </div>
             )}
             
@@ -209,9 +209,9 @@ const Dashboard = () => {
               </p>
             </div>
             
-            {/* Club Logo Right (for symmetry) */}
-            {settings.dashboard_logo ? (
-              <img src={settings.dashboard_logo} alt="Club Logo" className="h-24 w-24 object-contain rounded-xl shadow-lg bg-white/10 p-2" />
+            {/* Logo Club (Kanan) */}
+            {settings.club_logo ? (
+              <img src={settings.club_logo} alt="Club Logo" className="h-24 w-24 object-contain rounded-xl shadow-lg bg-white/10 p-2" />
             ) : (
               <div className="w-20 h-20 rounded-full bg-gradient-to-br from-yellow-400 to-yellow-600 flex items-center justify-center shadow-lg border-4 border-yellow-500/30">
                 <Trophy className="h-10 w-10 text-gray-900" />
