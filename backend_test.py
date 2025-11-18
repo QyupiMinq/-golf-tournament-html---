@@ -326,21 +326,47 @@ class GolfLeagueAPITester:
             self.log_result("GET /api/dashboard/stats", False, f"Exception: {str(e)}")
     
     def test_leaderboard_endpoints(self):
-        """Test leaderboard endpoints"""
-        print("\n=== Testing Leaderboard Endpoints ===")
+        """Test leaderboard endpoints - verify no invalid points after cleanup"""
+        print("\n=== Testing Leaderboard Endpoints (Post-Cleanup Verification) ===")
         
-        # Test individual leaderboard
+        # Test individual leaderboard - should show 0 points for all players
         try:
             response = self.session.get(f"{self.base_url}/leaderboard/individual", timeout=10)
             
             if response.status_code == 200:
                 leaderboard = response.json()
+                
+                # Check if all players have 0 points (since match_results were cleaned)
+                players_with_points = [p for p in leaderboard if p.get("total_points", 0) > 0]
+                all_zero_points = len(players_with_points) == 0
+                
                 self.log_result(
                     "GET /api/leaderboard/individual", 
                     True, 
-                    f"Individual leaderboard retrieved with {len(leaderboard)} players", 
-                    {"count": len(leaderboard), "sample": leaderboard[:2] if leaderboard else []}
+                    f"Individual leaderboard retrieved with {len(leaderboard)} players. Players with points: {len(players_with_points)}", 
+                    {
+                        "total_players": len(leaderboard), 
+                        "players_with_points": len(players_with_points),
+                        "all_zero_points": all_zero_points,
+                        "sample_players": leaderboard[:3] if leaderboard else []
+                    }
                 )
+                
+                # Log specific verification for cleanup
+                if all_zero_points:
+                    self.log_result(
+                        "Leaderboard Cleanup Verification", 
+                        True, 
+                        "✅ All players have 0 points - invalid match_results cleanup successful"
+                    )
+                else:
+                    self.log_result(
+                        "Leaderboard Cleanup Verification", 
+                        False, 
+                        f"❌ {len(players_with_points)} players still have points - cleanup may be incomplete",
+                        {"players_with_points": players_with_points}
+                    )
+                    
             else:
                 self.log_result(
                     "GET /api/leaderboard/individual", 
@@ -352,18 +378,44 @@ class GolfLeagueAPITester:
         except Exception as e:
             self.log_result("GET /api/leaderboard/individual", False, f"Exception: {str(e)}")
         
-        # Test team leaderboard
+        # Test team leaderboard - should show 0 points for all teams
         try:
             response = self.session.get(f"{self.base_url}/leaderboard/team", timeout=10)
             
             if response.status_code == 200:
                 leaderboard = response.json()
+                
+                # Check if all teams have 0 points
+                teams_with_points = [t for t in leaderboard if t.get("total_points", 0) > 0]
+                all_zero_points = len(teams_with_points) == 0
+                
                 self.log_result(
                     "GET /api/leaderboard/team", 
                     True, 
-                    f"Team leaderboard retrieved with {len(leaderboard)} teams", 
-                    {"count": len(leaderboard), "sample": leaderboard[:2] if leaderboard else []}
+                    f"Team leaderboard retrieved with {len(leaderboard)} teams. Teams with points: {len(teams_with_points)}", 
+                    {
+                        "total_teams": len(leaderboard), 
+                        "teams_with_points": len(teams_with_points),
+                        "all_zero_points": all_zero_points,
+                        "sample_teams": leaderboard[:3] if leaderboard else []
+                    }
                 )
+                
+                # Log specific verification for cleanup
+                if all_zero_points:
+                    self.log_result(
+                        "Team Leaderboard Cleanup Verification", 
+                        True, 
+                        "✅ All teams have 0 points - invalid match_results cleanup successful"
+                    )
+                else:
+                    self.log_result(
+                        "Team Leaderboard Cleanup Verification", 
+                        False, 
+                        f"❌ {len(teams_with_points)} teams still have points - cleanup may be incomplete",
+                        {"teams_with_points": teams_with_points}
+                    )
+                    
             else:
                 self.log_result(
                     "GET /api/leaderboard/team", 
