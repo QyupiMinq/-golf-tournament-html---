@@ -114,65 +114,106 @@ const Dashboard = () => {
         })}
       </div>
 
-      {/* Tournament Info */}
-      <div className="bg-white rounded-2xl shadow-lg p-8 border border-gray-200">
-        <h2
-          className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-green-700 to-green-900 mb-6"
-          style={{ fontFamily: 'Playfair Display, serif' }}
-        >
-          Informasi Turnamen
-        </h2>
-        <div className="grid md:grid-cols-2 gap-8">
-          {/* Left Column */}
-          <div className="space-y-4">
-            <h3 className="text-xl font-semibold text-gray-800 mb-3">Sistem Poin</h3>
-            <div className="space-y-2 text-gray-700">
-              <div className="flex justify-between items-center py-2 border-b border-gray-200">
-                <span>Terbaik 1</span>
-                <span className="font-bold text-transparent bg-clip-text bg-gradient-to-r from-yellow-600 to-yellow-700">4 Poin</span>
+      {/* Main Content Grid */}
+      <div className="grid lg:grid-cols-3 gap-8">
+        {/* Left Column - Tournament Info */}
+        <div className="lg:col-span-2 space-y-8">
+          {/* Tournament Info */}
+          <div className="bg-white rounded-2xl shadow-lg p-8 border border-gray-200">
+            <h2
+              className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-green-700 to-green-900 mb-6"
+              style={{ fontFamily: 'Playfair Display, serif' }}
+            >
+              Informasi Turnamen
+            </h2>
+            <div className="grid md:grid-cols-2 gap-8">
+              {/* Left Column */}
+              <div className="space-y-4">
+                <h3 className="text-xl font-semibold text-gray-800 mb-3">Sistem Poin</h3>
+                <div className="space-y-2 text-gray-700">
+                  <div className="flex justify-between items-center py-2 border-b border-gray-200">
+                    <span>Terbaik 1</span>
+                    <span className="font-bold text-transparent bg-clip-text bg-gradient-to-r from-yellow-600 to-yellow-700">4 Poin</span>
+                  </div>
+                  <div className="flex justify-between items-center py-2 border-b border-gray-200">
+                    <span>Terbaik 2</span>
+                    <span className="font-bold text-transparent bg-clip-text bg-gradient-to-r from-yellow-600 to-yellow-700">3 Poin</span>
+                  </div>
+                  <div className="flex justify-between items-center py-2 border-b border-gray-200">
+                    <span>Terbaik 3</span>
+                    <span className="font-bold text-transparent bg-clip-text bg-gradient-to-r from-yellow-600 to-yellow-700">2 Poin</span>
+                  </div>
+                  <div className="flex justify-between items-center py-2 border-b border-gray-200">
+                    <span>Terbaik 4</span>
+                    <span className="font-bold text-transparent bg-clip-text bg-gradient-to-r from-yellow-600 to-yellow-700">1 Poin</span>
+                  </div>
+                  <div className="flex justify-between items-center py-2 border-b border-gray-200">
+                    <span>Partisipasi</span>
+                    <span className="font-bold text-transparent bg-clip-text bg-gradient-to-r from-yellow-600 to-yellow-700">1 Poin</span>
+                  </div>
+                  <div className="flex justify-between items-center py-2">
+                    <span>WO / Tidak Hadir</span>
+                    <span className="font-bold text-rose-600">0 Poin</span>
+                  </div>
+                </div>
               </div>
-              <div className="flex justify-between items-center py-2 border-b border-gray-200">
-                <span>Terbaik 2</span>
-                <span className="font-bold text-transparent bg-clip-text bg-gradient-to-r from-yellow-600 to-yellow-700">3 Poin</span>
-              </div>
-              <div className="flex justify-between items-center py-2 border-b border-gray-200">
-                <span>Terbaik 3</span>
-                <span className="font-bold text-transparent bg-clip-text bg-gradient-to-r from-yellow-600 to-yellow-700">2 Poin</span>
-              </div>
-              <div className="flex justify-between items-center py-2 border-b border-gray-200">
-                <span>Terbaik 4</span>
-                <span className="font-bold text-transparent bg-clip-text bg-gradient-to-r from-yellow-600 to-yellow-700">1 Poin</span>
-              </div>
-              <div className="flex justify-between items-center py-2 border-b border-gray-200">
-                <span>Partisipasi</span>
-                <span className="font-bold text-transparent bg-clip-text bg-gradient-to-r from-yellow-600 to-yellow-700">1 Poin</span>
-              </div>
-              <div className="flex justify-between items-center py-2">
-                <span>WO / Tidak Hadir</span>
-                <span className="font-bold text-rose-600">0 Poin</span>
+
+              {/* Right Column */}
+              <div className="space-y-4">
+                <h3 className="text-xl font-semibold text-gray-800 mb-3">Format Pertandingan</h3>
+                <div className="space-y-3 text-gray-700">
+                  <div className="bg-gradient-to-br from-green-50 to-green-100 p-4 rounded-lg border border-green-200">
+                    <p className="font-semibold text-green-800">Total: 12 Matches</p>
+                    <p className="text-sm mt-1 text-green-700">3x seminggu selama 4 minggu</p>
+                  </div>
+                  <div className="bg-gradient-to-br from-yellow-50 to-yellow-100 p-4 rounded-lg border border-yellow-200">
+                    <p className="font-semibold text-yellow-800">Match Days</p>
+                    <p className="text-sm mt-1 text-yellow-700">Senin, Jumat, Sabtu</p>
+                  </div>
+                  <div className="bg-gradient-to-br from-gray-50 to-gray-100 p-4 rounded-lg border border-gray-200">
+                    <p className="font-semibold text-gray-800">Penilaian MPV</p>
+                    <p className="text-sm mt-1 text-gray-700">6 match terbaik dari setiap peserta</p>
+                  </div>
+                  <div className="bg-gradient-to-br from-green-50 to-yellow-50 p-4 rounded-lg border border-green-200">
+                    <p className="font-semibold text-green-800">Penilaian Team</p>
+                    <p className="text-sm mt-1 text-green-700">2 match terbaik per anggota team</p>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
 
-          {/* Right Column */}
-          <div className="space-y-4">
-            <h3 className="text-xl font-semibold text-gray-800 mb-3">Format Pertandingan</h3>
-            <div className="space-y-3 text-gray-700">
-              <div className="bg-gradient-to-br from-green-50 to-green-100 p-4 rounded-lg border border-green-200">
-                <p className="font-semibold text-green-800">Total: 12 Matches</p>
-                <p className="text-sm mt-1 text-green-700">3x seminggu selama 4 minggu</p>
-              </div>
-              <div className="bg-gradient-to-br from-yellow-50 to-yellow-100 p-4 rounded-lg border border-yellow-200">
-                <p className="font-semibold text-yellow-800">Match Days</p>
-                <p className="text-sm mt-1 text-yellow-700">Senin, Jumat, Sabtu</p>
-              </div>
-              <div className="bg-gradient-to-br from-gray-50 to-gray-100 p-4 rounded-lg border border-gray-200">
-                <p className="font-semibold text-gray-800">Penilaian MPV</p>
-                <p className="text-sm mt-1 text-gray-700">6 match terbaik dari setiap peserta</p>
-              </div>
-              <div className="bg-gradient-to-br from-green-50 to-yellow-50 p-4 rounded-lg border border-green-200">
-                <p className="font-semibold text-green-800">Penilaian Team</p>
-                <p className="text-sm mt-1 text-green-700">2 match terbaik per anggota team</p>
+          {/* Match Gallery Section - Coming Soon Note */}
+          <div className="bg-white rounded-2xl shadow-lg p-8 border border-gray-200">
+            <h2
+              className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-green-700 to-green-900 mb-6"
+              style={{ fontFamily: 'Playfair Display, serif' }}
+            >
+              Foto Kegiatan Pertandingan
+            </h2>
+            <div className="text-center py-12">
+              <Trophy className="h-20 w-20 text-gray-300 mx-auto mb-4" />
+              <p className="text-gray-600 mb-2">Galeri foto akan segera hadir</p>
+              <p className="text-sm text-gray-500">Admin dapat menambahkan foto kegiatan melalui Settings</p>
+            </div>
+          </div>
+        </div>
+
+        {/* Right Column - Announcements */}
+        <div className="lg:col-span-1">
+          <div className="bg-gradient-to-br from-yellow-50 to-yellow-100 rounded-2xl shadow-lg p-6 border border-yellow-200 sticky top-4">
+            <h2
+              className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-green-700 to-green-900 mb-4"
+              style={{ fontFamily: 'Playfair Display, serif' }}
+            >
+              Pengumuman
+            </h2>
+            <div className="space-y-3">
+              <div className="bg-white rounded-lg p-4 border border-yellow-300">
+                <p className="text-sm text-gray-600">Belum ada pengumuman</p>
+                {user?.role === 'admin' && (
+                  <p className="text-xs text-gray-500 mt-2">Admin dapat menambahkan pengumuman melalui Settings</p>
+                )}
               </div>
             </div>
           </div>
