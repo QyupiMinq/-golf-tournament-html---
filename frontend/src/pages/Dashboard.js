@@ -14,6 +14,8 @@ const Dashboard = () => {
   useEffect(() => {
     fetchStats();
     fetchSettings();
+    fetchAnnouncements();
+    fetchGallery();
   }, []);
 
   const fetchStats = async () => {
