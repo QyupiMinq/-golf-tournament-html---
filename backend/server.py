@@ -165,7 +165,9 @@ class TransferCreate(BaseModel):
 class AppSettings(BaseModel):
     model_config = ConfigDict(extra="ignore")
     id: str = "app_settings"  # Single document ID
-    dashboard_logo: Optional[str] = None
+    dashboard_logo: Optional[str] = None  # Deprecated - kept for backward compatibility
+    organization_logo: Optional[str] = None  # Logo organisasi (dashboard kiri + sidebar menu)
+    club_logo: Optional[str] = None  # Logo club (dashboard kanan)
     footer_signature: Optional[str] = None
     login_logo: Optional[str] = None  # Logo untuk halaman login
     updated_at: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
