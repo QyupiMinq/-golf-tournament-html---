@@ -279,10 +279,10 @@ metadata:
 
 test_plan:
   current_focus:
-    - "Login Logo Feature testing completed"
-    - "Database cleanup verification completed"
-    - "Leaderboard zero-points verification completed"
-    - "Settings API login_logo field testing completed"
+    - "Dual Logo Feature testing completed"
+    - "Organization logo and club logo fields verified"
+    - "Backward compatibility maintained"
+    - "Individual logo updates working"
   stuck_tasks: []
   test_all: true
   test_priority: "completed"
