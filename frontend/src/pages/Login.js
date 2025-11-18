@@ -12,7 +12,7 @@ const Login = () => {
   const { login, register } = useContext(AuthContext);
   const [loginData, setLoginData] = useState({ email: '', password: '' });
   const [registerData, setRegisterData] = useState({ email: '', password: '', name: '', role: 'player' });
-  const [settings, setSettings] = useState({ dashboard_logo: null });
+  const [settings, setSettings] = useState({ login_logo: null });
 
   React.useEffect(() => {
     fetchSettings();
