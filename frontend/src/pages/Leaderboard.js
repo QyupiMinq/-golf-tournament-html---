@@ -163,6 +163,19 @@ const Leaderboard = () => {
 
         {/* Team Leaderboard */}
         <TabsContent value="team">
+          {teamLeaderboard.length === 0 || teamLeaderboard.every(t => t.total_points === 0) ? (
+            <div className="bg-white rounded-2xl shadow-lg p-12 text-center">
+              <Trophy className="h-20 w-20 text-gray-300 mx-auto mb-4" />
+              <h3 className="text-2xl font-bold text-gray-700 mb-2">Belum Ada Data Team Leaderboard</h3>
+              <p className="text-gray-500 mb-6">Input hasil match terlebih dahulu untuk melihat peringkat team</p>
+              <Button
+                onClick={() => window.location.href = '/matches'}
+                className="bg-gradient-to-r from-green-700 to-green-800 hover:from-green-800 hover:to-green-900 text-yellow-300"
+              >
+                Pergi ke Matches
+              </Button>
+            </div>
+          ) : (
           <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6">
             {teamLeaderboard.map((entry, index) => {
               const rank = index + 1;
