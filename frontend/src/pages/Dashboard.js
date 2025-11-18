@@ -9,7 +9,7 @@ import { toast } from 'sonner';
 const Dashboard = () => {
   const { user } = useContext(AuthContext);
   const [stats, setStats] = useState(null);
-  const [settings, setSettings] = useState({ dashboard_logo: null });
+  const [settings, setSettings] = useState({ organization_logo: null, club_logo: null });
   const [loading, setLoading] = useState(true);
   const [uploadingLogo, setUploadingLogo] = useState(false);
   const [showLogoUpload, setShowLogoUpload] = useState(false);
