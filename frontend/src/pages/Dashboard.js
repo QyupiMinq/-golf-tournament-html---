@@ -263,13 +263,25 @@ const Dashboard = () => {
             >
               Announcements
             </h2>
-            <div className="space-y-3">
-              <div className="bg-white rounded-lg p-4 border border-yellow-300">
-                <p className="text-sm text-gray-600">No announcements yet</p>
-                {user?.role === 'admin' && (
-                  <p className="text-xs text-gray-500 mt-2">Admin can add announcements via Settings</p>
-                )}
-              </div>
+            <div className="space-y-3 max-h-96 overflow-y-auto">
+              {announcements.length === 0 ? (
+                <div className="bg-white rounded-lg p-4 border border-yellow-300">
+                  <p className="text-sm text-gray-600">No announcements yet</p>
+                  {user?.role === 'admin' && (
+                    <p className="text-xs text-gray-500 mt-2">Admin can add announcements via Settings</p>
+                  )}
+                </div>
+              ) : (
+                announcements.map((ann) => (
+                  <div key={ann.id} className="bg-white rounded-lg p-4 border border-yellow-300 shadow-sm">
+                    <h3 className="font-bold text-gray-800 mb-1">{ann.title}</h3>
+                    <p className="text-sm text-gray-600">{ann.content}</p>
+                    <p className="text-xs text-gray-400 mt-2">
+                      {new Date(ann.created_at).toLocaleDateString('id-ID', { day: 'numeric', month: 'short', year: 'numeric' })}
+                    </p>
+                  </div>
+                ))
+              )}
             </div>
           </div>
         </div>
