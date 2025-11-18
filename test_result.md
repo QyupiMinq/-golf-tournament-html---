@@ -189,6 +189,30 @@ backend:
         agent: "testing"
         comment: "✅ GET /api/settings working perfectly. Returns app settings with dashboard_logo and footer_signature properly configured. Settings structure is correct."
 
+  - task: "Login Logo Feature - Settings API Update"
+    implemented: true
+    working: true
+    file: "backend/server.py"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: false
+    status_history:
+      - working: true
+        agent: "testing"
+        comment: "✅ Login logo feature fully functional. GET /api/settings returns login_logo field correctly. POST /api/settings successfully updates login_logo with base64 data. Data persistence verified - login_logo value saved and retrieved correctly. AppSettings model updated with login_logo field."
+
+  - task: "Database Cleanup - Invalid Match Results"
+    implemented: true
+    working: true
+    file: "backend/server.py"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: false
+    status_history:
+      - working: true
+        agent: "testing"
+        comment: "✅ Database cleanup successful. match_results collection is empty (0 documents). All 31 players show 0 points in individual leaderboard. All 7 teams show 0 points in team leaderboard. No invalid points displayed - cleanup of 60 invalid match_results completed successfully."
+
 frontend:
   - task: "Fix Unterminated JSX Error in Matches.js"
     implemented: true
