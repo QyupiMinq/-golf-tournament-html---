@@ -206,13 +206,13 @@ const Dashboard = () => {
               className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-green-700 to-green-900 mb-4"
               style={{ fontFamily: 'Playfair Display, serif' }}
             >
-              Pengumuman
+              Announcements
             </h2>
             <div className="space-y-3">
               <div className="bg-white rounded-lg p-4 border border-yellow-300">
-                <p className="text-sm text-gray-600">Belum ada pengumuman</p>
+                <p className="text-sm text-gray-600">No announcements yet</p>
                 {user?.role === 'admin' && (
-                  <p className="text-xs text-gray-500 mt-2">Admin dapat menambahkan pengumuman melalui Settings</p>
+                  <p className="text-xs text-gray-500 mt-2">Admin can add announcements via Settings</p>
                 )}
               </div>
             </div>
