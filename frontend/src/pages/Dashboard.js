@@ -7,6 +7,8 @@ const Dashboard = () => {
   const { user } = useContext(AuthContext);
   const [stats, setStats] = useState(null);
   const [settings, setSettings] = useState({ organization_logo: null, club_logo: null });
+  const [announcements, setAnnouncements] = useState([]);
+  const [gallery, setGallery] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
