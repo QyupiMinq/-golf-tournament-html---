@@ -49,9 +49,19 @@ const Login = () => {
       <div className="w-full max-w-md relative z-10">
         {/* Header */}
         <div className="text-center mb-8">
-          <div className="inline-block p-5 bg-gradient-to-br from-yellow-400 to-yellow-600 rounded-full shadow-2xl mb-6 ring-8 ring-yellow-500/20">
-            <Trophy className="h-20 w-20 text-gray-900" />
-          </div>
+          {settings.dashboard_logo ? (
+            <div className="inline-block mb-6">
+              <img 
+                src={settings.dashboard_logo} 
+                alt="Club Logo" 
+                className="h-32 w-32 object-contain mx-auto rounded-xl shadow-2xl bg-white/10 p-3" 
+              />
+            </div>
+          ) : (
+            <div className="inline-block p-5 bg-gradient-to-br from-yellow-400 to-yellow-600 rounded-full shadow-2xl mb-6 ring-8 ring-yellow-500/20">
+              <Trophy className="h-20 w-20 text-gray-900" />
+            </div>
+          )}
           <h1 className="text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 via-yellow-400 to-yellow-300 mb-3" style={{ fontFamily: 'Playfair Display, serif' }}>
             MANADO GOLF LEAGUE
           </h1>
