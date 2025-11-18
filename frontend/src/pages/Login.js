@@ -183,11 +183,6 @@ const Login = () => {
             </TabsContent>
           </Tabs>
         </div>
-
-        {/* Info Footer */}
-        <div className="mt-6 text-center text-sm text-gray-400">
-          <p>Default Admin: admin@golf.com / admin123</p>
-        </div>
       </div>
     </div>
   );
