@@ -107,6 +107,24 @@ const Settings = () => {
     }
   };
 
+  const handleOrganizationLogoUpload = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      compressImage(file, (compressedBase64) => {
+        setSettings({ ...settings, organization_logo: compressedBase64 });
+      });
+    }
+  };
+
+  const handleClubLogoUpload = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      compressImage(file, (compressedBase64) => {
+        setSettings({ ...settings, club_logo: compressedBase64 });
+      });
+    }
+  };
+
   const handleSave = async () => {
     setSaving(true);
     try {
