@@ -128,14 +128,18 @@ const Settings = () => {
   const handleSave = async () => {
     setSaving(true);
     try {
-      await axios.post(`${API}/settings`, settings);
+      console.log('Saving settings:', settings);
+      const response = await axios.post(`${API}/settings`, settings);
+      console.log('Save response:', response.data);
       toast.success('Settings berhasil disimpan!');
       // Reload page to see changes
       setTimeout(() => {
         window.location.reload();
-      }, 1000);
+      }, 1500);
     } catch (error) {
-      toast.error('Gagal menyimpan settings');
+      console.error('Save error:', error);
+      console.error('Error response:', error.response?.data);
+      toast.error(`Gagal menyimpan settings: ${error.response?.data?.detail || error.message}`);
       setSaving(false);
     }
   };
