@@ -53,20 +53,42 @@ const Players = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    
+    // Validation
+    if (!formData.name || !formData.name.trim()) {
+      toast.error('Nama player harus diisi');
+      return;
+    }
+    
+    if (!formData.team_id) {
+      toast.error('Team harus dipilih');
+      return;
+    }
+    
     setSubmitting(true);
     
     try {
+      const submitData = {
+        name: formData.name.trim(),
+        email: formData.email?.trim() || null,
+        team_id: formData.team_id,
+        handicap: parseInt(formData.handicap) || 0,
+        payment_status: formData.payment_status || false,
+        photo: formData.photo || null
+      };
+      
       if (editingPlayer) {
-        await axios.put(`${API}/players/${editingPlayer.id}`, formData);
+        await axios.put(`${API}/players/${editingPlayer.id}`, submitData);
         toast.success('Player berhasil diupdate');
       } else {
-        await axios.post(`${API}/players`, formData);
+        await axios.post(`${API}/players`, submitData);
         toast.success('Player berhasil ditambahkan');
       }
       fetchPlayers();
       setOpen(false);
       resetForm();
     } catch (error) {
+      console.error('Submit error:', error);
       toast.error(error.response?.data?.detail || 'Gagal menyimpan player');
     } finally {
       setSubmitting(false);
