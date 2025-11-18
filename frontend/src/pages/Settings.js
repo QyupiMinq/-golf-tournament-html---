@@ -18,6 +18,14 @@ const Settings = () => {
   });
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
+  
+  // Announcements state
+  const [announcementForm, setAnnouncementForm] = useState({ title: '', content: '' });
+  const [submittingAnnouncement, setSubmittingAnnouncement] = useState(false);
+  
+  // Gallery state
+  const [galleryForm, setGalleryForm] = useState({ title: '', description: '', photo: null });
+  const [submittingGallery, setSubmittingGallery] = useState(false);
 
   useEffect(() => {
     fetchSettings();
