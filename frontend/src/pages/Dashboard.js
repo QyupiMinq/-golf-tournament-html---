@@ -142,7 +142,7 @@ const Dashboard = () => {
   return (
     <div data-testid="dashboard-page" className="dark:bg-gray-900 dark:text-white transition-colors duration-300">
       {/* Header - Premium Dark Theme with Gold Accents - STICKY */}
-      <div className="sticky top-0 z-50 mb-4 sm:mb-8 bg-gradient-to-br from-slate-900 via-emerald-900 to-slate-900 dark:from-slate-950 dark:via-emerald-950 dark:to-slate-950 rounded-xl sm:rounded-2xl p-4 sm:p-8 shadow-2xl relative overflow-hidden border border-amber-500/20 dark:border-amber-600/30">
+      <div className="sticky top-0 z-40 mb-4 sm:mb-8 bg-gradient-to-br from-slate-900 via-emerald-900 to-slate-900 dark:from-slate-950 dark:via-emerald-950 dark:to-slate-950 rounded-xl sm:rounded-2xl p-4 sm:p-8 shadow-2xl relative overflow-hidden border border-amber-500/20 dark:border-amber-600/30 mt-0 lg:mt-0">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-amber-500/10 via-transparent to-emerald-500/5"></div>
         <div className="absolute inset-0 bg-[linear-gradient(45deg,transparent_25%,rgba(251,191,36,0.05)_50%,transparent_75%,transparent_100%)]"></div>
         
