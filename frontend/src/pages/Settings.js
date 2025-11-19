@@ -434,25 +434,91 @@ const Settings = () => {
           <div className="space-y-4">
             <div>
               <Label className="text-gray-700 font-semibold mb-2 block">Visi</Label>
-              <p className="text-xs text-gray-500 mb-2">Gunakan HTML untuk formatting (contoh: &lt;b&gt;bold&lt;/b&gt;, &lt;p&gt;paragraph&lt;/p&gt;)</p>
+              <div className="mb-2 flex flex-wrap gap-2">
+                <Button type="button" size="sm" variant="outline" onClick={() => {
+                  const textarea = document.getElementById('vision-textarea');
+                  const start = textarea.selectionStart;
+                  const end = textarea.selectionEnd;
+                  const selectedText = settings.vision.substring(start, end);
+                  const newText = settings.vision.substring(0, start) + `<b>${selectedText}</b>` + settings.vision.substring(end);
+                  setSettings({ ...settings, vision: newText });
+                }} className="text-xs"><b>B</b> Bold</Button>
+                <Button type="button" size="sm" variant="outline" onClick={() => {
+                  const textarea = document.getElementById('vision-textarea');
+                  const start = textarea.selectionStart;
+                  const end = textarea.selectionEnd;
+                  const selectedText = settings.vision.substring(start, end);
+                  const newText = settings.vision.substring(0, start) + `<i>${selectedText}</i>` + settings.vision.substring(end);
+                  setSettings({ ...settings, vision: newText });
+                }} className="text-xs"><i>I</i> Italic</Button>
+                <Button type="button" size="sm" variant="outline" onClick={() => {
+                  const textarea = document.getElementById('vision-textarea');
+                  const start = textarea.selectionStart;
+                  const end = textarea.selectionEnd;
+                  const selectedText = settings.vision.substring(start, end);
+                  const newText = settings.vision.substring(0, start) + `<h2>${selectedText}</h2>` + settings.vision.substring(end);
+                  setSettings({ ...settings, vision: newText });
+                }} className="text-xs">H2 Heading</Button>
+                <Button type="button" size="sm" variant="outline" onClick={() => {
+                  const textarea = document.getElementById('vision-textarea');
+                  const start = textarea.selectionStart;
+                  const newText = settings.vision.substring(0, start) + `<p></p>` + settings.vision.substring(start);
+                  setSettings({ ...settings, vision: newText });
+                }} className="text-xs">¶ Paragraph</Button>
+              </div>
               <textarea
+                id="vision-textarea"
                 value={settings.vision || ''}
                 onChange={(e) => setSettings({ ...settings, vision: e.target.value })}
                 placeholder="Masukkan visi organisasi..."
-                className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-green-500 focus:ring-2 focus:ring-green-200 transition-all"
+                className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-green-500 focus:ring-2 focus:ring-green-200 transition-all font-mono text-sm"
                 rows="6"
               />
+              <p className="text-xs text-gray-500 mt-1">💡 Select text lalu klik tombol format di atas</p>
             </div>
             <div>
               <Label className="text-gray-700 font-semibold mb-2 block">Misi</Label>
-              <p className="text-xs text-gray-500 mb-2">Gunakan HTML untuk formatting (contoh: &lt;ul&gt;&lt;li&gt;Item 1&lt;/li&gt;&lt;/ul&gt;)</p>
+              <div className="mb-2 flex flex-wrap gap-2">
+                <Button type="button" size="sm" variant="outline" onClick={() => {
+                  const textarea = document.getElementById('mission-textarea');
+                  const start = textarea.selectionStart;
+                  const end = textarea.selectionEnd;
+                  const selectedText = settings.mission.substring(start, end);
+                  const newText = settings.mission.substring(0, start) + `<b>${selectedText}</b>` + settings.mission.substring(end);
+                  setSettings({ ...settings, mission: newText });
+                }} className="text-xs"><b>B</b> Bold</Button>
+                <Button type="button" size="sm" variant="outline" onClick={() => {
+                  const textarea = document.getElementById('mission-textarea');
+                  const start = textarea.selectionStart;
+                  const end = textarea.selectionEnd;
+                  const selectedText = settings.mission.substring(start, end);
+                  const newText = settings.mission.substring(0, start) + `<i>${selectedText}</i>` + settings.mission.substring(end);
+                  setSettings({ ...settings, mission: newText });
+                }} className="text-xs"><i>I</i> Italic</Button>
+                <Button type="button" size="sm" variant="outline" onClick={() => {
+                  const textarea = document.getElementById('mission-textarea');
+                  const start = textarea.selectionStart;
+                  const newText = settings.mission.substring(0, start) + `<ul>\n  <li>Item 1</li>\n  <li>Item 2</li>\n</ul>` + settings.mission.substring(start);
+                  setSettings({ ...settings, mission: newText });
+                }} className="text-xs">• List</Button>
+                <Button type="button" size="sm" variant="outline" onClick={() => {
+                  const textarea = document.getElementById('mission-textarea');
+                  const start = textarea.selectionStart;
+                  const end = textarea.selectionEnd;
+                  const selectedText = settings.mission.substring(start, end);
+                  const newText = settings.mission.substring(0, start) + `<h3>${selectedText}</h3>` + settings.mission.substring(end);
+                  setSettings({ ...settings, mission: newText });
+                }} className="text-xs">H3 Heading</Button>
+              </div>
               <textarea
+                id="mission-textarea"
                 value={settings.mission || ''}
                 onChange={(e) => setSettings({ ...settings, mission: e.target.value })}
                 placeholder="Masukkan misi organisasi..."
-                className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-green-500 focus:ring-2 focus:ring-green-200 transition-all"
+                className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-green-500 focus:ring-2 focus:ring-green-200 transition-all font-mono text-sm"
                 rows="8"
               />
+              <p className="text-xs text-gray-500 mt-1">💡 Select text lalu klik tombol format di atas</p>
             </div>
           </div>
         </div>
