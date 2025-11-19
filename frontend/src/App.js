@@ -15,6 +15,8 @@ import Leaderboard from '@/pages/Leaderboard';
 import Transfers from '@/pages/Transfers';
 import Settings from '@/pages/Settings';
 import UserManagement from '@/pages/UserManagement';
+import GuestDashboard from '@/pages/GuestDashboard';
+import GuestPlayers from '@/pages/GuestPlayers';
 import Layout from '@/components/Layout';
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
