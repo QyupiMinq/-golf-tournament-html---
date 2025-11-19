@@ -788,6 +788,92 @@ async def delete_gallery_item(item_id: str, current_user: User = Depends(get_adm
         raise HTTPException(status_code=404, detail="Gallery item not found")
     return {"message": "Gallery item deleted successfully"}
 
+# ==================== News Routes ====================
+
+@api_router.get("/news")
+async def get_news():
+    """Get all news - accessible to all users"""
+    news = await db.news.find({}, {"_id": 0}).sort("created_at", -1).to_list(100)
+    return news
+
+@api_router.get("/news/{news_id}")
+async def get_news_by_id(news_id: str):
+    """Get single news by ID - accessible to all users"""
+    news = await db.news.find_one({"id": news_id}, {"_id": 0})
+    if not news:
+        raise HTTPException(status_code=404, detail="News not found")
+    return news
+
+@api_router.post("/news")
+async def create_news(news: NewsCreate, current_user: User = Depends(get_admin_user)):
+    """Create news - admin only"""
+    news_dict = news.dict()
+    news_dict["id"] = str(uuid.uuid4())
+    news_dict["created_by"] = current_user.id
+    news_dict["created_at"] = datetime.now(timezone.utc)
+    
+    await db.news.insert_one(news_dict)
+    return await db.news.find_one({"id": news_dict["id"]}, {"_id": 0})
+
+@api_router.put("/news/{news_id}")
+async def update_news(news_id: str, news: NewsCreate, current_user: User = Depends(get_admin_user)):
+    """Update news - admin only"""
+    news_dict = news.dict()
+    result = await db.news.update_one({"id": news_id}, {"$set": news_dict})
+    if result.matched_count == 0:
+        raise HTTPException(status_code=404, detail="News not found")
+    return await db.news.find_one({"id": news_id}, {"_id": 0})
+
+@api_router.delete("/news/{news_id}")
+async def delete_news(news_id: str, current_user: User = Depends(get_admin_user)):
+    """Delete news - admin only"""
+    # Also delete all comments for this news
+    await db.comments.delete_many({"news_id": news_id})
+    result = await db.news.delete_one({"id": news_id})
+    if result.deleted_count == 0:
+        raise HTTPException(status_code=404, detail="News not found")
+    return {"message": "News deleted successfully"}
+
+# ==================== Comments Routes ====================
+
+@api_router.get("/news/{news_id}/comments")
+async def get_comments(news_id: str):
+    """Get all comments for a news - accessible to all users"""
+    comments = await db.comments.find({"news_id": news_id}, {"_id": 0}).sort("created_at", -1).to_list(1000)
+    return comments
+
+@api_router.post("/news/{news_id}/comments")
+async def create_comment(news_id: str, comment: CommentCreate, current_user: User = Depends(get_current_user)):
+    """Create comment - authenticated users only"""
+    # Check if news exists
+    news = await db.news.find_one({"id": news_id})
+    if not news:
+        raise HTTPException(status_code=404, detail="News not found")
+    
+    comment_dict = comment.dict()
+    comment_dict["id"] = str(uuid.uuid4())
+    comment_dict["news_id"] = news_id
+    comment_dict["user_id"] = current_user.id
+    comment_dict["user_name"] = current_user.name
+    comment_dict["created_at"] = datetime.now(timezone.utc)
+    
+    await db.comments.insert_one(comment_dict)
+    return await db.comments.find_one({"id": comment_dict["id"]}, {"_id": 0})
+
+@api_router.delete("/comments/{comment_id}")
+async def delete_comment(comment_id: str, current_user: User = Depends(get_current_user)):
+    """Delete comment - user can delete own comment, admin can delete any"""
+    comment = await db.comments.find_one({"id": comment_id})
+    if not comment:
+        raise HTTPException(status_code=404, detail="Comment not found")
+    
+    # Check if user owns the comment or is admin
+    if comment["user_id"] != current_user.id and current_user.role != "admin":
+        raise HTTPException(status_code=403, detail="Not authorized to delete this comment")
+    
+    await db.comments.delete_one({"id": comment_id})
+    return {"message": "Comment deleted successfully"}
+
 # Include the router in the main app
 app.include_router(api_router)
 
