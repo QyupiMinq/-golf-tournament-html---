@@ -11,6 +11,7 @@ const Layout = ({ children }) => {
   const location = useLocation();
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [settings, setSettings] = useState({ organization_logo: null, footer_signature: null });
+  const [logoKey, setLogoKey] = useState(Date.now());
 
   React.useEffect(() => {
     fetchSettings();
