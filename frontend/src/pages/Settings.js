@@ -570,18 +570,20 @@ const Settings = () => {
                 </div>
                 <div className="text-center text-gray-500 font-semibold">ATAU</div>
                 <div>
-                  <Label className="text-sm text-gray-600">Opsi 2: Upload Video MP4 (Max 50MB)</Label>
+                  <Label className="text-sm text-gray-600">Opsi 2: Upload Video MP4 (No Size Limit)</Label>
+                  <p className="text-xs text-amber-600 mb-2">💡 Untuk 5 team opening videos - upload bebas tanpa batasan size</p>
                   <div className="mt-1 p-4 border-2 border-dashed border-gray-300 rounded-lg hover:border-purple-500 transition-colors">
                     <Input
                       type="file"
-                      accept="video/mp4,video/webm"
+                      accept="video/mp4,video/webm,video/avi,video/mov"
                       onChange={handleGalleryVideoUpload}
                       className="border-0 p-0"
                     />
                   </div>
                   {galleryForm.video_file && (
                     <div className="mt-2 p-3 bg-green-50 border border-green-200 rounded-lg">
-                      <p className="text-sm text-green-700">✓ Video file loaded (size: {(galleryForm.video_file.length / 1024 / 1024).toFixed(2)}MB)</p>
+                      <p className="text-sm text-green-700">✓ Video file loaded (size: {(galleryForm.video_file.length / 1024 / 1024).toFixed(1)}MB)</p>
+                      <p className="text-xs text-green-600 mt-1">Ready to upload! No size restrictions.</p>
                     </div>
                   )}
                 </div>
