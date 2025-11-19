@@ -51,12 +51,13 @@ const Login = () => {
       <div className="w-full max-w-md relative z-10">
         {/* Header */}
         <div className="text-center mb-8">
-          {settings.login_logo ? (
+          {settings.organization_logo ? (
             <div className="inline-block mb-6">
               <img 
-                src={`${settings.login_logo}?t=${Date.now()}`}
-                alt="Club Logo" 
-                className="h-32 w-32 object-cover rounded-full mx-auto shadow-2xl border-4 border-amber-400/30 ring-8 ring-amber-500/20" 
+                key={settings.organization_logo}
+                src={`${settings.organization_logo}?t=${Date.now()}`}
+                alt="Organization Logo" 
+                className="h-40 w-40 object-cover rounded-full mx-auto shadow-2xl border-4 border-amber-400/50 ring-8 ring-amber-500/30" 
               />
             </div>
           ) : (
