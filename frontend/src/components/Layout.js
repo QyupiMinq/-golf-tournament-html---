@@ -77,8 +77,8 @@ const Layout = ({ children }) => {
               <div className="flex items-center justify-center mb-3">
                 {settings.organization_logo ? (
                   <img 
-                    key={settings.organization_logo}
-                    src={`${settings.organization_logo}?t=${Date.now()}`}
+                    key={`sidebar-logo-${logoKey}`}
+                    src={`${settings.organization_logo}?v=${logoKey}`}
                     alt="Organization Logo" 
                     className="h-24 w-24 object-cover rounded-full shadow-xl border-4 border-amber-400/40 ring-4 ring-amber-500/20" 
                   />
