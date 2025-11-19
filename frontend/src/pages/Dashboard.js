@@ -190,7 +190,13 @@ const Dashboard = () => {
             
             {/* Logo Club (Kanan) - Hidden on mobile */}
             {settings.club_logo ? (
-              <img src={settings.club_logo} alt="Club Logo" className="hidden sm:block h-16 sm:h-24 w-auto max-w-[6rem] object-contain shadow-lg p-1" />
+              <div className="hidden sm:block">
+                <img 
+                  src={settings.club_logo} 
+                  alt="Club Logo" 
+                  className="h-20 sm:h-24 w-20 sm:w-24 object-cover rounded-full shadow-xl border-4 border-amber-400/30 ring-2 ring-amber-500/20" 
+                />
+              </div>
             ) : (
               <div className="hidden sm:flex w-16 sm:w-20 h-16 sm:h-20 rounded-full bg-gradient-to-br from-yellow-400 to-yellow-600 items-center justify-center shadow-lg border-4 border-yellow-500/30">
                 <Trophy className="h-8 sm:h-10 w-8 sm:w-10 text-gray-900" />
