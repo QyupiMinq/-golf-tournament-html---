@@ -357,7 +357,7 @@ const Dashboard = () => {
                 {gallery.filter(item => hasVideo(item)).map((item) => (
                   <div 
                     key={item.id} 
-                    className={`bg-gray-50 rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 relative group ${hasVideo(item) ? 'cursor-pointer hover:scale-[1.02]' : ''}`}
+                    className="bg-gray-50 rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 relative group cursor-pointer hover:scale-[1.02]"
                     onClick={() => handleGalleryClick(item)}
                   >
                     {user?.role === 'admin' && (
@@ -370,25 +370,22 @@ const Dashboard = () => {
                         <Trash2 className="h-4 w-4" />
                       </Button>
                     )}
-                    {/* Image container dengan background putih agar logo tidak terpotong */}
                     <div className="w-full h-48 bg-white flex items-center justify-center p-4 relative">
                       <img 
                         src={item.photo} 
                         alt={item.title} 
                         className="max-w-full max-h-full object-contain" 
                       />
-                      {hasVideo(item) && (
-                        <div className="absolute inset-0 bg-black/30 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-                          <div className="w-16 h-16 bg-red-600 rounded-full flex items-center justify-center shadow-xl">
-                            <Play className="h-8 w-8 text-white ml-1" fill="white" />
-                          </div>
+                      <div className="absolute inset-0 bg-black/30 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                        <div className="w-16 h-16 bg-red-600 rounded-full flex items-center justify-center shadow-xl">
+                          <Play className="h-8 w-8 text-white ml-1" fill="white" />
                         </div>
-                      )}
+                      </div>
                     </div>
                     <div className="p-4">
                       <h3 className="font-bold text-gray-800 mb-2">{item.title}</h3>
                       <p className="text-sm text-gray-600">{item.description}</p>
-                      {hasVideo(item) && <p className="text-xs text-blue-600 mt-2">▶ Click to play video</p>}
+                      <p className="text-xs text-blue-600 mt-2">▶ Click to play video</p>
                     </div>
                   </div>
                 ))}
