@@ -73,13 +73,14 @@ const Layout = ({ children }) => {
               <div className="flex items-center justify-center mb-3">
                 {settings.organization_logo ? (
                   <img 
+                    key={settings.organization_logo}
                     src={`${settings.organization_logo}?t=${Date.now()}`}
                     alt="Organization Logo" 
-                    className="h-20 w-20 object-cover rounded-full shadow-xl border-4 border-amber-400/30 ring-2 ring-amber-500/20" 
+                    className="h-24 w-24 object-cover rounded-full shadow-xl border-4 border-amber-400/40 ring-4 ring-amber-500/20" 
                   />
                 ) : (
-                  <div className="w-16 h-16 rounded-full bg-gradient-to-br from-yellow-400 to-yellow-600 flex items-center justify-center shadow-xl ring-4 ring-yellow-500/30">
-                    <Trophy className="h-9 w-9 text-gray-900" />
+                  <div className="w-20 h-20 rounded-full bg-gradient-to-br from-yellow-400 to-yellow-600 flex items-center justify-center shadow-xl ring-4 ring-yellow-500/30">
+                    <Trophy className="h-10 w-10 text-gray-900" />
                   </div>
                 )}
               </div>
