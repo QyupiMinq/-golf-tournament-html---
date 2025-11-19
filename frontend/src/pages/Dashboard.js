@@ -26,15 +26,19 @@ const Dashboard = () => {
   }, []);
 
   useEffect(() => {
+    console.log('Dark Mode Changed:', darkMode);
     if (darkMode) {
       document.documentElement.classList.add('dark');
+      console.log('Dark class added to HTML');
     } else {
       document.documentElement.classList.remove('dark');
+      console.log('Dark class removed from HTML');
     }
     localStorage.setItem('darkMode', darkMode);
   }, [darkMode]);
 
   const toggleDarkMode = () => {
+    console.log('Toggle Dark Mode clicked. Current:', darkMode, '=> New:', !darkMode);
     setDarkMode(!darkMode);
   };
 
