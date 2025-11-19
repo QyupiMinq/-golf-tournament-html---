@@ -22,8 +22,11 @@ const Layout = ({ children }) => {
 
   const fetchSettings = async () => {
     try {
-      const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/settings?t=${Date.now()}`);
+      const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/settings`, {
+        headers: { 'Cache-Control': 'no-cache', 'Pragma': 'no-cache' }
+      });
       setSettings(response.data);
+      setLogoKey(Date.now()); // Force logo re-render
     } catch (error) {
       console.error('Failed to fetch settings:', error);
     }
