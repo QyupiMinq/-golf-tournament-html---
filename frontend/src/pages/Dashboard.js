@@ -133,12 +133,12 @@ const Dashboard = () => {
             
             <div>
               <h1
-                className="text-4xl sm:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 via-yellow-400 to-yellow-300 mb-2"
-                style={{ fontFamily: 'Playfair Display, serif' }}
+                className="text-4xl sm:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-amber-300 via-amber-200 to-amber-300 mb-2 drop-shadow-[0_0_15px_rgba(251,191,36,0.5)]"
+                style={{ fontFamily: 'Playfair Display, serif', letterSpacing: '0.02em' }}
               >
                 MANADO GOLF LEAGUE
               </h1>
-              <p className="text-yellow-200 font-semibold tracking-widest text-sm" style={{ fontFamily: 'Inter, sans-serif' }}>
+              <p className="text-amber-200/90 font-semibold tracking-[0.3em] text-sm" style={{ fontFamily: 'Inter, sans-serif' }}>
                 ONE SPIRIT - ONE FAIRWAY
               </p>
             </div>
