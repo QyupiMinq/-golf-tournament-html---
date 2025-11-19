@@ -101,11 +101,11 @@ const Dashboard = () => {
 
   const statCards = stats
     ? [
-        { icon: Users, label: 'Total Teams', value: stats.teams_count, color: 'bg-gradient-to-br from-green-600 to-green-700' },
-        { icon: UserCheck, label: 'Total Players', value: stats.players_count, color: 'bg-gradient-to-br from-yellow-500 to-yellow-600' },
-        { icon: CalendarDays, label: 'Total Matches', value: stats.matches_count, color: 'bg-gradient-to-br from-gray-600 to-gray-700' },
-        { icon: Trophy, label: 'Completed', value: stats.completed_matches, color: 'bg-gradient-to-br from-green-700 to-green-800' },
-        { icon: TrendingUp, label: 'Pending', value: stats.pending_matches, color: 'bg-gradient-to-br from-yellow-600 to-yellow-700' },
+        { icon: Users, label: 'Total Teams', value: stats.teams_count, color: 'bg-gradient-to-br from-emerald-700 to-emerald-900', glow: 'shadow-[0_0_20px_rgba(16,185,129,0.3)]' },
+        { icon: UserCheck, label: 'Total Players', value: stats.players_count, color: 'bg-gradient-to-br from-amber-600 to-amber-800', glow: 'shadow-[0_0_20px_rgba(245,158,11,0.3)]' },
+        { icon: CalendarDays, label: 'Total Matches', value: stats.matches_count, color: 'bg-gradient-to-br from-slate-700 to-slate-900', glow: 'shadow-[0_0_20px_rgba(71,85,105,0.3)]' },
+        { icon: Trophy, label: 'Completed', value: stats.completed_matches, color: 'bg-gradient-to-br from-emerald-800 to-slate-900', glow: 'shadow-[0_0_20px_rgba(5,150,105,0.3)]' },
+        { icon: TrendingUp, label: 'Pending', value: stats.pending_matches, color: 'bg-gradient-to-br from-amber-700 to-amber-900', glow: 'shadow-[0_0_20px_rgba(217,119,6,0.3)]' },
       ]
     : [];
 
