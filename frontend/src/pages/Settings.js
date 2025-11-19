@@ -472,24 +472,35 @@ const Settings = () => {
             </div>
             <div>
               <Label className="text-gray-700 font-semibold mb-2 block">Misi</Label>
-              <ReactQuill
-                value={settings.mission || ''}
-                onChange={(content) => setSettings({ ...settings, mission: content })}
-                placeholder="Masukkan misi organisasi..."
-                theme="snow"
-                modules={{
-                  toolbar: [
-                    [{ 'header': [1, 2, 3, false] }],
-                    [{ 'size': ['small', false, 'large', 'huge'] }],
-                    ['bold', 'italic', 'underline'],
-                    [{ 'list': 'ordered'}, { 'list': 'bullet' }],
-                    [{ 'color': [] }, { 'background': [] }],
-                    [{ 'align': [] }],
-                    ['clean']
-                  ]
-                }}
-                style={{ height: '200px', marginBottom: '50px' }}
-              />
+              {ReactQuill ? (
+                <ReactQuill
+                  value={settings.mission || ''}
+                  onChange={(content) => setSettings({ ...settings, mission: content })}
+                  placeholder="Masukkan misi organisasi..."
+                  theme="snow"
+                  modules={{
+                    toolbar: [
+                      [{ 'header': [1, 2, 3, false] }],
+                      [{ 'size': ['small', false, 'large', 'huge'] }],
+                      ['bold', 'italic', 'underline'],
+                      [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+                      [{ 'color': [] }, { 'background': [] }],
+                      [{ 'align': [] }],
+                      ['clean']
+                    ]
+                  }}
+                  style={{ height: '200px', marginBottom: '50px' }}
+                />
+              ) : (
+                <textarea
+                  value={settings.mission || ''}
+                  onChange={(e) => setSettings({ ...settings, mission: e.target.value })}
+                  placeholder="Masukkan misi organisasi..."
+                  className="w-full px-3 py-2 border border-gray-300 rounded-md"
+                  rows="8"
+                  style={{ marginBottom: '50px' }}
+                />
+              )}
             </div>
           </div>
         </div>
