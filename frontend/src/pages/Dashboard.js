@@ -55,7 +55,10 @@ const Dashboard = () => {
 
   const fetchSettings = async () => {
     try {
-      const response = await axios.get(`${API}/settings`);
+      // Add cache busting to force fresh data
+      const response = await axios.get(`${API}/settings`, {
+        headers: { 'Cache-Control': 'no-cache' }
+      });
       setSettings(response.data);
     } catch (error) {
       console.error('Failed to fetch settings:', error);
