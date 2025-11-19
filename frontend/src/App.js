@@ -113,6 +113,7 @@ function App() {
                 <Layout>
                   <Routes>
                     <Route path="/" element={<Dashboard />} />
+                    <Route path="/news" element={<News />} />
                     <Route path="/teams" element={<Teams />} />
                     <Route path="/players" element={<Players />} />
                     <Route path="/matches" element={<Matches />} />
