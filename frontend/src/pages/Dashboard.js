@@ -172,6 +172,29 @@ const Dashboard = () => {
         </div>
       )}
 
+      {/* Visi Misi Section */}
+      {(settings.vision || settings.mission) && (
+        <div className="bg-white rounded-2xl shadow-lg p-8 mb-8 border border-gray-200">
+          <h2 className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-green-700 to-green-900 mb-6" style={{ fontFamily: 'Playfair Display, serif' }}>
+            Visi & Misi
+          </h2>
+          <div className="grid md:grid-cols-2 gap-8">
+            {settings.vision && (
+              <div>
+                <h3 className="text-xl font-bold text-green-700 mb-3">VISI</h3>
+                <p className="text-gray-700 whitespace-pre-line">{settings.vision}</p>
+              </div>
+            )}
+            {settings.mission && (
+              <div>
+                <h3 className="text-xl font-bold text-green-700 mb-3">MISI</h3>
+                <p className="text-gray-700 whitespace-pre-line">{settings.mission}</p>
+              </div>
+            )}
+          </div>
+        </div>
+      )}
+
       {/* Stats Grid - Mobile Optimized */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4 sm:gap-6 mb-8">
         {statCards.map((card, index) => {
