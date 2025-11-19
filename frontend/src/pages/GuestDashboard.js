@@ -58,8 +58,18 @@ const GuestDashboard = () => {
           <div className="bg-white rounded-2xl shadow-lg p-8 mb-8 border border-gray-200">
             <h2 className="text-3xl font-bold text-green-700 mb-6">Visi & Misi</h2>
             <div className="grid md:grid-cols-2 gap-8">
-              {settings.vision && <div><h3 className="text-xl font-bold text-green-700 mb-3">VISI</h3><p className="text-gray-700 prose max-w-none" dangerouslySetInnerHTML={{ __html: settings.vision }}></div></div>}
-              {settings.mission && <div><h3 className="text-xl font-bold text-green-700 mb-3">MISI</h3><p className="text-gray-700 prose max-w-none" dangerouslySetInnerHTML={{ __html: settings.mission }}></div></div>}
+              {settings.vision && (
+                <div>
+                  <h3 className="text-xl font-bold text-green-700 mb-3">VISI</h3>
+                  <div className="text-gray-700 prose max-w-none" dangerouslySetInnerHTML={{ __html: settings.vision }}></div>
+                </div>
+              )}
+              {settings.mission && (
+                <div>
+                  <h3 className="text-xl font-bold text-green-700 mb-3">MISI</h3>
+                  <div className="text-gray-700 prose max-w-none" dangerouslySetInnerHTML={{ __html: settings.mission }}></div>
+                </div>
+              )}
             </div>
           </div>
         )}
