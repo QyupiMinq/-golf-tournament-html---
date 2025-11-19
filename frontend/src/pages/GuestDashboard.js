@@ -85,10 +85,10 @@ const GuestDashboard = () => {
           ) : (
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
               {gallery.map((item) => (
-                <div key={item.id} className={`bg-gray-50 rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow ${item.video_url ? 'cursor-pointer' : ''}`} onClick={() => item.video_url && setSelectedVideo(item)}>
+                <div key={item.id} className={`bg-gray-50 rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow ${hasVideo(item) ? 'cursor-pointer' : ''}`} onClick={() => hasVideo(item) && setSelectedVideo(item)}>
                   <div className="w-full h-48 bg-white flex items-center justify-center p-4 relative">
                     <img src={item.photo} alt={item.title} className="max-w-full max-h-full object-contain" />
-                    {item.video_url && (
+                    {hasVideo(item) && (
                       <div className="absolute inset-0 bg-black/30 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity">
                         <div className="w-16 h-16 bg-red-600 rounded-full flex items-center justify-center">
                           <div className="w-0 h-0 border-l-8 border-l-white border-t-6 border-t-transparent border-b-6 border-b-transparent ml-1"></div>
@@ -99,7 +99,7 @@ const GuestDashboard = () => {
                   <div className="p-4">
                     <h3 className="font-bold text-gray-800 mb-2">{item.title}</h3>
                     <p className="text-sm text-gray-600">{item.description}</p>
-                    {item.video_url && <p className="text-xs text-blue-600 mt-2">▶ Click to play video</p>}
+                    {hasVideo(item) && <p className="text-xs text-blue-600 mt-2">▶ Click to play video</p>}
                   </div>
                 </div>
               ))}
