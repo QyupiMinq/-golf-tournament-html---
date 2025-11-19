@@ -45,11 +45,11 @@ const Layout = ({ children }) => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-green-50 to-gray-100 dark:from-gray-900 dark:via-gray-900 dark:to-gray-950 transition-colors duration-300">
       {/* Mobile menu button */}
-      <div className="lg:hidden fixed top-4 left-4 z-50">
+      <div className="lg:hidden fixed top-4 left-4 z-[60]">
         <Button
           data-testid="mobile-menu-btn"
           onClick={() => setSidebarOpen(!sidebarOpen)}
-          className="bg-gradient-to-r from-green-700 to-green-800 hover:from-green-800 hover:to-green-900 text-yellow-300"
+          className="bg-gradient-to-r from-green-700 to-green-800 hover:from-green-800 hover:to-green-900 text-yellow-300 shadow-xl"
         >
           <Menu className="h-5 w-5" />
         </Button>
