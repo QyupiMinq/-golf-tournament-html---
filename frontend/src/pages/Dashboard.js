@@ -68,6 +68,8 @@ const Dashboard = () => {
         headers: { 'Cache-Control': 'no-cache' }
       });
       setSettings(response.data);
+      // Update timestamp to force logo re-render
+      setLogoTimestamp(Date.now());
     } catch (error) {
       console.error('Failed to fetch settings:', error);
     }
