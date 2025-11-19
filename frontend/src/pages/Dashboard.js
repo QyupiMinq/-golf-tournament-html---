@@ -228,7 +228,7 @@ const Dashboard = () => {
             {settings.mission && (
               <div>
                 <h3 className="text-xl font-bold text-green-700 dark:text-green-400 mb-3">MISI</h3>
-                <div className="text-gray-700 prose max-w-none" dangerouslySetInnerHTML={{ __html: settings.mission }}></div>
+                <div className="text-gray-700 dark:text-gray-300 prose dark:prose-invert max-w-none" dangerouslySetInnerHTML={{ __html: settings.mission }}></div>
               </div>
             )}
           </div>
@@ -243,15 +243,15 @@ const Dashboard = () => {
             <div
               key={index}
               data-testid={`stat-card-${card.label.toLowerCase().replace(/\s+/g, '-')}`}
-              className="bg-gradient-to-br from-slate-50 to-slate-100 rounded-2xl shadow-xl p-6 hover:shadow-2xl transition-all duration-300 border border-slate-200/50 hover:scale-105"
+              className="bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-800 dark:to-slate-900 rounded-2xl shadow-xl p-6 hover:shadow-2xl transition-all duration-300 border border-slate-200/50 dark:border-slate-700/50 hover:scale-105"
             >
               <div className="flex items-center justify-between mb-4">
                 <div className={`${card.color} ${card.glow} p-4 rounded-xl transition-all duration-300`}>
                   <Icon className="h-7 w-7 text-amber-100" />
                 </div>
               </div>
-              <h3 className="text-4xl font-bold bg-gradient-to-br from-slate-800 to-slate-600 bg-clip-text text-transparent mb-1">{card.value}</h3>
-              <p className="text-sm font-semibold text-slate-600 tracking-wide">{card.label}</p>
+              <h3 className="text-4xl font-bold bg-gradient-to-br from-slate-800 to-slate-600 dark:from-slate-200 dark:to-slate-400 bg-clip-text text-transparent mb-1">{card.value}</h3>
+              <p className="text-sm font-semibold text-slate-600 dark:text-slate-300 tracking-wide">{card.label}</p>
             </div>
           );
         })}
@@ -262,7 +262,7 @@ const Dashboard = () => {
         {/* Left Column - Tournament Info */}
         <div className="lg:col-span-2 space-y-8">
           {/* Tournament Info */}
-          <div className="bg-white rounded-2xl shadow-lg p-8 border border-gray-200">
+          <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg p-8 border border-gray-200 dark:border-gray-700">
             <h2
               className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-green-700 to-green-900 mb-6"
               style={{ fontFamily: 'Playfair Display, serif' }}
