@@ -278,7 +278,14 @@ const Dashboard = () => {
                         <Trash2 className="h-4 w-4" />
                       </Button>
                     )}
-                    <img src={item.photo} alt={item.title} className="w-full h-48 object-cover" />
+                    {/* Image container dengan background putih agar logo tidak terpotong */}
+                    <div className="w-full h-48 bg-white flex items-center justify-center p-4">
+                      <img 
+                        src={item.photo} 
+                        alt={item.title} 
+                        className="max-w-full max-h-full object-contain" 
+                      />
+                    </div>
                     <div className="p-4">
                       <h3 className="font-bold text-gray-800 mb-2">{item.title}</h3>
                       <p className="text-sm text-gray-600">{item.description}</p>
