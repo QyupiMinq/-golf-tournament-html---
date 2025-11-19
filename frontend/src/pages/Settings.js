@@ -184,6 +184,30 @@ const Settings = () => {
     }
   };
 
+  const handleGalleryVideoUpload = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      if (file.size > 50 * 1024 * 1024) { // 50MB limit
+        toast.error('Video size must be less than 50MB');
+        return;
+      }
+      if (!file.type.startsWith('video/')) {
+        toast.error('Please upload a video file (MP4)');
+        return;
+      }
+      
+      const reader = new FileReader();
+      reader.onload = (event) => {
+        setGalleryForm({ ...galleryForm, video_file: event.target.result });
+        toast.success('Video loaded! Ready to upload.');
+      };
+      reader.onerror = () => {
+        toast.error('Failed to read video file');
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
   const handleGallerySubmit = async (e) => {
     e.preventDefault();
     if (!galleryForm.title || !galleryForm.description || !galleryForm.photo) {
