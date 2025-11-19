@@ -530,8 +530,8 @@ const Settings = () => {
               <Upload className="h-6 w-6 text-white" />
             </div>
             <div>
-              <h2 className="text-2xl font-bold text-gray-800">🎬 Add Video</h2>
-              <p className="text-sm text-gray-600">Upload video dengan thumbnail</p>
+              <h2 className="text-2xl font-bold text-gray-800">🎬 Upload Team Opening Video</h2>
+              <p className="text-sm text-gray-600">Upload video opening untuk setiap team (5 teams)</p>
             </div>
           </div>
           <form onSubmit={handleVideoSubmit} className="space-y-4">
