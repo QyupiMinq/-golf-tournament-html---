@@ -247,15 +247,15 @@ const Dashboard = () => {
             <div
               key={index}
               data-testid={`stat-card-${card.label.toLowerCase().replace(/\s+/g, '-')}`}
-              className="bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-800 dark:to-slate-900 rounded-2xl shadow-xl p-6 hover:shadow-2xl transition-all duration-300 border border-slate-200/50 dark:border-slate-700/50 hover:scale-105"
+              className="bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-800 dark:to-slate-900 rounded-xl sm:rounded-2xl shadow-xl p-3 sm:p-6 hover:shadow-2xl transition-all duration-300 border border-slate-200/50 dark:border-slate-700/50 hover:scale-105"
             >
-              <div className="flex items-center justify-between mb-4">
-                <div className={`${card.color} ${card.glow} p-4 rounded-xl transition-all duration-300`}>
-                  <Icon className="h-7 w-7 text-amber-100" />
+              <div className="flex items-center justify-center sm:justify-between mb-2 sm:mb-4">
+                <div className={`${card.color} ${card.glow} p-2 sm:p-4 rounded-lg sm:rounded-xl transition-all duration-300`}>
+                  <Icon className="h-5 w-5 sm:h-7 sm:w-7 text-amber-100" />
                 </div>
               </div>
-              <h3 className="text-4xl font-bold bg-gradient-to-br from-slate-800 to-slate-600 dark:from-slate-200 dark:to-slate-400 bg-clip-text text-transparent mb-1">{card.value}</h3>
-              <p className="text-sm font-semibold text-slate-600 dark:text-slate-300 tracking-wide">{card.label}</p>
+              <h3 className="text-2xl sm:text-4xl font-bold bg-gradient-to-br from-slate-800 to-slate-600 dark:from-slate-200 dark:to-slate-400 bg-clip-text text-transparent mb-1 text-center sm:text-left">{card.value}</h3>
+              <p className="text-xs sm:text-sm font-semibold text-slate-600 dark:text-slate-300 tracking-wide text-center sm:text-left">{card.label}</p>
             </div>
           );
         })}
