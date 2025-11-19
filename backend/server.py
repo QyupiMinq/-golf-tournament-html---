@@ -308,6 +308,12 @@ async def get_teams(current_user: User = Depends(get_current_user)):
     teams = await db.teams.find({}, {"_id": 0}).to_list(1000)
     return teams
 
+@api_router.get("/public/teams")
+async def get_public_teams():
+    """Public teams access for guests"""
+    teams = await db.teams.find({}, {"_id": 0}).to_list(1000)
+    return teams
+
 @api_router.post("/teams", response_model=Team)
 async def create_team(team_data: TeamCreate, current_user: User = Depends(get_admin_user)):
     team = Team(**team_data.model_dump())
