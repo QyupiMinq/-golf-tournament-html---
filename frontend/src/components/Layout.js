@@ -27,7 +27,7 @@ const Layout = ({ children }) => {
 
   const navigation = [
     { name: 'Dashboard', path: '/', icon: Trophy },
-    { name: 'News', path: '/news', icon: Trophy },
+    { name: 'News', path: '/news', icon: Newspaper },
     { name: 'Teams', path: '/teams', icon: Users },
     { name: 'Players', path: '/players', icon: UserCheck },
     { name: 'Matches', path: '/matches', icon: CalendarDays },
