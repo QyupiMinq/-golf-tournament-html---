@@ -113,8 +113,15 @@ const GuestDashboard = () => {
               <Button onClick={() => setSelectedVideo(null)} className="absolute top-2 right-2 bg-red-600 hover:bg-red-700" size="sm"><X className="h-4 w-4" /></Button>
               <h3 className="text-2xl font-bold text-gray-800 mb-4">{selectedVideo.title}</h3>
               <div className="aspect-video bg-black rounded-lg overflow-hidden">
-                <iframe width="100%" height="100%" src={getYouTubeEmbedUrl(selectedVideo.video_url)} title={selectedVideo.title} frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
+                {selectedVideo.video_file ? (
+                  <video controls autoPlay className="w-full h-full" src={selectedVideo.video_file}>Your browser does not support the video tag.</video>
+                ) : selectedVideo.video_url ? (
+                  <iframe width="100%" height="100%" src={getYouTubeEmbedUrl(selectedVideo.video_url)} title={selectedVideo.title} frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
+                ) : (
+                  <div className="flex items-center justify-center h-full text-white">No video available</div>
+                )}
               </div>
+              <p className="text-gray-600 mt-4">{selectedVideo.description}</p>
             </div>
           </div>
         )}
