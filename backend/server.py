@@ -174,6 +174,8 @@ class AppSettings(BaseModel):
     club_logo: Optional[str] = None  # Logo club (dashboard kanan)
     footer_signature: Optional[str] = None
     login_logo: Optional[str] = None  # Logo untuk halaman login
+    vision: Optional[str] = None  # Visi organisasi
+    mission: Optional[str] = None  # Misi organisasi
     updated_at: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
 
 class Announcement(BaseModel):
