@@ -14,11 +14,14 @@ const Layout = ({ children }) => {
 
   React.useEffect(() => {
     fetchSettings();
+    // Refresh settings every 5 seconds to catch updates
+    const interval = setInterval(fetchSettings, 5000);
+    return () => clearInterval(interval);
   }, []);
 
   const fetchSettings = async () => {
     try {
-      const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/settings`);
+      const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/settings?t=${Date.now()}`);
       setSettings(response.data);
     } catch (error) {
       console.error('Failed to fetch settings:', error);
