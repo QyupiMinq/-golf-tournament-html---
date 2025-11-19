@@ -441,23 +441,34 @@ const Settings = () => {
           <div className="space-y-4">
             <div>
               <Label className="text-gray-700 font-semibold mb-2 block">Visi</Label>
-              <ReactQuill
-                value={settings.vision || ''}
-                onChange={(content) => setSettings({ ...settings, vision: content })}
-                placeholder="Masukkan visi organisasi..."
-                theme="snow"
-                modules={{
-                  toolbar: [
-                    [{ 'header': [1, 2, 3, false] }],
-                    [{ 'size': ['small', false, 'large', 'huge'] }],
-                    ['bold', 'italic', 'underline'],
-                    [{ 'color': [] }, { 'background': [] }],
-                    [{ 'align': [] }],
-                    ['clean']
-                  ]
-                }}
-                style={{ height: '150px', marginBottom: '50px' }}
-              />
+              {ReactQuill ? (
+                <ReactQuill
+                  value={settings.vision || ''}
+                  onChange={(content) => setSettings({ ...settings, vision: content })}
+                  placeholder="Masukkan visi organisasi..."
+                  theme="snow"
+                  modules={{
+                    toolbar: [
+                      [{ 'header': [1, 2, 3, false] }],
+                      [{ 'size': ['small', false, 'large', 'huge'] }],
+                      ['bold', 'italic', 'underline'],
+                      [{ 'color': [] }, { 'background': [] }],
+                      [{ 'align': [] }],
+                      ['clean']
+                    ]
+                  }}
+                  style={{ height: '150px', marginBottom: '50px' }}
+                />
+              ) : (
+                <textarea
+                  value={settings.vision || ''}
+                  onChange={(e) => setSettings({ ...settings, vision: e.target.value })}
+                  placeholder="Masukkan visi organisasi..."
+                  className="w-full px-3 py-2 border border-gray-300 rounded-md"
+                  rows="6"
+                  style={{ marginBottom: '50px' }}
+                />
+              )}
             </div>
             <div>
               <Label className="text-gray-700 font-semibold mb-2 block">Misi</Label>
