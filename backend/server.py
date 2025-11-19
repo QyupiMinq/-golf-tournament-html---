@@ -602,7 +602,24 @@ async def get_settings(current_user: User = Depends(get_current_user)):
             "organization_logo": None,
             "club_logo": None,
             "footer_signature": None, 
-            "login_logo": None
+            "login_logo": None,
+            "vision": None,
+            "mission": None
+        }
+    return settings
+
+# Public settings endpoint (no auth required) for guest access
+@api_router.get("/public/settings")
+async def get_public_settings():
+    settings = await db.settings.find_one({"id": "app_settings"}, {"_id": 0})
+    if not settings:
+        return {
+            "id": "app_settings", 
+            "organization_logo": None,
+            "club_logo": None,
+            "login_logo": None,
+            "vision": None,
+            "mission": None
         }
     return settings
 
