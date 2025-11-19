@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import { API, AuthContext } from '@/App';
-import { Users, UserCheck, CalendarDays, Trophy, TrendingUp, Trash2, X, Play } from 'lucide-react';
+import { Users, UserCheck, CalendarDays, Trophy, TrendingUp, Trash2, X, Play, Moon, Sun } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { toast } from 'sonner';
 
