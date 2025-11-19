@@ -206,10 +206,34 @@ const Settings = () => {
     }
   };
 
-  const handleGallerySubmit = async (e) => {
+  const handlePhotoSubmit = async (e) => {
     e.preventDefault();
     if (!galleryForm.title || !galleryForm.description || !galleryForm.photo) {
       toast.error('Please fill all fields and upload a photo');
+      return;
+    }
+    
+    setSubmittingGallery(true);
+    try {
+      // Submit photo without video
+      await axios.post(`${API}/match-gallery`, {
+        title: galleryForm.title,
+        description: galleryForm.description,
+        photo: galleryForm.photo
+      });
+      toast.success('Photo added to gallery!');
+      setGalleryForm({ title: '', description: '', photo: null, video_url: '', video_file: null, team_id: null });
+    } catch (error) {
+      toast.error('Failed to add photo');
+    } finally {
+      setSubmittingGallery(false);
+    }
+  };
+
+  const handleVideoSubmit = async (e) => {
+    e.preventDefault();
+    if (!galleryForm.title || !galleryForm.description || !galleryForm.photo) {
+      toast.error('Please fill all fields and upload thumbnail');
       return;
     }
     
@@ -221,10 +245,10 @@ const Settings = () => {
     setSubmittingGallery(true);
     try {
       await axios.post(`${API}/match-gallery`, galleryForm);
-      toast.success('Gallery item added successfully!');
+      toast.success('Video added to gallery!');
       setGalleryForm({ title: '', description: '', photo: null, video_url: '', video_file: null, team_id: null });
     } catch (error) {
-      toast.error('Failed to add gallery item');
+      toast.error('Failed to add video');
     } finally {
       setSubmittingGallery(false);
     }
