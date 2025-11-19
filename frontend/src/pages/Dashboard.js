@@ -142,6 +142,19 @@ const Dashboard = () => {
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-amber-500/10 via-transparent to-emerald-500/5"></div>
         <div className="absolute inset-0 bg-[linear-gradient(45deg,transparent_25%,rgba(251,191,36,0.05)_50%,transparent_75%,transparent_100%)]"></div>
         
+        {/* Dark Mode Toggle Button */}
+        <button
+          onClick={toggleDarkMode}
+          className="absolute top-4 right-4 z-10 bg-amber-500/20 hover:bg-amber-500/30 p-3 rounded-full transition-all duration-300 border border-amber-500/30 hover:border-amber-500/50 backdrop-blur-sm"
+          aria-label="Toggle Dark Mode"
+        >
+          {darkMode ? (
+            <Sun className="h-6 w-6 text-amber-300" />
+          ) : (
+            <Moon className="h-6 w-6 text-amber-300" />
+          )}
+        </button>
+        
         <div className="relative text-center">
           <div className="flex items-center justify-center gap-6 mb-4">
             {/* Logo Organisasi (Kiri) */}
