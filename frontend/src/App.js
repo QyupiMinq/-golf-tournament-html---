@@ -100,6 +100,10 @@ function App() {
     <AuthContext.Provider value={{ user, login, register, logout }}>
       <BrowserRouter>
         <Routes>
+          {/* Guest Routes - No auth required */}
+          <Route path="/guest" element={<GuestDashboard />} />
+          <Route path="/guest/players" element={<GuestPlayers />} />
+          
           <Route path="/login" element={!user ? <Login /> : <Navigate to="/" />} />
           <Route
             path="/*"
