@@ -591,9 +591,16 @@ const Settings = () => {
             <Button
               type="submit"
               disabled={submittingGallery || !galleryForm.photo || (!galleryForm.video_url && !galleryForm.video_file)}
-              className="bg-gradient-to-r from-purple-600 to-purple-700 hover:from-purple-700 hover:to-purple-800 text-white"
+              className="bg-gradient-to-r from-purple-600 to-purple-700 hover:from-purple-700 hover:to-purple-800 text-white text-lg py-6"
             >
-              {submittingGallery ? 'Adding...' : 'Add Video to Gallery'}
+              {submittingGallery ? (
+                <div className="flex items-center gap-2">
+                  <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white"></div>
+                  <span>Uploading Team Opening Video...</span>
+                </div>
+              ) : (
+                '🎬 Upload Team Opening Video'
+              )}
             </Button>
           </form>
         </div>
