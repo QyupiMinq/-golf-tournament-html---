@@ -84,8 +84,13 @@ const Dashboard = () => {
   };
 
   const handleGalleryClick = (item) => {
+    console.log('Gallery clicked:', item);
+    console.log('Has video?', hasVideo(item));
     if (hasVideo(item)) {
+      console.log('Opening video modal...');
       setSelectedVideo(item);
+    } else {
+      toast.info('No video available for this item');
     }
   };
 
