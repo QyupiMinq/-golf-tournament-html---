@@ -215,11 +215,16 @@ const Settings = () => {
       return;
     }
     
+    if (!galleryForm.video_url && !galleryForm.video_file) {
+      toast.error('Please provide either YouTube URL or upload MP4 video');
+      return;
+    }
+    
     setSubmittingGallery(true);
     try {
       await axios.post(`${API}/match-gallery`, galleryForm);
       toast.success('Gallery item added successfully!');
-      setGalleryForm({ title: '', description: '', photo: null, video_url: '', team_id: null });
+      setGalleryForm({ title: '', description: '', photo: null, video_url: '', video_file: null, team_id: null });
     } catch (error) {
       toast.error('Failed to add gallery item');
     } finally {
