@@ -161,33 +161,33 @@ const Dashboard = () => {
         
         <div className="relative text-center">
           <div className="flex items-center justify-center gap-3 sm:gap-6 mb-3 sm:mb-4">
-            {/* Logo Organisasi (Kiri) */}
+            {/* Logo Organisasi (Kiri) - Hidden on mobile */}
             {settings.organization_logo ? (
-              <img src={settings.organization_logo} alt="Organization Logo" className="h-24 w-24 object-contain rounded-xl shadow-lg bg-white/10 p-2" />
+              <img src={settings.organization_logo} alt="Organization Logo" className="hidden sm:block h-16 sm:h-24 w-16 sm:w-24 object-contain rounded-xl shadow-lg bg-white/10 p-2" />
             ) : (
-              <div className="w-20 h-20 rounded-full bg-gradient-to-br from-green-500 to-green-700 flex items-center justify-center shadow-lg border-4 border-green-500/30">
-                <Trophy className="h-10 w-10 text-white" />
+              <div className="hidden sm:flex w-16 sm:w-20 h-16 sm:h-20 rounded-full bg-gradient-to-br from-green-500 to-green-700 items-center justify-center shadow-lg border-4 border-green-500/30">
+                <Trophy className="h-8 sm:h-10 w-8 sm:w-10 text-white" />
               </div>
             )}
             
             <div>
               <h1
-                className="text-4xl sm:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-amber-300 via-amber-200 to-amber-300 mb-2 drop-shadow-[0_0_15px_rgba(251,191,36,0.5)]"
+                className="text-2xl sm:text-4xl lg:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-amber-300 via-amber-200 to-amber-300 mb-1 sm:mb-2 drop-shadow-[0_0_15px_rgba(251,191,36,0.5)]"
                 style={{ fontFamily: 'Playfair Display, serif', letterSpacing: '0.02em' }}
               >
                 MANADO GOLF LEAGUE
               </h1>
-              <p className="text-amber-200/90 font-semibold tracking-[0.3em] text-sm" style={{ fontFamily: 'Inter, sans-serif' }}>
+              <p className="text-amber-200/90 font-semibold tracking-[0.15em] sm:tracking-[0.3em] text-xs sm:text-sm" style={{ fontFamily: 'Inter, sans-serif' }}>
                 ONE SPIRIT - ONE FAIRWAY
               </p>
             </div>
             
-            {/* Logo Club (Kanan) */}
+            {/* Logo Club (Kanan) - Hidden on mobile */}
             {settings.club_logo ? (
-              <img src={settings.club_logo} alt="Club Logo" className="h-24 w-24 object-contain rounded-xl shadow-lg bg-white/10 p-2" />
+              <img src={settings.club_logo} alt="Club Logo" className="hidden sm:block h-16 sm:h-24 w-16 sm:w-24 object-contain rounded-xl shadow-lg bg-white/10 p-2" />
             ) : (
-              <div className="w-20 h-20 rounded-full bg-gradient-to-br from-yellow-400 to-yellow-600 flex items-center justify-center shadow-lg border-4 border-yellow-500/30">
-                <Trophy className="h-10 w-10 text-gray-900" />
+              <div className="hidden sm:flex w-16 sm:w-20 h-16 sm:h-20 rounded-full bg-gradient-to-br from-yellow-400 to-yellow-600 items-center justify-center shadow-lg border-4 border-yellow-500/30">
+                <Trophy className="h-8 sm:h-10 w-8 sm:w-10 text-gray-900" />
               </div>
             )}
           </div>
