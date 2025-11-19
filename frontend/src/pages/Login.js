@@ -12,18 +12,23 @@ const Login = () => {
   const { login, register } = useContext(AuthContext);
   const [loginData, setLoginData] = useState({ email: '', password: '' });
   const [registerData, setRegisterData] = useState({ email: '', password: '', name: '', role: 'player' });
-  const [settings, setSettings] = useState({ login_logo: null });
+  const [settings, setSettings] = useState({ organization_logo: null });
+  const [logoKey, setLogoKey] = useState(Date.now());
 
   React.useEffect(() => {
     fetchSettings();
+    // Auto-refresh settings every 3 seconds
+    const interval = setInterval(fetchSettings, 3000);
+    return () => clearInterval(interval);
   }, []);
 
   const fetchSettings = async () => {
     try {
-      // Add timestamp to prevent caching
-      const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/settings?t=${Date.now()}`);
-      console.log('Fetched settings:', response.data);
+      const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/settings`, {
+        headers: { 'Cache-Control': 'no-cache', 'Pragma': 'no-cache' }
+      });
       setSettings(response.data);
+      setLogoKey(Date.now()); // Force logo re-render
     } catch (error) {
       console.error('Failed to fetch settings:', error);
     }
