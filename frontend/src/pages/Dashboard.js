@@ -208,15 +208,15 @@ const Dashboard = () => {
             <div
               key={index}
               data-testid={`stat-card-${card.label.toLowerCase().replace(/\s+/g, '-')}`}
-              className="bg-white rounded-2xl shadow-lg p-6 hover:shadow-xl transition-shadow"
+              className="bg-gradient-to-br from-slate-50 to-slate-100 rounded-2xl shadow-xl p-6 hover:shadow-2xl transition-all duration-300 border border-slate-200/50 hover:scale-105"
             >
               <div className="flex items-center justify-between mb-4">
-                <div className={`${card.color} p-3 rounded-xl`}>
-                  <Icon className="h-6 w-6 text-white" />
+                <div className={`${card.color} ${card.glow} p-4 rounded-xl transition-all duration-300`}>
+                  <Icon className="h-7 w-7 text-amber-100" />
                 </div>
               </div>
-              <h3 className="text-3xl font-bold text-gray-800 mb-1">{card.value}</h3>
-              <p className="text-sm text-gray-600">{card.label}</p>
+              <h3 className="text-4xl font-bold bg-gradient-to-br from-slate-800 to-slate-600 bg-clip-text text-transparent mb-1">{card.value}</h3>
+              <p className="text-sm font-semibold text-slate-600 tracking-wide">{card.label}</p>
             </div>
           );
         })}
