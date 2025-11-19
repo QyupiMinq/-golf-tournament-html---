@@ -318,7 +318,7 @@ const Dashboard = () => {
                         onClick={(e) => { e.stopPropagation(); handleDeleteGallery(item.id); }}
                         size="sm"
                         variant="destructive"
-                        className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity z-10"
+                        className="absolute top-2 right-2 group-hover:opacity-100 opacity-70 hover:opacity-100 transition-opacity z-20"
                       >
                         <Trash2 className="h-4 w-4" />
                       </Button>
