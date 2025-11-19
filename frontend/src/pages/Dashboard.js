@@ -163,7 +163,7 @@ const Dashboard = () => {
           <div className="flex items-center justify-center gap-3 sm:gap-6 mb-3 sm:mb-4">
             {/* Logo Organisasi (Kiri) - Hidden on mobile */}
             {settings.organization_logo ? (
-              <img src={settings.organization_logo} alt="Organization Logo" className="hidden sm:block h-16 sm:h-24 w-16 sm:w-24 object-contain rounded-xl shadow-lg bg-white/10 p-2" />
+              <img src={settings.organization_logo} alt="Organization Logo" className="hidden sm:block h-16 sm:h-24 w-auto max-w-[6rem] object-contain shadow-lg p-1" />
             ) : (
               <div className="hidden sm:flex w-16 sm:w-20 h-16 sm:h-20 rounded-full bg-gradient-to-br from-green-500 to-green-700 items-center justify-center shadow-lg border-4 border-green-500/30">
                 <Trophy className="h-8 sm:h-10 w-8 sm:w-10 text-white" />
