@@ -137,7 +137,7 @@ const Layout = ({ children }) => {
 
       {/* Main content */}
       <main className="lg:ml-64 min-h-screen p-4 sm:p-6 lg:p-8 pb-20">
-        <div className="max-w-7xl mx-auto">{children}</div>
+        <div className="max-w-[1600px] mx-auto w-full">{children}</div>
         
         {/* Footer */}
         <div className="fixed bottom-0 left-0 lg:left-64 right-0 bg-gradient-to-r from-gray-800 via-green-800 to-gray-800 py-4 px-6 shadow-lg z-10">
