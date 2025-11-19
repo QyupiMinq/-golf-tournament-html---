@@ -320,6 +320,17 @@ const Settings = () => {
                 </div>
               )}
             </div>
+            
+            {/* Save Button for Organization Logo */}
+            <div className="mt-6 flex justify-end">
+              <Button
+                onClick={handleSave}
+                disabled={saving}
+                className="bg-gradient-to-r from-green-700 to-green-800 hover:from-green-800 hover:to-green-900 text-yellow-300 shadow-lg px-6 py-4 text-lg font-bold"
+              >
+                {saving ? 'Menyimpan...' : '💾 Simpan Logo Organisasi'}
+              </Button>
+            </div>
           </div>
         </div>
 
