@@ -522,72 +522,7 @@ const Settings = () => {
           </form>
         </div>
 
-        {/* Photo Gallery Section */}
-        <div className="bg-white rounded-2xl shadow-lg p-8 border border-gray-200">
-          <div className="flex items-center gap-3 mb-6">
-            <div className="w-12 h-12 rounded-full bg-gradient-to-br from-blue-600 to-blue-700 flex items-center justify-center">
-              <Upload className="h-6 w-6 text-white" />
-            </div>
-            <div>
-              <h2 className="text-2xl font-bold text-gray-800">📷 Add Photo Only</h2>
-              <p className="text-sm text-gray-600">Upload photo saja tanpa video</p>
-            </div>
-          </div>
-          <form onSubmit={handlePhotoSubmit} className="space-y-4">
-            <div>
-              <Label className="text-gray-700 font-semibold">Title</Label>
-              <Input
-                type="text"
-                value={galleryForm.title}
-                onChange={(e) => setGalleryForm({ ...galleryForm, title: e.target.value })}
-                placeholder="Photo title"
-                className="mt-2"
-              />
-            </div>
-            <div>
-              <Label className="text-gray-700 font-semibold">Description</Label>
-              <textarea
-                value={galleryForm.description}
-                onChange={(e) => setGalleryForm({ ...galleryForm, description: e.target.value })}
-                placeholder="Photo description"
-                className="mt-2 w-full px-3 py-2 border border-gray-300 rounded-md"
-                rows="3"
-              />
-            </div>
-            <div>
-              <Label className="text-gray-700 font-semibold">Upload Photo</Label>
-              <div className="mt-2 p-6 border-2 border-dashed border-gray-300 rounded-lg hover:border-blue-500 transition-colors">
-                <Input
-                  type="file"
-                  accept="image/*"
-                  onChange={handleGalleryPhotoUpload}
-                  className="border-0 p-0"
-                />
-              </div>
-              {galleryForm.photo && (
-                <div className="mt-4 flex justify-center">
-                  <div className="text-center">
-                    <img 
-                      src={galleryForm.photo} 
-                      alt="Photo Preview" 
-                      className="h-48 w-auto object-contain rounded-lg border-4 border-blue-400 shadow-lg" 
-                    />
-                    <p className="text-sm text-gray-600 mt-2">Preview Photo</p>
-                  </div>
-                </div>
-              )}
-            </div>
-            <Button
-              type="submit"
-              disabled={submittingGallery || !galleryForm.photo}
-              className="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white"
-            >
-              {submittingGallery ? 'Adding...' : 'Add Photo to Gallery'}
-            </Button>
-          </form>
-        </div>
-
-        {/* Video Gallery Section */}
+        {/* Video Gallery Section (Team Opening Videos) */}
         <div className="bg-white rounded-2xl shadow-lg p-8 border border-gray-200">
           <div className="flex items-center gap-3 mb-6">
             <div className="w-12 h-12 rounded-full bg-gradient-to-br from-purple-600 to-purple-700 flex items-center justify-center">
