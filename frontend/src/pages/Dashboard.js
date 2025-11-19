@@ -149,18 +149,18 @@ const Dashboard = () => {
         {/* Dark Mode Toggle Button */}
         <button
           onClick={toggleDarkMode}
-          className="absolute top-4 right-4 z-10 bg-amber-500/20 hover:bg-amber-500/30 p-3 rounded-full transition-all duration-300 border border-amber-500/30 hover:border-amber-500/50 backdrop-blur-sm"
+          className="absolute top-2 right-2 sm:top-4 sm:right-4 z-10 bg-amber-500/20 hover:bg-amber-500/30 p-2 sm:p-3 rounded-full transition-all duration-300 border border-amber-500/30 hover:border-amber-500/50 backdrop-blur-sm"
           aria-label="Toggle Dark Mode"
         >
           {darkMode ? (
-            <Sun className="h-6 w-6 text-amber-300" />
+            <Sun className="h-5 w-5 sm:h-6 sm:w-6 text-amber-300" />
           ) : (
-            <Moon className="h-6 w-6 text-amber-300" />
+            <Moon className="h-5 w-5 sm:h-6 sm:w-6 text-amber-300" />
           )}
         </button>
         
         <div className="relative text-center">
-          <div className="flex items-center justify-center gap-6 mb-4">
+          <div className="flex items-center justify-center gap-3 sm:gap-6 mb-3 sm:mb-4">
             {/* Logo Organisasi (Kiri) */}
             {settings.organization_logo ? (
               <img src={settings.organization_logo} alt="Organization Logo" className="h-24 w-24 object-contain rounded-xl shadow-lg bg-white/10 p-2" />
