@@ -443,7 +443,16 @@ const Settings = () => {
           <div className="space-y-4">
             <div>
               <Label className="text-gray-700 font-semibold mb-2 block">Visi</Label>
-              {ReactQuill ? (
+              <React.Suspense fallback={
+                <textarea
+                  value={settings.vision || ''}
+                  onChange={(e) => setSettings({ ...settings, vision: e.target.value })}
+                  placeholder="Masukkan visi organisasi..."
+                  className="w-full px-3 py-2 border border-gray-300 rounded-md"
+                  rows="6"
+                  style={{ marginBottom: '50px' }}
+                />
+              }>
                 <ReactQuill
                   value={settings.vision || ''}
                   onChange={(content) => setSettings({ ...settings, vision: content })}
@@ -461,16 +470,7 @@ const Settings = () => {
                   }}
                   style={{ height: '150px', marginBottom: '50px' }}
                 />
-              ) : (
-                <textarea
-                  value={settings.vision || ''}
-                  onChange={(e) => setSettings({ ...settings, vision: e.target.value })}
-                  placeholder="Masukkan visi organisasi..."
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md"
-                  rows="6"
-                  style={{ marginBottom: '50px' }}
-                />
-              )}
+              </React.Suspense>
             </div>
             <div>
               <Label className="text-gray-700 font-semibold mb-2 block">Misi</Label>
