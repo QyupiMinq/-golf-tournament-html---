@@ -390,6 +390,41 @@ const Settings = () => {
           </div>
         </div>
 
+        {/* Visi & Misi Section */}
+        <div className="bg-white rounded-2xl shadow-lg p-8 border border-gray-200">
+          <div className="flex items-center gap-3 mb-6">
+            <div className="w-12 h-12 rounded-full bg-gradient-to-br from-green-600 to-green-700 flex items-center justify-center">
+              <SettingsIcon className="h-6 w-6 text-white" />
+            </div>
+            <div>
+              <h2 className="text-2xl font-bold text-gray-800">Visi & Misi</h2>
+              <p className="text-sm text-gray-600">Edit visi dan misi organisasi (akan tampil di dashboard)</p>
+            </div>
+          </div>
+          <div className="space-y-4">
+            <div>
+              <Label className="text-gray-700 font-semibold">Visi</Label>
+              <textarea
+                value={settings.vision || ''}
+                onChange={(e) => setSettings({ ...settings, vision: e.target.value })}
+                placeholder="Masukkan visi organisasi..."
+                className="mt-2 w-full px-3 py-2 border border-gray-300 rounded-md"
+                rows="3"
+              />
+            </div>
+            <div>
+              <Label className="text-gray-700 font-semibold">Misi</Label>
+              <textarea
+                value={settings.mission || ''}
+                onChange={(e) => setSettings({ ...settings, mission: e.target.value })}
+                placeholder="Masukkan misi organisasi..."
+                className="mt-2 w-full px-3 py-2 border border-gray-300 rounded-md"
+                rows="5"
+              />
+            </div>
+          </div>
+        </div>
+
         {/* Announcements Section */}
         <div className="bg-white rounded-2xl shadow-lg p-8 border border-gray-200">
           <div className="flex items-center gap-3 mb-6">
