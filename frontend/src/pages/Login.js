@@ -64,13 +64,13 @@ const Login = () => {
               <Trophy className="h-20 w-20 text-gray-900" />
             </div>
           )}
-          <h1 className="text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 via-yellow-400 to-yellow-300 mb-3" style={{ fontFamily: 'Playfair Display, serif' }}>
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 via-yellow-400 to-yellow-300 mb-3" style={{ fontFamily: 'Playfair Display, serif' }}>
             MANADO GOLF LEAGUE
           </h1>
-          <p className="text-yellow-200 font-semibold tracking-widest text-sm mb-2" style={{ fontFamily: 'Inter, sans-serif' }}>
+          <p className="text-yellow-200 font-semibold tracking-widest text-xs sm:text-sm mb-2" style={{ fontFamily: 'Inter, sans-serif' }}>
             ONE SPIRIT - ONE FAIRWAY
           </p>
-          <p className="text-gray-400 text-sm">
+          <p className="text-gray-400 text-xs sm:text-sm">
             Sistem Manajemen Turnamen Golf
           </p>
         </div>
