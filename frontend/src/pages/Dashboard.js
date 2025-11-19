@@ -34,12 +34,12 @@ const Dashboard = () => {
       document.documentElement.classList.remove('dark');
       console.log('Dark class removed from HTML');
     }
-    localStorage.setItem('darkMode', darkMode);
+    localStorage.setItem('darkMode', String(darkMode));
   }, [darkMode]);
 
   const toggleDarkMode = () => {
     console.log('Toggle Dark Mode clicked. Current:', darkMode, '=> New:', !darkMode);
-    setDarkMode(!darkMode);
+    setDarkMode(prev => !prev);
   };
 
   const fetchStats = async () => {
