@@ -533,7 +533,7 @@ const Settings = () => {
               <p className="text-sm text-gray-600">Upload photo saja tanpa video</p>
             </div>
           </div>
-          <form onSubmit={handleGallerySubmit} className="space-y-4">
+          <form onSubmit={handlePhotoSubmit} className="space-y-4">
             <div>
               <Label className="text-gray-700 font-semibold">Title</Label>
               <Input
