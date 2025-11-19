@@ -8,6 +8,7 @@ import { toast } from 'sonner';
 // Pages
 import Login from '@/pages/Login';
 import Dashboard from '@/pages/Dashboard';
+import News from '@/pages/News';
 import Teams from '@/pages/Teams';
 import Players from '@/pages/Players';
 import Matches from '@/pages/Matches';
