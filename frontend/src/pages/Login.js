@@ -184,6 +184,18 @@ const Login = () => {
               </form>
             </TabsContent>
           </Tabs>
+          
+          {/* Guest Access */}
+          <div className="mt-6 text-center">
+            <p className="text-gray-400 text-sm mb-3">atau</p>
+            <Button
+              onClick={() => window.location.href = '/guest'}
+              variant="outline"
+              className="w-full border-yellow-500 text-yellow-300 hover:bg-yellow-500/10"
+            >
+              Masuk sebagai Tamu (Guest)
+            </Button>
+          </div>
         </div>
       </div>
     </div>
