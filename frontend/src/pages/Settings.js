@@ -6,8 +6,14 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { toast } from 'sonner';
-import ReactQuill from 'react-quill';
-import 'react-quill/dist/quill.snow.css';
+import dynamic from 'next/dynamic';
+
+// Dynamic import ReactQuill to avoid SSR issues
+let ReactQuill;
+if (typeof window !== 'undefined') {
+  ReactQuill = require('react-quill').default;
+  require('react-quill/dist/quill.snow.css');
+}
 
 const Settings = () => {
   const { user } = useContext(AuthContext);
