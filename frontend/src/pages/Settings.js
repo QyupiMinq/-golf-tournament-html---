@@ -405,23 +405,44 @@ const Settings = () => {
           </div>
           <div className="space-y-4">
             <div>
-              <Label className="text-gray-700 font-semibold">Visi</Label>
-              <textarea
+              <Label className="text-gray-700 font-semibold mb-2 block">Visi</Label>
+              <ReactQuill
                 value={settings.vision || ''}
-                onChange={(e) => setSettings({ ...settings, vision: e.target.value })}
+                onChange={(content) => setSettings({ ...settings, vision: content })}
                 placeholder="Masukkan visi organisasi..."
-                className="mt-2 w-full px-3 py-2 border border-gray-300 rounded-md"
-                rows="3"
+                theme="snow"
+                modules={{
+                  toolbar: [
+                    [{ 'header': [1, 2, 3, false] }],
+                    [{ 'size': ['small', false, 'large', 'huge'] }],
+                    ['bold', 'italic', 'underline'],
+                    [{ 'color': [] }, { 'background': [] }],
+                    [{ 'align': [] }],
+                    ['clean']
+                  ]
+                }}
+                style={{ height: '150px', marginBottom: '50px' }}
               />
             </div>
             <div>
-              <Label className="text-gray-700 font-semibold">Misi</Label>
-              <textarea
+              <Label className="text-gray-700 font-semibold mb-2 block">Misi</Label>
+              <ReactQuill
                 value={settings.mission || ''}
-                onChange={(e) => setSettings({ ...settings, mission: e.target.value })}
+                onChange={(content) => setSettings({ ...settings, mission: content })}
                 placeholder="Masukkan misi organisasi..."
-                className="mt-2 w-full px-3 py-2 border border-gray-300 rounded-md"
-                rows="5"
+                theme="snow"
+                modules={{
+                  toolbar: [
+                    [{ 'header': [1, 2, 3, false] }],
+                    [{ 'size': ['small', false, 'large', 'huge'] }],
+                    ['bold', 'italic', 'underline'],
+                    [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+                    [{ 'color': [] }, { 'background': [] }],
+                    [{ 'align': [] }],
+                    ['clean']
+                  ]
+                }}
+                style={{ height: '200px', marginBottom: '50px' }}
               />
             </div>
           </div>
