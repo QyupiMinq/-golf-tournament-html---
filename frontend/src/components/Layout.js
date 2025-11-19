@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import axios from 'axios';
 import { AuthContext } from '@/App';
-import { Trophy, Users, UserCheck, CalendarDays, Award, Repeat, LogOut, Menu, Settings } from 'lucide-react';
+import { Trophy, Users, UserCheck, CalendarDays, Award, Repeat, LogOut, Menu, Settings, Newspaper } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useState } from 'react';
 
