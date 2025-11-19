@@ -465,6 +465,17 @@ const Settings = () => {
               />
             </div>
             <div>
+              <Label className="text-gray-700 font-semibold">Video URL (Optional)</Label>
+              <Input
+                type="text"
+                value={galleryForm.video_url}
+                onChange={(e) => setGalleryForm({ ...galleryForm, video_url: e.target.value })}
+                placeholder="YouTube URL (e.g., https://youtube.com/watch?v=...)"
+                className="mt-2"
+              />
+              <p className="text-xs text-gray-500 mt-1">Jika diisi, logo akan bisa diklik untuk play video (team opening)</p>
+            </div>
+            <div>
               <Label className="text-gray-700 font-semibold">Upload Photo</Label>
               <div className="mt-2 p-6 border-2 border-dashed border-gray-300 rounded-lg hover:border-purple-500 transition-colors">
                 <Input
