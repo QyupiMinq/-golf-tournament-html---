@@ -47,11 +47,6 @@ const Settings = () => {
   };
 
   const compressImage = (file, callback) => {
-    if (file.size > 2 * 1024 * 1024) {
-      toast.error('Ukuran file maksimal 2MB');
-      return;
-    }
-
     const reader = new FileReader();
     reader.onload = (event) => {
       const img = new Image();
