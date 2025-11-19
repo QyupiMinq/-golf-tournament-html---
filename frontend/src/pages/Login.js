@@ -59,8 +59,8 @@ const Login = () => {
           {settings.organization_logo ? (
             <div className="inline-block mb-6">
               <img 
-                key={settings.organization_logo}
-                src={`${settings.organization_logo}?t=${Date.now()}`}
+                key={`login-logo-${logoKey}`}
+                src={`${settings.organization_logo}?v=${logoKey}`}
                 alt="Organization Logo" 
                 className="h-40 w-40 object-cover rounded-full mx-auto shadow-2xl border-4 border-amber-400/50 ring-8 ring-amber-500/30" 
               />
