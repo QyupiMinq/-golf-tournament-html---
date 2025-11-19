@@ -15,6 +15,8 @@ const Settings = () => {
     club_logo: null,
     footer_signature: null,
     login_logo: null,
+    vision: '',
+    mission: '',
   });
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
