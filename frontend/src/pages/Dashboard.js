@@ -84,7 +84,7 @@ const Dashboard = () => {
   };
 
   const handleGalleryClick = (item) => {
-    if (item.video_url) {
+    if (hasVideo(item)) {
       setSelectedVideo(item);
     }
   };
