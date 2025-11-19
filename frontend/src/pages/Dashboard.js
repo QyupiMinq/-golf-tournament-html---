@@ -303,10 +303,14 @@ const Dashboard = () => {
             ) : (
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {gallery.map((item) => (
-                  <div key={item.id} className="bg-gray-50 rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow relative group">
+                  <div 
+                    key={item.id} 
+                    className={`bg-gray-50 rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow relative group ${item.video_url ? 'cursor-pointer' : ''}`}
+                    onClick={() => handleGalleryClick(item)}
+                  >
                     {user?.role === 'admin' && (
                       <Button
-                        onClick={() => handleDeleteGallery(item.id)}
+                        onClick={(e) => { e.stopPropagation(); handleDeleteGallery(item.id); }}
                         size="sm"
                         variant="destructive"
                         className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity z-10"
@@ -315,16 +319,24 @@ const Dashboard = () => {
                       </Button>
                     )}
                     {/* Image container dengan background putih agar logo tidak terpotong */}
-                    <div className="w-full h-48 bg-white flex items-center justify-center p-4">
+                    <div className="w-full h-48 bg-white flex items-center justify-center p-4 relative">
                       <img 
                         src={item.photo} 
                         alt={item.title} 
                         className="max-w-full max-h-full object-contain" 
                       />
+                      {item.video_url && (
+                        <div className="absolute inset-0 bg-black/30 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                          <div className="w-16 h-16 bg-red-600 rounded-full flex items-center justify-center shadow-xl">
+                            <Play className="h-8 w-8 text-white ml-1" fill="white" />
+                          </div>
+                        </div>
+                      )}
                     </div>
                     <div className="p-4">
                       <h3 className="font-bold text-gray-800 mb-2">{item.title}</h3>
                       <p className="text-sm text-gray-600">{item.description}</p>
+                      {item.video_url && <p className="text-xs text-blue-600 mt-2">▶ Click to play video</p>}
                     </div>
                   </div>
                 ))}
