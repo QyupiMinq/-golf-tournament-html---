@@ -296,23 +296,65 @@ const Dashboard = () => {
             </div>
           </div>
 
-          {/* Gallery Section */}
-          <div className="bg-white rounded-2xl shadow-lg p-8 border border-gray-200">
-            <h2
-              className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-green-700 to-green-900 mb-6"
-              style={{ fontFamily: 'Playfair Display, serif' }}
-            >
-              Gallery
+          {/* Photo Gallery Section */}
+          <div className="bg-white rounded-2xl shadow-lg p-8 border border-gray-200 mb-8">
+            <h2 className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-green-700 to-green-900 mb-6" style={{ fontFamily: 'Playfair Display, serif' }}>
+              📷 Photo Gallery
             </h2>
-            {gallery.length === 0 ? (
+            {gallery.filter(item => !hasVideo(item)).length === 0 ? (
               <div className="text-center py-12">
                 <Trophy className="h-20 w-20 text-gray-300 mx-auto mb-4" />
                 <p className="text-gray-600 mb-2">No photos yet</p>
-                <p className="text-sm text-gray-500">Admin can add match photos via Settings</p>
+                <p className="text-sm text-gray-500">Admin can add photos via Settings</p>
+              </div>
+            ) : (
+              <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                {gallery.filter(item => !hasVideo(item)).map((item) => (
+                  <div 
+                    key={item.id} 
+                    className="bg-gray-50 rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 relative group"
+                  >
+                    {user?.role === 'admin' && (
+                      <Button
+                        onClick={(e) => { e.stopPropagation(); handleDeleteGallery(item.id); }}
+                        size="sm"
+                        variant="destructive"
+                        className="absolute top-2 right-2 group-hover:opacity-100 opacity-70 hover:opacity-100 transition-opacity z-20"
+                      >
+                        <Trash2 className="h-4 w-4" />
+                      </Button>
+                    )}
+                    <div className="w-full h-48 bg-white flex items-center justify-center p-4">
+                      <img 
+                        src={item.photo} 
+                        alt={item.title} 
+                        className="max-w-full max-h-full object-contain" 
+                      />
+                    </div>
+                    <div className="p-4">
+                      <h3 className="font-bold text-gray-800 mb-2">{item.title}</h3>
+                      <p className="text-sm text-gray-600">{item.description}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+
+          {/* Video Gallery Section */}
+          <div className="bg-white rounded-2xl shadow-lg p-8 border border-gray-200">
+            <h2 className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-green-700 to-green-900 mb-6" style={{ fontFamily: 'Playfair Display, serif' }}>
+              🎬 Video Gallery
+            </h2>
+            {gallery.filter(item => hasVideo(item)).length === 0 ? (
+              <div className="text-center py-12">
+                <Trophy className="h-20 w-20 text-gray-300 mx-auto mb-4" />
+                <p className="text-gray-600 mb-2">No videos yet</p>
+                <p className="text-sm text-gray-500">Admin can add videos via Settings</p>
               </div>
             ) : (
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {gallery.map((item) => (
+                {gallery.filter(item => hasVideo(item)).map((item) => (
                   <div 
                     key={item.id} 
                     className={`bg-gray-50 rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 relative group ${hasVideo(item) ? 'cursor-pointer hover:scale-[1.02]' : ''}`}
