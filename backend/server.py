@@ -353,6 +353,19 @@ async def get_players(team_id: Optional[str] = None, current_user: User = Depend
     players = await db.players.find(query, {"_id": 0}).to_list(1000)
     return players
 
+@api_router.get("/public/players")
+async def get_public_players():
+    """Public players access for guests - limited info only"""
+    players = await db.players.find({}, {
+        "_id": 0,
+        "id": 1,
+        "name": 1,
+        "photo": 1,
+        "team_id": 1,
+        "handicap": 1
+    }).to_list(1000)
+    return players
+
 @api_router.post("/players", response_model=Player)
 async def create_player(player_data: PlayerCreate, current_user: User = Depends(get_admin_user)):
     # Check if team exists
