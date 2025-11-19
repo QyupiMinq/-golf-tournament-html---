@@ -195,14 +195,14 @@ const Dashboard = () => {
 
       {/* Running Text Announcements */}
       {announcements.length > 0 && (
-        <div className="bg-gradient-to-r from-yellow-400 to-yellow-500 rounded-xl shadow-lg p-4 mb-8 overflow-hidden">
+        <div className="bg-gradient-to-r from-yellow-400 to-yellow-500 dark:from-yellow-600 dark:to-yellow-700 rounded-xl shadow-lg p-4 mb-8 overflow-hidden">
           <div className="flex items-center gap-4">
-            <span className="font-bold text-gray-900 whitespace-nowrap">📢 INFO:</span>
+            <span className="font-bold text-gray-900 dark:text-gray-100 whitespace-nowrap">📢 INFO:</span>
             <div className="flex-1 overflow-hidden">
               <div className="animate-marquee whitespace-nowrap inline-block">
                 {/* Duplicate for smooth loop */}
                 {[...announcements, ...announcements].map((ann, idx) => (
-                  <span key={`${ann.id}-${idx}`} className="text-gray-900 font-semibold mx-8">
+                  <span key={`${ann.id}-${idx}`} className="text-gray-900 dark:text-gray-100 font-semibold mx-8">
                     {ann.title} - {ann.content} •
                   </span>
                 ))}
@@ -214,20 +214,20 @@ const Dashboard = () => {
 
       {/* Visi Misi Section */}
       {(settings.vision || settings.mission) && (
-        <div className="bg-white rounded-2xl shadow-lg p-8 mb-8 border border-gray-200">
-          <h2 className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-green-700 to-green-900 mb-6" style={{ fontFamily: 'Playfair Display, serif' }}>
+        <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg p-8 mb-8 border border-gray-200 dark:border-gray-700">
+          <h2 className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-green-700 to-green-900 dark:from-green-400 dark:to-green-600 mb-6" style={{ fontFamily: 'Playfair Display, serif' }}>
             Visi & Misi
           </h2>
           <div className="grid md:grid-cols-2 gap-8">
             {settings.vision && (
               <div>
-                <h3 className="text-xl font-bold text-green-700 mb-3">VISI</h3>
-                <div className="text-gray-700 prose max-w-none" dangerouslySetInnerHTML={{ __html: settings.vision }}></div>
+                <h3 className="text-xl font-bold text-green-700 dark:text-green-400 mb-3">VISI</h3>
+                <div className="text-gray-700 dark:text-gray-300 prose dark:prose-invert max-w-none" dangerouslySetInnerHTML={{ __html: settings.vision }}></div>
               </div>
             )}
             {settings.mission && (
               <div>
-                <h3 className="text-xl font-bold text-green-700 mb-3">MISI</h3>
+                <h3 className="text-xl font-bold text-green-700 dark:text-green-400 mb-3">MISI</h3>
                 <div className="text-gray-700 prose max-w-none" dangerouslySetInnerHTML={{ __html: settings.mission }}></div>
               </div>
             )}
