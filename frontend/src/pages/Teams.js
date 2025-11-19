@@ -376,6 +376,25 @@ const Teams = () => {
                 </div>
               </div>
 
+              {/* Team Members */}
+              {teamPlayers.length > 0 && (
+                <div className="mb-4 p-3 bg-gradient-to-br from-green-50 to-emerald-50 rounded-lg border border-green-200">
+                  <h4 className="text-sm font-bold text-green-800 mb-2">Anggota Tim:</h4>
+                  <ul className="space-y-1">
+                    {teamPlayers.map((player) => (
+                      <li 
+                        key={player.id} 
+                        className={`text-sm ${player.id === team.captain_id ? 'font-bold text-green-900' : 'text-gray-700'}`}
+                      >
+                        {player.id === team.captain_id && '👑 '}
+                        {player.name}
+                        {player.id === team.captain_id && ' (Captain)'}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+
               {/* Actions */}
               {isAdmin && (
                 <div className="flex gap-2">
