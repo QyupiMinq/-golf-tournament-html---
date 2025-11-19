@@ -28,7 +28,7 @@ const Settings = () => {
   const [submittingAnnouncement, setSubmittingAnnouncement] = useState(false);
   
   // Gallery state
-  const [galleryForm, setGalleryForm] = useState({ title: '', description: '', photo: null, video_url: '', team_id: null });
+  const [galleryForm, setGalleryForm] = useState({ title: '', description: '', photo: null, video_url: '', video_file: null, team_id: null });
   const [submittingGallery, setSubmittingGallery] = useState(false);
 
   useEffect(() => {
