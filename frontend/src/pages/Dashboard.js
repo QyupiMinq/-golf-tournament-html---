@@ -218,21 +218,21 @@ const Dashboard = () => {
 
       {/* Visi Misi Section */}
       {(settings.vision || settings.mission) && (
-        <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg p-8 mb-8 border border-gray-200 dark:border-gray-700">
-          <h2 className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-green-700 to-green-900 dark:from-green-400 dark:to-green-600 mb-6" style={{ fontFamily: 'Playfair Display, serif' }}>
+        <div className="bg-white dark:bg-gray-800 rounded-xl sm:rounded-2xl shadow-lg p-4 sm:p-8 mb-4 sm:mb-8 border border-gray-200 dark:border-gray-700">
+          <h2 className="text-2xl sm:text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-green-700 to-green-900 dark:from-green-400 dark:to-green-600 mb-4 sm:mb-6" style={{ fontFamily: 'Playfair Display, serif' }}>
             Visi & Misi
           </h2>
-          <div className="grid md:grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-8">
             {settings.vision && (
               <div>
-                <h3 className="text-xl font-bold text-green-700 dark:text-green-400 mb-3">VISI</h3>
-                <div className="text-gray-700 dark:text-gray-300 prose dark:prose-invert max-w-none" dangerouslySetInnerHTML={{ __html: settings.vision }}></div>
+                <h3 className="text-lg sm:text-xl font-bold text-green-700 dark:text-green-400 mb-2 sm:mb-3">VISI</h3>
+                <div className="text-sm sm:text-base text-gray-700 dark:text-gray-300 prose prose-sm sm:prose dark:prose-invert max-w-none" dangerouslySetInnerHTML={{ __html: settings.vision }}></div>
               </div>
             )}
             {settings.mission && (
               <div>
-                <h3 className="text-xl font-bold text-green-700 dark:text-green-400 mb-3">MISI</h3>
-                <div className="text-gray-700 dark:text-gray-300 prose dark:prose-invert max-w-none" dangerouslySetInnerHTML={{ __html: settings.mission }}></div>
+                <h3 className="text-lg sm:text-xl font-bold text-green-700 dark:text-green-400 mb-2 sm:mb-3">MISI</h3>
+                <div className="text-sm sm:text-base text-gray-700 dark:text-gray-300 prose prose-sm sm:prose dark:prose-invert max-w-none" dangerouslySetInnerHTML={{ __html: settings.mission }}></div>
               </div>
             )}
           </div>
