@@ -10,7 +10,7 @@ import sys
 from datetime import datetime
 
 # Backend URL from environment
-BACKEND_URL = "https://golf-league-dash.preview.emergentagent.com/api"
+BACKEND_URL = "https://golf-league-app.preview.emergentagent.com/api"
 
 class GolfLeagueAPITester:
     def __init__(self):
