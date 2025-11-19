@@ -56,7 +56,7 @@ const Login = () => {
               <img 
                 src={settings.login_logo} 
                 alt="Club Logo" 
-                className="h-32 w-32 object-contain mx-auto rounded-xl shadow-2xl bg-white/10 p-3" 
+                className="h-32 w-auto max-w-[200px] object-contain mx-auto shadow-2xl p-2" 
               />
             </div>
           ) : (
