@@ -95,6 +95,10 @@ const Dashboard = () => {
     return videoId ? `https://www.youtube.com/embed/${videoId}` : url;
   };
 
+  const hasVideo = (item) => {
+    return item.video_url || item.video_file;
+  };
+
   const statCards = stats
     ? [
         { icon: Users, label: 'Total Teams', value: stats.teams_count, color: 'bg-gradient-to-br from-green-600 to-green-700' },
