@@ -136,7 +136,7 @@ const Layout = ({ children }) => {
       </aside>
 
       {/* Main content */}
-      <main className="lg:ml-64 min-h-screen p-4 sm:p-6 lg:p-8 pb-20">
+      <main className="lg:ml-64 min-h-screen pt-16 lg:pt-8 p-4 sm:p-6 lg:p-8 pb-20">
         <div className="max-w-[1600px] mx-auto w-full">{children}</div>
         
         {/* Footer */}
