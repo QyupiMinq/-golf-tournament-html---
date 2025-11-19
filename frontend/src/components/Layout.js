@@ -59,7 +59,7 @@ const Layout = ({ children }) => {
       <aside
         className={`${
           sidebarOpen ? 'translate-x-0' : '-translate-x-full'
-        } lg:translate-x-0 fixed top-0 left-0 h-full w-64 bg-white dark:bg-gray-900 shadow-xl z-40 transform transition-transform duration-300 ease-in-out`}
+        } lg:translate-x-0 fixed top-0 left-0 h-full w-64 bg-white dark:bg-gray-900 shadow-xl z-[55] transform transition-transform duration-300 ease-in-out`}
       >
         <div className="h-full flex flex-col">
           {/* Logo/Header */}
