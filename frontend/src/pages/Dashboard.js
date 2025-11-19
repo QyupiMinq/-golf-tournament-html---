@@ -23,6 +23,13 @@ const Dashboard = () => {
     fetchSettings();
     fetchAnnouncements();
     fetchGallery();
+    
+    // Auto-refresh settings every 3 seconds to catch logo updates
+    const settingsInterval = setInterval(fetchSettings, 3000);
+    
+    return () => {
+      clearInterval(settingsInterval);
+    };
   }, []);
 
   useEffect(() => {
