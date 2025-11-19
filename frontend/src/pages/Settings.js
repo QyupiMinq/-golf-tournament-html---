@@ -676,10 +676,10 @@ const Settings = () => {
             </div>
             <Button
               type="submit"
-              disabled={submittingGallery}
+              disabled={submittingGallery || !galleryForm.photo || (!galleryForm.video_url && !galleryForm.video_file)}
               className="bg-gradient-to-r from-purple-600 to-purple-700 hover:from-purple-700 hover:to-purple-800 text-white"
             >
-              {submittingGallery ? 'Adding...' : 'Add to Gallery'}
+              {submittingGallery ? 'Adding...' : 'Add Video to Gallery'}
             </Button>
           </form>
         </div>
