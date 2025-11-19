@@ -165,14 +165,14 @@ const Dashboard = () => {
             {settings.organization_logo ? (
               <div className="hidden sm:block">
                 <img 
-                  src={settings.organization_logo} 
+                  src={`${settings.organization_logo}?t=${Date.now()}`}
                   alt="Organization Logo" 
-                  className="h-20 sm:h-24 w-20 sm:w-24 object-cover rounded-full shadow-xl border-4 border-amber-400/30 ring-2 ring-amber-500/20" 
+                  className="h-24 sm:h-32 w-24 sm:w-32 object-cover rounded-full shadow-2xl border-4 border-amber-400/40 ring-4 ring-amber-500/20" 
                 />
               </div>
             ) : (
-              <div className="hidden sm:flex w-16 sm:w-20 h-16 sm:h-20 rounded-full bg-gradient-to-br from-green-500 to-green-700 items-center justify-center shadow-lg border-4 border-green-500/30">
-                <Trophy className="h-8 sm:h-10 w-8 sm:w-10 text-white" />
+              <div className="hidden sm:flex w-20 sm:w-24 h-20 sm:h-24 rounded-full bg-gradient-to-br from-green-500 to-green-700 items-center justify-center shadow-lg border-4 border-green-500/30">
+                <Trophy className="h-10 sm:h-12 w-10 sm:w-12 text-white" />
               </div>
             )}
             
