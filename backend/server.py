@@ -719,6 +719,12 @@ async def get_match_gallery(current_user: User = Depends(get_current_user)):
     gallery = await db.match_gallery.find({}, {"_id": 0}).sort("created_at", -1).to_list(20)
     return gallery
 
+@api_router.get("/public/match-gallery")
+async def get_public_match_gallery():
+    """Public gallery access for guests"""
+    gallery = await db.match_gallery.find({}, {"_id": 0}).sort("created_at", -1).to_list(20)
+    return gallery
+
 @api_router.post("/match-gallery")
 async def create_gallery_item(item: MatchGalleryCreate, current_user: User = Depends(get_admin_user)):
     item_dict = item.model_dump()
