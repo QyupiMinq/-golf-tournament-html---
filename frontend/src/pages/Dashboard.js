@@ -309,7 +309,7 @@ const Dashboard = () => {
                 {gallery.map((item) => (
                   <div 
                     key={item.id} 
-                    className={`bg-gray-50 rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow relative group ${item.video_url ? 'cursor-pointer' : ''}`}
+                    className={`bg-gray-50 rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow relative group ${hasVideo(item) ? 'cursor-pointer' : ''}`}
                     onClick={() => handleGalleryClick(item)}
                   >
                     {user?.role === 'admin' && (
@@ -329,7 +329,7 @@ const Dashboard = () => {
                         alt={item.title} 
                         className="max-w-full max-h-full object-contain" 
                       />
-                      {item.video_url && (
+                      {hasVideo(item) && (
                         <div className="absolute inset-0 bg-black/30 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
                           <div className="w-16 h-16 bg-red-600 rounded-full flex items-center justify-center shadow-xl">
                             <Play className="h-8 w-8 text-white ml-1" fill="white" />
@@ -340,7 +340,7 @@ const Dashboard = () => {
                     <div className="p-4">
                       <h3 className="font-bold text-gray-800 mb-2">{item.title}</h3>
                       <p className="text-sm text-gray-600">{item.description}</p>
-                      {item.video_url && <p className="text-xs text-blue-600 mt-2">▶ Click to play video</p>}
+                      {hasVideo(item) && <p className="text-xs text-blue-600 mt-2">▶ Click to play video</p>}
                     </div>
                   </div>
                 ))}
