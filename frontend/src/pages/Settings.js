@@ -598,14 +598,14 @@ const Settings = () => {
               <p className="text-sm text-gray-600">Upload video dengan thumbnail</p>
             </div>
           </div>
-          <form onSubmit={handleGallerySubmit} className="space-y-4">
+          <form onSubmit={handleVideoSubmit} className="space-y-4">
             <div>
               <Label className="text-gray-700 font-semibold">Title</Label>
               <Input
                 type="text"
                 value={galleryForm.title}
                 onChange={(e) => setGalleryForm({ ...galleryForm, title: e.target.value })}
-                placeholder="Photo title"
+                placeholder="Video title"
                 className="mt-2"
               />
             </div>
@@ -614,7 +614,7 @@ const Settings = () => {
               <textarea
                 value={galleryForm.description}
                 onChange={(e) => setGalleryForm({ ...galleryForm, description: e.target.value })}
-                placeholder="Photo description"
+                placeholder="Video description"
                 className="mt-2 w-full px-3 py-2 border border-gray-300 rounded-md"
                 rows="3"
               />
