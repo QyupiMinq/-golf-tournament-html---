@@ -315,7 +315,7 @@ const Dashboard = () => {
                 {gallery.map((item) => (
                   <div 
                     key={item.id} 
-                    className={`bg-gray-50 rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow relative group ${hasVideo(item) ? 'cursor-pointer' : ''}`}
+                    className={`bg-gray-50 rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 relative group ${hasVideo(item) ? 'cursor-pointer hover:scale-[1.02]' : ''}`}
                     onClick={() => handleGalleryClick(item)}
                   >
                     {user?.role === 'admin' && (
