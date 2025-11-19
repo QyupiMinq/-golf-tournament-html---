@@ -178,7 +178,8 @@ const Dashboard = () => {
             {settings.organization_logo ? (
               <div className="hidden sm:block">
                 <img 
-                  src={`${settings.organization_logo}?t=${Date.now()}`}
+                  key={`org-${logoTimestamp}`}
+                  src={`${settings.organization_logo}?v=${logoTimestamp}`}
                   alt="Organization Logo" 
                   className="h-24 sm:h-32 w-24 sm:w-32 object-cover rounded-full shadow-2xl border-4 border-amber-400/40 ring-4 ring-amber-500/20" 
                 />
