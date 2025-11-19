@@ -72,7 +72,7 @@ const Layout = ({ children }) => {
                   <img 
                     src={settings.organization_logo} 
                     alt="Organization Logo" 
-                    className="h-20 w-20 object-contain rounded-xl shadow-xl bg-white/10 p-2" 
+                    className="h-20 w-auto max-w-[120px] object-contain shadow-xl p-1" 
                   />
                 ) : (
                   <div className="w-16 h-16 rounded-full bg-gradient-to-br from-yellow-400 to-yellow-600 flex items-center justify-center shadow-xl ring-4 ring-yellow-500/30">
