@@ -25,6 +25,19 @@ const Dashboard = () => {
     fetchGallery();
   }, []);
 
+  useEffect(() => {
+    if (darkMode) {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+    localStorage.setItem('darkMode', darkMode);
+  }, [darkMode]);
+
+  const toggleDarkMode = () => {
+    setDarkMode(!darkMode);
+  };
+
   const fetchStats = async () => {
     try {
       const response = await axios.get(`${API}/dashboard/stats`);
