@@ -195,16 +195,20 @@ class MatchGallery(BaseModel):
     model_config = ConfigDict(extra="ignore")
     id: str = Field(default_factory=lambda: str(uuid.uuid4()))
     match_id: Optional[str] = None  # Optional link to specific match
+    team_id: Optional[str] = None  # Link to team for video
     title: str
     description: str
-    photo: str  # Base64 image
+    photo: str  # Base64 image or URL
+    video_url: Optional[str] = None  # YouTube/video URL untuk team opening
     created_at: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
 
 class MatchGalleryCreate(BaseModel):
     match_id: Optional[str] = None
+    team_id: Optional[str] = None
     title: str
     description: str
     photo: str
+    video_url: Optional[str] = None
 
 # ==================== Helper Functions ====================
 
