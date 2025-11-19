@@ -199,7 +199,8 @@ class MatchGallery(BaseModel):
     title: str
     description: str
     photo: str  # Base64 image or URL
-    video_url: Optional[str] = None  # YouTube/video URL untuk team opening
+    video_url: Optional[str] = None  # YouTube URL untuk team opening
+    video_file: Optional[str] = None  # Base64 video file (MP4)
     created_at: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
 
 class MatchGalleryCreate(BaseModel):
@@ -209,6 +210,7 @@ class MatchGalleryCreate(BaseModel):
     description: str
     photo: str
     video_url: Optional[str] = None
+    video_file: Optional[str] = None
 
 # ==================== Helper Functions ====================
 
