@@ -193,7 +193,7 @@ const Settings = () => {
     try {
       await axios.post(`${API}/match-gallery`, galleryForm);
       toast.success('Gallery item added successfully!');
-      setGalleryForm({ title: '', description: '', photo: null });
+      setGalleryForm({ title: '', description: '', photo: null, video_url: '', team_id: null });
     } catch (error) {
       toast.error('Failed to add gallery item');
     } finally {
