@@ -552,15 +552,36 @@ const Settings = () => {
               />
             </div>
             <div>
-              <Label className="text-gray-700 font-semibold">Video URL (Optional)</Label>
-              <Input
-                type="text"
-                value={galleryForm.video_url}
-                onChange={(e) => setGalleryForm({ ...galleryForm, video_url: e.target.value })}
-                placeholder="YouTube URL (e.g., https://youtube.com/watch?v=...)"
-                className="mt-2"
-              />
-              <p className="text-xs text-gray-500 mt-1">Jika diisi, logo akan bisa diklik untuk play video (team opening)</p>
+              <Label className="text-gray-700 font-semibold">Video (Pilih salah satu)</Label>
+              <div className="space-y-3 mt-2">
+                <div>
+                  <Label className="text-sm text-gray-600">Opsi 1: YouTube URL</Label>
+                  <Input
+                    type="text"
+                    value={galleryForm.video_url}
+                    onChange={(e) => setGalleryForm({ ...galleryForm, video_url: e.target.value, video_file: null })}
+                    placeholder="https://youtube.com/watch?v=..."
+                    className="mt-1"
+                  />
+                </div>
+                <div className="text-center text-gray-500 font-semibold">ATAU</div>
+                <div>
+                  <Label className="text-sm text-gray-600">Opsi 2: Upload Video MP4 (Max 50MB)</Label>
+                  <div className="mt-1 p-4 border-2 border-dashed border-gray-300 rounded-lg hover:border-purple-500 transition-colors">
+                    <Input
+                      type="file"
+                      accept="video/mp4,video/webm"
+                      onChange={handleGalleryVideoUpload}
+                      className="border-0 p-0"
+                    />
+                  </div>
+                  {galleryForm.video_file && (
+                    <div className="mt-2 p-3 bg-green-50 border border-green-200 rounded-lg">
+                      <p className="text-sm text-green-700">✓ Video file loaded (size: {(galleryForm.video_file.length / 1024 / 1024).toFixed(2)}MB)</p>
+                    </div>
+                  )}
+                </div>
+              </div>
             </div>
             <div>
               <Label className="text-gray-700 font-semibold">Upload Photo</Label>
