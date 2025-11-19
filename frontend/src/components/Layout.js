@@ -59,11 +59,11 @@ const Layout = ({ children }) => {
       <aside
         className={`${
           sidebarOpen ? 'translate-x-0' : '-translate-x-full'
-        } lg:translate-x-0 fixed top-0 left-0 h-full w-64 bg-white shadow-xl z-40 transform transition-transform duration-300 ease-in-out`}
+        } lg:translate-x-0 fixed top-0 left-0 h-full w-64 bg-white dark:bg-gray-900 shadow-xl z-40 transform transition-transform duration-300 ease-in-out`}
       >
         <div className="h-full flex flex-col">
           {/* Logo/Header */}
-          <div className="p-6 bg-gradient-to-br from-gray-800 via-green-800 to-gray-900 relative overflow-hidden">
+          <div className="p-6 bg-gradient-to-br from-gray-800 via-green-800 to-gray-900 dark:from-gray-950 dark:via-green-950 dark:to-gray-950 relative overflow-hidden">
             <div className="absolute inset-0 bg-gradient-to-br from-yellow-600/10 to-transparent"></div>
             <div className="relative">
               <div className="flex items-center justify-center mb-3">
