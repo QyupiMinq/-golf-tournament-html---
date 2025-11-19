@@ -185,21 +185,22 @@ const Settings = () => {
   const handleGalleryVideoUpload = (e) => {
     const file = e.target.files[0];
     if (file) {
-      if (file.size > 50 * 1024 * 1024) { // 50MB limit
-        toast.error('Video size must be less than 50MB');
-        return;
-      }
       if (!file.type.startsWith('video/')) {
-        toast.error('Please upload a video file (MP4)');
+        toast.error('Please upload a video file (MP4/WebM)');
         return;
       }
       
+      // Show loading toast for large files
+      const loadingToast = toast.loading(`Loading video (${(file.size / 1024 / 1024).toFixed(1)}MB)...`);
+      
       const reader = new FileReader();
       reader.onload = (event) => {
+        toast.dismiss(loadingToast);
         setGalleryForm({ ...galleryForm, video_file: event.target.result });
-        toast.success('Video loaded! Ready to upload.');
+        toast.success(`Video loaded! Size: ${(file.size / 1024 / 1024).toFixed(1)}MB`);
       };
       reader.onerror = () => {
+        toast.dismiss(loadingToast);
         toast.error('Failed to read video file');
       };
       reader.readAsDataURL(file);
