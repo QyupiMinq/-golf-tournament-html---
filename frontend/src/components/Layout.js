@@ -104,7 +104,7 @@ const Layout = ({ children }) => {
                   className={`flex items-center space-x-3 px-4 py-3 rounded-lg transition-all ${
                     isActive
                       ? 'bg-gradient-to-r from-green-700 to-green-800 text-yellow-300 font-semibold shadow-lg'
-                      : 'text-gray-600 hover:bg-gray-100 hover:text-green-700'
+                      : 'text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-green-700 dark:hover:text-green-400'
                   }`}
                 >
                   <Icon className="h-5 w-5" />
@@ -115,18 +115,18 @@ const Layout = ({ children }) => {
           </nav>
 
           {/* User Info */}
-          <div className="p-4 border-t border-gray-200">
+          <div className="p-4 border-t border-gray-200 dark:border-gray-700">
             <div className="flex items-center justify-between mb-3">
               <div>
-                <p className="text-sm font-semibold text-gray-800">{user?.name}</p>
-                <p className="text-xs text-gray-500 capitalize">{user?.role}</p>
+                <p className="text-sm font-semibold text-gray-800 dark:text-gray-200">{user?.name}</p>
+                <p className="text-xs text-gray-500 dark:text-gray-400 capitalize">{user?.role}</p>
               </div>
             </div>
             <Button
               data-testid="logout-btn"
               onClick={logout}
               variant="outline"
-              className="w-full border-red-200 text-red-600 hover:bg-red-50"
+              className="w-full border-red-200 dark:border-red-800 text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-950"
             >
               <LogOut className="h-4 w-4 mr-2" />
               Logout
