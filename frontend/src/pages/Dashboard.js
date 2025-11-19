@@ -199,14 +199,14 @@ const Dashboard = () => {
 
       {/* Running Text Announcements */}
       {announcements.length > 0 && (
-        <div className="bg-gradient-to-r from-yellow-400 to-yellow-500 dark:from-yellow-600 dark:to-yellow-700 rounded-xl shadow-lg p-4 mb-8 overflow-hidden">
-          <div className="flex items-center gap-4">
-            <span className="font-bold text-gray-900 dark:text-gray-100 whitespace-nowrap">📢 INFO:</span>
+        <div className="bg-gradient-to-r from-yellow-400 to-yellow-500 dark:from-yellow-600 dark:to-yellow-700 rounded-lg sm:rounded-xl shadow-lg p-3 sm:p-4 mb-4 sm:mb-8 overflow-hidden">
+          <div className="flex items-center gap-2 sm:gap-4">
+            <span className="font-bold text-gray-900 dark:text-gray-100 whitespace-nowrap text-sm sm:text-base">📢 INFO:</span>
             <div className="flex-1 overflow-hidden">
               <div className="animate-marquee whitespace-nowrap inline-block">
                 {/* Duplicate for smooth loop */}
                 {[...announcements, ...announcements].map((ann, idx) => (
-                  <span key={`${ann.id}-${idx}`} className="text-gray-900 dark:text-gray-100 font-semibold mx-8">
+                  <span key={`${ann.id}-${idx}`} className="text-gray-900 dark:text-gray-100 font-semibold mx-4 sm:mx-8 text-sm sm:text-base">
                     {ann.title} - {ann.content} •
                   </span>
                 ))}
