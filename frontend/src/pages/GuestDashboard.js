@@ -34,6 +34,10 @@ const GuestDashboard = () => {
     return videoId ? `https://www.youtube.com/embed/${videoId}` : url;
   };
 
+  const hasVideo = (item) => {
+    return item.video_url || item.video_file;
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-green-50 to-gray-100">
       <div className="bg-gradient-to-r from-gray-800 via-green-800 to-gray-800 p-8 shadow-xl">
