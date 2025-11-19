@@ -433,66 +433,25 @@ const Settings = () => {
           <div className="space-y-4">
             <div>
               <Label className="text-gray-700 font-semibold mb-2 block">Visi</Label>
-              <React.Suspense fallback={
-                <textarea
-                  value={settings.vision || ''}
-                  onChange={(e) => setSettings({ ...settings, vision: e.target.value })}
-                  placeholder="Masukkan visi organisasi..."
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md"
-                  rows="6"
-                  style={{ marginBottom: '50px' }}
-                />
-              }>
-                <ReactQuill
-                  value={settings.vision || ''}
-                  onChange={(content) => setSettings({ ...settings, vision: content })}
-                  placeholder="Masukkan visi organisasi..."
-                  theme="snow"
-                  modules={{
-                    toolbar: [
-                      [{ 'header': [1, 2, 3, false] }],
-                      [{ 'size': ['small', false, 'large', 'huge'] }],
-                      ['bold', 'italic', 'underline'],
-                      [{ 'color': [] }, { 'background': [] }],
-                      [{ 'align': [] }],
-                      ['clean']
-                    ]
-                  }}
-                  style={{ height: '150px', marginBottom: '50px' }}
-                />
-              </React.Suspense>
+              <p className="text-xs text-gray-500 mb-2">Gunakan HTML untuk formatting (contoh: &lt;b&gt;bold&lt;/b&gt;, &lt;p&gt;paragraph&lt;/p&gt;)</p>
+              <textarea
+                value={settings.vision || ''}
+                onChange={(e) => setSettings({ ...settings, vision: e.target.value })}
+                placeholder="Masukkan visi organisasi..."
+                className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-green-500 focus:ring-2 focus:ring-green-200 transition-all"
+                rows="6"
+              />
             </div>
             <div>
               <Label className="text-gray-700 font-semibold mb-2 block">Misi</Label>
-              <React.Suspense fallback={
-                <textarea
-                  value={settings.mission || ''}
-                  onChange={(e) => setSettings({ ...settings, mission: e.target.value })}
-                  placeholder="Masukkan misi organisasi..."
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md"
-                  rows="8"
-                  style={{ marginBottom: '50px' }}
-                />
-              }>
-                <ReactQuill
-                  value={settings.mission || ''}
-                  onChange={(content) => setSettings({ ...settings, mission: content })}
-                  placeholder="Masukkan misi organisasi..."
-                  theme="snow"
-                  modules={{
-                    toolbar: [
-                      [{ 'header': [1, 2, 3, false] }],
-                      [{ 'size': ['small', false, 'large', 'huge'] }],
-                      ['bold', 'italic', 'underline'],
-                      [{ 'list': 'ordered'}, { 'list': 'bullet' }],
-                      [{ 'color': [] }, { 'background': [] }],
-                      [{ 'align': [] }],
-                      ['clean']
-                    ]
-                  }}
-                  style={{ height: '200px', marginBottom: '50px' }}
-                />
-              </React.Suspense>
+              <p className="text-xs text-gray-500 mb-2">Gunakan HTML untuk formatting (contoh: &lt;ul&gt;&lt;li&gt;Item 1&lt;/li&gt;&lt;/ul&gt;)</p>
+              <textarea
+                value={settings.mission || ''}
+                onChange={(e) => setSettings({ ...settings, mission: e.target.value })}
+                placeholder="Masukkan misi organisasi..."
+                className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-green-500 focus:ring-2 focus:ring-green-200 transition-all"
+                rows="8"
+              />
             </div>
           </div>
         </div>
