@@ -191,7 +191,7 @@ const Dashboard = () => {
               </div>
             )}
           </div>
-          <p className="text-lg text-gray-300" style={{ fontFamily: 'Inter, sans-serif' }}>
+          <p className="text-sm sm:text-lg text-gray-300" style={{ fontFamily: 'Inter, sans-serif' }}>
             Selamat datang, {user?.name}!
           </p>
         </div>
