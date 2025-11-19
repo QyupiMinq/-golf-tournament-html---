@@ -83,6 +83,18 @@ const Dashboard = () => {
     }
   };
 
+  const handleGalleryClick = (item) => {
+    if (item.video_url) {
+      setSelectedVideo(item);
+    }
+  };
+
+  const getYouTubeEmbedUrl = (url) => {
+    if (!url) return null;
+    const videoId = url.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/)([^&]+)/)?.[1];
+    return videoId ? `https://www.youtube.com/embed/${videoId}` : url;
+  };
+
   const statCards = stats
     ? [
         { icon: Users, label: 'Total Teams', value: stats.teams_count, color: 'bg-gradient-to-br from-green-600 to-green-700' },
