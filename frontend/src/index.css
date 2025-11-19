@@ -52,3 +52,65 @@
 .animate-marquee:hover {
   animation-play-state: paused;
 }
+
+/* Quill Editor Custom Styling */
+.quill {
+  background: white;
+  border-radius: 0.5rem;
+}
+
+.ql-toolbar {
+  border-top-left-radius: 0.5rem;
+  border-top-right-radius: 0.5rem;
+  background: #f9fafb;
+  border: 1px solid #e5e7eb !important;
+}
+
+.ql-container {
+  border-bottom-left-radius: 0.5rem;
+  border-bottom-right-radius: 0.5rem;
+  border: 1px solid #e5e7eb !important;
+  border-top: none !important;
+  font-size: 16px;
+}
+
+.ql-editor {
+  min-height: 150px;
+}
+
+.ql-editor.ql-blank::before {
+  color: #9ca3af;
+  font-style: normal;
+}
+
+/* Prose styling for rendered HTML */
+.prose {
+  line-height: 1.75;
+}
+
+.prose p {
+  margin-bottom: 1em;
+}
+
+.prose ul, .prose ol {
+  margin-left: 1.5em;
+  margin-bottom: 1em;
+}
+
+.prose li {
+  margin-bottom: 0.5em;
+}
+
+.prose strong {
+  font-weight: 700;
+}
+
+.prose em {
+  font-style: italic;
+}
+
+.prose h1, .prose h2, .prose h3 {
+  font-weight: 700;
+  margin-top: 1em;
+  margin-bottom: 0.5em;
+}
