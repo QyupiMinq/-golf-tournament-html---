@@ -212,6 +212,32 @@ class MatchGalleryCreate(BaseModel):
     video_url: Optional[str] = None
     video_file: Optional[str] = None
 
+class News(BaseModel):
+    model_config = ConfigDict(extra="ignore")
+    id: str = Field(default_factory=lambda: str(uuid.uuid4()))
+    title: str
+    description: str
+    photos: List[str] = []  # List of base64 images
+    created_by: str  # Admin user ID
+    created_at: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
+
+class NewsCreate(BaseModel):
+    title: str
+    description: str
+    photos: List[str] = []
+
+class Comment(BaseModel):
+    model_config = ConfigDict(extra="ignore")
+    id: str = Field(default_factory=lambda: str(uuid.uuid4()))
+    news_id: str
+    user_id: str
+    user_name: str
+    comment: str
+    created_at: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
+
+class CommentCreate(BaseModel):
+    comment: str
+
 # ==================== Helper Functions ====================
 
 def create_access_token(data: dict):
