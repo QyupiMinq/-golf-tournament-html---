@@ -8,9 +8,10 @@ import { toast } from 'sonner';
 const Dashboard = () => {
   const { user } = useContext(AuthContext);
   const [stats, setStats] = useState(null);
-  const [settings, setSettings] = useState({ organization_logo: null, club_logo: null });
+  const [settings, setSettings] = useState({ organization_logo: null, club_logo: null, vision: null, mission: null });
   const [announcements, setAnnouncements] = useState([]);
   const [gallery, setGallery] = useState([]);
+  const [selectedVideo, setSelectedVideo] = useState(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
