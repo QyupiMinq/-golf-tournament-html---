@@ -54,9 +54,9 @@ const Login = () => {
           {settings.login_logo ? (
             <div className="inline-block mb-6">
               <img 
-                src={settings.login_logo} 
+                src={`${settings.login_logo}?t=${Date.now()}`}
                 alt="Club Logo" 
-                className="h-32 w-auto max-w-[200px] object-contain mx-auto shadow-2xl p-2" 
+                className="h-32 w-32 object-cover rounded-full mx-auto shadow-2xl border-4 border-amber-400/30 ring-8 ring-amber-500/20" 
               />
             </div>
           ) : (
