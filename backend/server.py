@@ -212,6 +212,25 @@ class MatchGalleryCreate(BaseModel):
     video_url: Optional[str] = None
     video_file: Optional[str] = None
 
+class Gallery(BaseModel):
+    """Model untuk Photo Gallery dan Video Gallery di Settings"""
+    model_config = ConfigDict(extra="ignore")
+    id: str = Field(default_factory=lambda: str(uuid.uuid4()))
+    title: str
+    description: str
+    photo: Optional[str] = None  # Base64 image untuk Photo Gallery
+    video_url: Optional[str] = None  # YouTube URL untuk Video Gallery
+    video_file: Optional[str] = None  # Base64 video file untuk Video Gallery
+    gallery_type: str = "photo"  # "photo" atau "video"
+    created_at: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
+
+class GalleryCreate(BaseModel):
+    title: str
+    description: str
+    photo: Optional[str] = None
+    video_url: Optional[str] = None
+    video_file: Optional[str] = None
+
 class News(BaseModel):
     model_config = ConfigDict(extra="ignore")
     id: str = Field(default_factory=lambda: str(uuid.uuid4()))
