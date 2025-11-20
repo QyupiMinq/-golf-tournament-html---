@@ -279,10 +279,11 @@ metadata:
 
 test_plan:
   current_focus:
-    - "Dual Logo Feature testing completed"
-    - "Organization logo and club logo fields verified"
-    - "Backward compatibility maintained"
-    - "Individual logo updates working"
+    - "Upload functionality testing completed"
+    - "Logo upload (Organization & Club) working"
+    - "Gallery upload (Photo) working"
+    - "Authentication flow verified"
+    - "Backend connectivity confirmed"
   stuck_tasks: []
   test_all: true
   test_priority: "completed"
