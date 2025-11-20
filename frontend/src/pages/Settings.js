@@ -648,25 +648,27 @@ const Settings = () => {
               <p className="text-sm text-gray-600">Foto akan muncul di Dashboard Photo Gallery</p>
             </div>
           </div>
-          <form onSubmit={handleVideoSubmit} className="space-y-4">
-            <div>
-              <Label className="text-gray-700 font-semibold">Title</Label>
+          <form onSubmit={handleVideoSubmit} className="space-y-6">
+            <div className="bg-white p-4 rounded-lg border-2 border-purple-200">
+              <Label className="text-purple-700 font-bold text-lg mb-2 block">📝 Title Foto Kegiatan *</Label>
               <Input
                 type="text"
                 value={galleryForm.title}
                 onChange={(e) => setGalleryForm({ ...galleryForm, title: e.target.value })}
-                placeholder="Video title"
-                className="mt-2"
+                placeholder="Contoh: Turnamen Golf Manado 2025"
+                className="mt-2 border-2 border-purple-300 focus:border-purple-500 text-lg"
+                required
               />
             </div>
-            <div>
-              <Label className="text-gray-700 font-semibold">Description</Label>
+            <div className="bg-white p-4 rounded-lg border-2 border-purple-200">
+              <Label className="text-purple-700 font-bold text-lg mb-2 block">📄 Description Kegiatan *</Label>
               <textarea
                 value={galleryForm.description}
                 onChange={(e) => setGalleryForm({ ...galleryForm, description: e.target.value })}
-                placeholder="Video description"
-                className="mt-2 w-full px-3 py-2 border border-gray-300 rounded-md"
-                rows="3"
+                placeholder="Contoh: Kegiatan turnamen golf tahunan yang diikuti oleh semua anggota Manado Golf League..."
+                className="mt-2 w-full px-4 py-3 border-2 border-purple-300 rounded-lg focus:border-purple-500 text-base"
+                rows="4"
+                required
               />
             </div>
             <div>
