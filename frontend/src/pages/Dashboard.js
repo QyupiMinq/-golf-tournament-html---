@@ -234,7 +234,7 @@ const Dashboard = () => {
           <div className="flex items-center gap-2 sm:gap-4">
             <span className="font-bold text-gray-900 dark:text-gray-100 whitespace-nowrap text-sm sm:text-base">📢 INFO:</span>
             <div className="flex-1 overflow-hidden">
-              <div className="animate-marquee whitespace-nowrap inline-block">
+              <div className="animate-scroll whitespace-nowrap inline-block">
                 {/* Duplicate for smooth loop */}
                 {[...announcements, ...announcements].map((ann, idx) => (
                   <span key={`${ann.id}-${idx}`} className="text-gray-900 dark:text-gray-100 font-semibold mx-4 sm:mx-8 text-sm sm:text-base">
