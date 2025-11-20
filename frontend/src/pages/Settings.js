@@ -735,18 +735,24 @@ const Settings = () => {
             </div>
             <Button
               type="submit"
-              disabled={submittingGallery || !galleryForm.photo || (!galleryForm.video_url && !galleryForm.video_file)}
-              className="bg-gradient-to-r from-purple-600 to-purple-700 hover:from-purple-700 hover:to-purple-800 text-white text-lg py-6"
+              disabled={submittingGallery || !galleryForm.title || !galleryForm.description || !galleryForm.photo}
+              className="w-full bg-gradient-to-r from-purple-600 via-indigo-600 to-purple-700 hover:from-purple-700 hover:via-indigo-700 hover:to-purple-800 text-white text-xl font-bold py-8 shadow-2xl border-4 border-purple-300 disabled:opacity-50 disabled:cursor-not-allowed"
             >
               {submittingGallery ? (
-                <div className="flex items-center gap-2">
-                  <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white"></div>
-                  <span>Uploading Team Opening Video...</span>
+                <div className="flex items-center gap-3 justify-center">
+                  <div className="animate-spin rounded-full h-6 w-6 border-b-3 border-white"></div>
+                  <span>Uploading Photo Gallery...</span>
                 </div>
               ) : (
-                '🎬 Upload Team Opening Video'
+                <>
+                  <Upload className="h-6 w-6 mr-3 inline" />
+                  📸 UPLOAD PHOTO GALLERY
+                </>
               )}
             </Button>
+            <p className="text-center text-sm text-gray-600 mt-4">
+              * Semua field <span className="font-bold text-purple-700">(Title, Description, dan Photo)</span> wajib diisi
+            </p>
           </form>
         </div>
 
