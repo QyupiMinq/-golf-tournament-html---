@@ -823,6 +823,58 @@ async def delete_gallery_item(item_id: str, current_user: User = Depends(get_adm
         raise HTTPException(status_code=404, detail="Gallery item not found")
     return {"message": "Gallery item deleted successfully"}
 
+# ==================== Gallery (Photo & Video) ====================
+
+@api_router.get("/gallery")
+async def get_gallery(current_user: User = Depends(get_current_user)):
+    """Get all gallery items (photos and videos)"""
+    gallery = await db.gallery.find({}, {"_id": 0}).sort("created_at", -1).to_list(50)
+    return gallery
+
+@api_router.get("/public/gallery")
+async def get_public_gallery():
+    """Public gallery access for guests"""
+    gallery = await db.gallery.find({}, {"_id": 0}).sort("created_at", -1).to_list(50)
+    return gallery
+
+@api_router.post("/gallery")
+async def create_gallery(item: GalleryCreate, current_user: User = Depends(get_admin_user)):
+    """Create new photo or video gallery item"""
+    print("=== GALLERY UPLOAD DEBUG ===")
+    print(f"Title: {item.title}")
+    print(f"Description: {item.description}")
+    print(f"Photo present: {bool(item.photo)}")
+    print(f"Photo length: {len(item.photo) if item.photo else 0}")
+    print(f"Video URL: {item.video_url}")
+    print(f"Video file present: {bool(item.video_file)}")
+    print(f"Video file length: {len(item.video_file) if item.video_file else 0}")
+    
+    item_dict = item.model_dump()
+    item_dict['id'] = str(uuid.uuid4())
+    item_dict['created_at'] = datetime.now(timezone.utc).isoformat()
+    
+    # Determine gallery type
+    if item.photo:
+        item_dict['gallery_type'] = 'photo'
+    elif item.video_url or item.video_file:
+        item_dict['gallery_type'] = 'video'
+    else:
+        raise HTTPException(status_code=400, detail="Either photo or video must be provided")
+    
+    await db.gallery.insert_one(item_dict)
+    print(f"Gallery item created successfully with ID: {item_dict['id']}")
+    print("=== END DEBUG ===")
+    
+    return {"message": "Gallery item created successfully", "id": item_dict['id']}
+
+@api_router.delete("/gallery/{item_id}")
+async def delete_gallery(item_id: str, current_user: User = Depends(get_admin_user)):
+    """Delete gallery item"""
+    result = await db.gallery.delete_one({"id": item_id})
+    if result.deleted_count == 0:
+        raise HTTPException(status_code=404, detail="Gallery item not found")
+    return {"message": "Gallery item deleted successfully"}
+
 # ==================== News Routes ====================
 
 @api_router.get("/news")
