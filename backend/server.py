@@ -675,11 +675,27 @@ async def update_settings(settings_data: AppSettings, current_user: User = Depen
     settings_dict = settings_data.model_dump()
     settings_dict['updated_at'] = settings_dict['updated_at'].isoformat()
     
+    # Debug logging
+    print("=== SETTINGS UPDATE DEBUG ===")
+    print(f"Organization logo present: {bool(settings_dict.get('organization_logo'))}")
+    print(f"Organization logo length: {len(settings_dict.get('organization_logo', ''))}")
+    print(f"Club logo present: {bool(settings_dict.get('club_logo'))}")
+    print(f"Club logo length: {len(settings_dict.get('club_logo', ''))}")
+    print(f"Login logo present: {bool(settings_dict.get('login_logo'))}")
+    print(f"Login logo length: {len(settings_dict.get('login_logo', ''))}")
+    
     await db.settings.update_one(
         {"id": "app_settings"},
         {"$set": settings_dict},
         upsert=True
     )
+    
+    # Verify what was actually saved
+    saved_settings = await db.settings.find_one({"id": "app_settings"}, {"_id": 0})
+    print(f"Saved organization_logo present: {bool(saved_settings.get('organization_logo'))}")
+    print(f"Saved organization_logo length: {len(saved_settings.get('organization_logo', ''))}")
+    print("=== END DEBUG ===")
+    
     return {"message": "Settings updated successfully"}
 
 
