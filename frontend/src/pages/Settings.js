@@ -260,6 +260,66 @@ const Settings = () => {
     }
   };
 
+  // Submit PHOTO GALLERY (foto saja, tanpa video)
+  const handlePhotoGallerySubmit = async (e) => {
+    e.preventDefault();
+    if (!photoGalleryForm.title || !photoGalleryForm.description || !photoGalleryForm.photo) {
+      toast.error('Title, Description, dan Photo wajib diisi!');
+      return;
+    }
+    
+    setSubmittingPhotoGallery(true);
+    try {
+      await axios.post(`${API}/gallery`, {
+        title: photoGalleryForm.title,
+        description: photoGalleryForm.description,
+        photo: photoGalleryForm.photo,
+        video_url: null,
+        video_file: null
+      });
+      toast.success('✅ Photo berhasil ditambahkan ke Gallery!');
+      setPhotoGalleryForm({ title: '', description: '', photo: null });
+    } catch (error) {
+      toast.error('Gagal menambahkan photo ke gallery');
+      console.error(error);
+    } finally {
+      setSubmittingPhotoGallery(false);
+    }
+  };
+  
+  // Submit VIDEO GALLERY (video opening logo)
+  const handleVideoGallerySubmit = async (e) => {
+    e.preventDefault();
+    if (!videoGalleryForm.title || !videoGalleryForm.description) {
+      toast.error('Title dan Description wajib diisi!');
+      return;
+    }
+    
+    if (!videoGalleryForm.video_url && !videoGalleryForm.video_file) {
+      toast.error('Upload video atau masukkan YouTube URL!');
+      return;
+    }
+    
+    setSubmittingVideoGallery(true);
+    try {
+      await axios.post(`${API}/gallery`, {
+        title: videoGalleryForm.title,
+        description: videoGalleryForm.description,
+        photo: null,
+        video_url: videoGalleryForm.video_url || null,
+        video_file: videoGalleryForm.video_file || null
+      });
+      toast.success('✅ Video berhasil ditambahkan ke Gallery!');
+      setVideoGalleryForm({ title: '', description: '', video_url: '', video_file: null });
+    } catch (error) {
+      toast.error('Gagal menambahkan video ke gallery');
+      console.error(error);
+    } finally {
+      setSubmittingVideoGallery(false);
+    }
+  };
+  
+  // Old handler (keep for backward compatibility)
   const handleVideoSubmit = async (e) => {
     e.preventDefault();
     if (!galleryForm.title || !galleryForm.description || !galleryForm.photo) {
