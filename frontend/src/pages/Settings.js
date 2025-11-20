@@ -125,7 +125,8 @@ const Settings = () => {
     const file = e.target.files[0];
     if (file) {
       compressImage(file, (compressedBase64) => {
-        setSettings({ ...settings, organization_logo: compressedBase64 });
+        setSettings(prev => ({ ...prev, organization_logo: compressedBase64 }));
+        console.log('Organization logo updated in state');
       });
     }
   };
@@ -134,7 +135,8 @@ const Settings = () => {
     const file = e.target.files[0];
     if (file) {
       compressImage(file, (compressedBase64) => {
-        setSettings({ ...settings, club_logo: compressedBase64 });
+        setSettings(prev => ({ ...prev, club_logo: compressedBase64 }));
+        console.log('Club logo updated in state');
       });
     }
   };
