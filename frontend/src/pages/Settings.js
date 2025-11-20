@@ -173,12 +173,15 @@ const Settings = () => {
       const response = await axios.post(`${API}/settings`, dataToSave);
       console.log('Save response:', response.data);
       
-      toast.success('Settings berhasil disimpan! Refresh dalam 2 detik...');
+      toast.success('✅ Settings berhasil disimpan!');
       
-      // Force reload after 2 seconds
+      // Immediately refetch settings to update UI
+      await fetchSettings();
+      
+      // Force complete page reload after 1 second to ensure all components update
       setTimeout(() => {
-        window.location.href = window.location.href;
-      }, 2000);
+        window.location.reload();
+      }, 1000);
     } catch (error) {
       console.error('Failed to save settings:', error);
       toast.error(error.response?.data?.detail || 'Gagal menyimpan settings');
