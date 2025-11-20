@@ -37,7 +37,16 @@ const Settings = () => {
     try {
       const response = await axios.get(`${API}/settings`);
       if (response.data) {
-        setSettings(response.data);
+        // Merge with default values to ensure all fields exist
+        setSettings(prev => ({
+          ...prev,
+          ...response.data,
+          // Ensure these fields always exist
+          organization_logo: response.data.organization_logo || prev.organization_logo,
+          club_logo: response.data.club_logo || prev.club_logo,
+          vision: response.data.vision || prev.vision || '',
+          mission: response.data.mission || prev.mission || ''
+        }));
       }
     } catch (error) {
       console.error('Failed to fetch settings:', error);
