@@ -31,6 +31,20 @@ function App() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    // Add axios interceptor to always include token
+    const requestInterceptor = axios.interceptors.request.use(
+      (config) => {
+        const token = localStorage.getItem('token');
+        if (token) {
+          config.headers.Authorization = `Bearer ${token}`;
+        }
+        return config;
+      },
+      (error) => {
+        return Promise.reject(error);
+      }
+    );
+
     // Check if user is logged in
     const token = localStorage.getItem('token');
     if (token) {
@@ -39,6 +53,11 @@ function App() {
     } else {
       setLoading(false);
     }
+
+    // Cleanup interceptor on unmount
+    return () => {
+      axios.interceptors.request.eject(requestInterceptor);
+    };
   }, []);
 
   const fetchUser = async () => {
