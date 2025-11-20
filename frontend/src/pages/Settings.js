@@ -741,24 +741,24 @@ const Settings = () => {
             </div>
           </div>
           <form onSubmit={handlePhotoGallerySubmit} className="space-y-6">
-            <div className="bg-white p-4 rounded-lg border-2 border-purple-200">
-              <Label className="text-purple-700 font-bold text-lg mb-2 block">📝 Title Foto Kegiatan *</Label>
+            <div className="bg-white p-4 rounded-lg border-2 border-green-300">
+              <Label className="text-green-700 font-bold text-lg mb-2 block">📝 Title Foto Kegiatan *</Label>
               <Input
                 type="text"
-                value={galleryForm.title}
-                onChange={(e) => setGalleryForm({ ...galleryForm, title: e.target.value })}
+                value={photoGalleryForm.title}
+                onChange={(e) => setPhotoGalleryForm(prev => ({ ...prev, title: e.target.value }))}
                 placeholder="Contoh: Turnamen Golf Manado 2025"
-                className="mt-2 border-2 border-purple-300 focus:border-purple-500 text-lg"
+                className="mt-2 border-2 border-green-300 focus:border-green-500 text-lg"
                 required
               />
             </div>
-            <div className="bg-white p-4 rounded-lg border-2 border-purple-200">
-              <Label className="text-purple-700 font-bold text-lg mb-2 block">📄 Description Kegiatan *</Label>
+            <div className="bg-white p-4 rounded-lg border-2 border-green-300">
+              <Label className="text-green-700 font-bold text-lg mb-2 block">📄 Description Kegiatan *</Label>
               <textarea
-                value={galleryForm.description}
-                onChange={(e) => setGalleryForm({ ...galleryForm, description: e.target.value })}
+                value={photoGalleryForm.description}
+                onChange={(e) => setPhotoGalleryForm(prev => ({ ...prev, description: e.target.value }))}
                 placeholder="Contoh: Kegiatan turnamen golf tahunan yang diikuti oleh semua anggota Manado Golf League..."
-                className="mt-2 w-full px-4 py-3 border-2 border-purple-300 rounded-lg focus:border-purple-500 text-base"
+                className="mt-2 w-full px-4 py-3 border-2 border-green-300 rounded-lg focus:border-green-500 text-base"
                 rows="4"
                 required
               />
