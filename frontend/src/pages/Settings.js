@@ -209,12 +209,16 @@ const Settings = () => {
     }
   };
 
-  const handleGalleryPhotoUpload = (e) => {
+  const handleGalleryPhotoUpload = async (e) => {
     const file = e.target.files[0];
     if (file) {
-      compressImage(file, (compressedBase64) => {
-        setGalleryForm({ ...galleryForm, photo: compressedBase64 });
-      });
+      try {
+        const base64 = await convertImageToBase64(file);
+        setGalleryForm({ ...galleryForm, photo: base64 });
+        toast.success('Foto berhasil dipilih!');
+      } catch (error) {
+        toast.error(error.message);
+      }
     }
   };
   
