@@ -97,13 +97,17 @@ const Settings = () => {
     }
   };
 
-  const handleSignatureUpload = (e) => {
+  const handleSignatureUpload = async (e) => {
     const file = e.target.files[0];
     if (file) {
-      compressImage(file, (compressedBase64) => {
-        setSettings(prev => ({ ...prev, footer_signature: compressedBase64 }));
+      try {
+        const base64 = await convertImageToBase64(file);
+        setSettings(prev => ({ ...prev, footer_signature: base64 }));
+        toast.success('Footer signature berhasil diupload');
         console.log('Footer signature updated in state');
-      });
+      } catch (error) {
+        toast.error(error.message);
+      }
     }
   };
 
