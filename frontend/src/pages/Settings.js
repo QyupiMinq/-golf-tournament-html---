@@ -111,13 +111,17 @@ const Settings = () => {
     }
   };
 
-  const handleLoginLogoUpload = (e) => {
+  const handleLoginLogoUpload = async (e) => {
     const file = e.target.files[0];
     if (file) {
-      compressImage(file, (compressedBase64) => {
-        setSettings(prev => ({ ...prev, login_logo: compressedBase64 }));
+      try {
+        const base64 = await convertImageToBase64(file);
+        setSettings(prev => ({ ...prev, login_logo: base64 }));
+        toast.success('Login logo berhasil diupload');
         console.log('Login logo updated in state');
-      });
+      } catch (error) {
+        toast.error(error.message);
+      }
     }
   };
 
