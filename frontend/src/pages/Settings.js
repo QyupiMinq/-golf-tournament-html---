@@ -636,15 +636,16 @@ const Settings = () => {
           </form>
         </div>
 
-        {/* Video Gallery Section (Team Opening Videos) */}
-        <div className="bg-white rounded-2xl shadow-lg p-8 border border-gray-200">
+        {/* PHOTO GALLERY Section - Upload Photos with Title & Description */}
+        <div className="bg-gradient-to-br from-purple-50 to-indigo-50 rounded-2xl shadow-2xl p-8 border-4 border-purple-400">
           <div className="flex items-center gap-3 mb-6">
-            <div className="w-12 h-12 rounded-full bg-gradient-to-br from-purple-600 to-purple-700 flex items-center justify-center">
-              <Upload className="h-6 w-6 text-white" />
+            <div className="w-16 h-16 rounded-full bg-gradient-to-br from-purple-600 to-purple-700 flex items-center justify-center shadow-lg">
+              <Upload className="h-8 w-8 text-white" />
             </div>
             <div>
-              <h2 className="text-2xl font-bold text-gray-800">🎬 Upload Team Opening Video</h2>
-              <p className="text-sm text-gray-600">Upload video opening untuk setiap team (5 teams)</p>
+              <h2 className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-indigo-600">📸 PHOTO GALLERY</h2>
+              <p className="text-base text-purple-700 font-semibold">Upload Foto Kegiatan dengan Title dan Description</p>
+              <p className="text-sm text-gray-600">Foto akan muncul di Dashboard Photo Gallery</p>
             </div>
           </div>
           <form onSubmit={handleVideoSubmit} className="space-y-4">
