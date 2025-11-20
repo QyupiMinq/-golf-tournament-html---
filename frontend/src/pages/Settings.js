@@ -25,7 +25,15 @@ const Settings = () => {
   const [announcementForm, setAnnouncementForm] = useState({ title: '', content: '' });
   const [submittingAnnouncement, setSubmittingAnnouncement] = useState(false);
   
-  // Gallery state
+  // Photo Gallery state (separate)
+  const [photoGalleryForm, setPhotoGalleryForm] = useState({ title: '', description: '', photo: null });
+  const [submittingPhotoGallery, setSubmittingPhotoGallery] = useState(false);
+  
+  // Video Gallery state (separate)
+  const [videoGalleryForm, setVideoGalleryForm] = useState({ title: '', description: '', video_url: '', video_file: null });
+  const [submittingVideoGallery, setSubmittingVideoGallery] = useState(false);
+  
+  // Old gallery state (keep for backward compatibility)
   const [galleryForm, setGalleryForm] = useState({ title: '', description: '', photo: null, video_url: '', video_file: null, team_id: null });
   const [submittingGallery, setSubmittingGallery] = useState(false);
 
