@@ -7,7 +7,7 @@ import requests
 import json
 from datetime import datetime
 
-BACKEND_URL = "https://manado-dashboard.preview.emergentagent.com/api"
+BACKEND_URL = "https://golf-league-dash-1.preview.emergentagent.com/api"
 
 def test_detailed_responses():
     """Test detailed response structures"""

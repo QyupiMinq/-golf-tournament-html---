@@ -11,7 +11,7 @@ from datetime import datetime
 from io import BytesIO
 from PIL import Image
 
-BACKEND_URL = "https://manado-dashboard.preview.emergentagent.com/api"
+BACKEND_URL = "https://golf-league-dash-1.preview.emergentagent.com/api"
 
 class FinalLogoTester:
     def __init__(self):
