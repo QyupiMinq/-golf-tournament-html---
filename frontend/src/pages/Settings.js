@@ -705,25 +705,30 @@ const Settings = () => {
                 </div>
               </div>
             </div>
-            <div>
-              <Label className="text-gray-700 font-semibold">Upload Photo</Label>
-              <div className="mt-2 p-6 border-2 border-dashed border-gray-300 rounded-lg hover:border-purple-500 transition-colors">
+            <div className="bg-white p-6 rounded-lg border-2 border-purple-200">
+              <Label className="text-purple-700 font-bold text-lg mb-3 block">📷 Upload Foto Kegiatan * (WAJIB)</Label>
+              <div className="mt-2 p-8 border-4 border-dashed border-purple-400 rounded-xl hover:border-purple-600 transition-colors bg-purple-50 cursor-pointer">
+                <div className="text-center mb-4">
+                  <p className="text-purple-700 font-bold text-lg">Klik atau Drag & Drop Foto di sini</p>
+                  <p className="text-sm text-gray-600 mt-2">Format: JPG, PNG • Tidak ada batasan ukuran</p>
+                </div>
                 <Input
                   type="file"
                   accept="image/*"
                   onChange={handleGalleryPhotoUpload}
-                  className="border-0 p-0"
+                  className="border-0 p-0 cursor-pointer"
+                  required
                 />
               </div>
               {galleryForm.photo && (
-                <div className="mt-4 flex justify-center">
+                <div className="mt-6 flex justify-center">
                   <div className="text-center">
                     <img 
                       src={galleryForm.photo} 
                       alt="Gallery Preview" 
-                      className="h-48 w-auto object-contain rounded-lg border-4 border-purple-400 shadow-lg" 
+                      className="h-64 w-auto object-contain rounded-xl border-4 border-purple-500 shadow-2xl" 
                     />
-                    <p className="text-sm text-gray-600 mt-2">Preview Photo</p>
+                    <p className="text-lg font-bold text-green-600 mt-3">✅ Preview Foto - Siap Upload!</p>
                   </div>
                 </div>
               )}
