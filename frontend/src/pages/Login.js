@@ -58,15 +58,17 @@ const Login = () => {
         <div className="text-center mb-8">
           {settings.organization_logo ? (
             <div className="inline-block mb-6">
-              <img 
-                key={`login-logo-${logoKey}`}
-                src={`${settings.organization_logo}?v=${logoKey}`}
-                alt="Organization Logo" 
-                className="h-40 w-40 object-cover rounded-full mx-auto shadow-2xl border-4 border-amber-400/50 ring-8 ring-amber-500/30" 
-              />
+              <div className="h-40 w-40 rounded-lg overflow-hidden mx-auto shadow-2xl border-2 border-amber-400/50 bg-white">
+                <img 
+                  key={`login-logo-${logoKey}`}
+                  src={`${settings.organization_logo}?v=${logoKey}`}
+                  alt="Organization Logo" 
+                  className="h-full w-full object-contain p-3" 
+                />
+              </div>
             </div>
           ) : (
-            <div className="inline-block p-5 bg-gradient-to-br from-yellow-400 to-yellow-600 rounded-full shadow-2xl mb-6 ring-8 ring-yellow-500/20">
+            <div className="inline-block p-5 bg-gradient-to-br from-yellow-400 to-yellow-600 rounded-lg shadow-2xl mb-6 border-2 border-yellow-500/20">
               <Trophy className="h-20 w-20 text-gray-900" />
             </div>
           )}
