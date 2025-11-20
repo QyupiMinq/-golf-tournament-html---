@@ -728,19 +728,19 @@ const Settings = () => {
           </form>
         </div>
 
-        {/* PHOTO GALLERY Section - Upload Photos with Title & Description */}
-        <div className="bg-gradient-to-br from-purple-50 to-indigo-50 rounded-2xl shadow-2xl p-8 border-4 border-purple-400">
+        {/* PHOTO GALLERY Section - Upload FOTO SAJA (NO VIDEO) */}
+        <div className="bg-gradient-to-br from-green-50 to-emerald-50 rounded-2xl shadow-2xl p-8 border-4 border-green-500">
           <div className="flex items-center gap-3 mb-6">
-            <div className="w-16 h-16 rounded-full bg-gradient-to-br from-purple-600 to-purple-700 flex items-center justify-center shadow-lg">
-              <Upload className="h-8 w-8 text-white" />
+            <div className="w-16 h-16 rounded-full bg-gradient-to-br from-green-600 to-emerald-700 flex items-center justify-center shadow-lg">
+              <ImageIcon className="h-8 w-8 text-white" />
             </div>
             <div>
-              <h2 className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-indigo-600">📸 PHOTO GALLERY</h2>
-              <p className="text-base text-purple-700 font-semibold">Upload Foto Kegiatan dengan Title dan Description</p>
+              <h2 className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-green-600 to-emerald-600">📸 PHOTO GALLERY</h2>
+              <p className="text-lg text-green-700 font-bold">Upload FOTO Kegiatan (Title + Description + Foto)</p>
               <p className="text-sm text-gray-600">Foto akan muncul di Dashboard Photo Gallery</p>
             </div>
           </div>
-          <form onSubmit={handleVideoSubmit} className="space-y-6">
+          <form onSubmit={handlePhotoGallerySubmit} className="space-y-6">
             <div className="bg-white p-4 rounded-lg border-2 border-purple-200">
               <Label className="text-purple-700 font-bold text-lg mb-2 block">📝 Title Foto Kegiatan *</Label>
               <Input
