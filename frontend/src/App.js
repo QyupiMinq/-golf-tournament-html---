@@ -141,6 +141,7 @@ function App() {
                     <Route path="/transfers" element={<Transfers />} />
                     <Route path="/user-management" element={<UserManagement />} />
                     <Route path="/settings" element={<Settings />} />
+                    <Route path="/test-upload" element={<TestUpload />} />
                   </Routes>
                 </Layout>
               ) : (
