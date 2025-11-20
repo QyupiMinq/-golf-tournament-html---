@@ -63,43 +63,24 @@ const Settings = () => {
     }
   };
 
-  const compressImage = (file, callback) => {
-    const reader = new FileReader();
-    reader.onload = (event) => {
-      const img = new Image();
-      img.onload = () => {
-        const canvas = document.createElement('canvas');
-        const MAX_WIDTH = 500;
-        const MAX_HEIGHT = 500;
-        
-        let width = img.width;
-        let height = img.height;
-        
-        if (width > height) {
-          if (width > MAX_WIDTH) {
-            height *= MAX_WIDTH / width;
-            width = MAX_WIDTH;
-          }
-        } else {
-          if (height > MAX_HEIGHT) {
-            width *= MAX_HEIGHT / height;
-            height = MAX_HEIGHT;
-          }
-        }
-        
-        canvas.width = width;
-        canvas.height = height;
-        
-        const ctx = canvas.getContext('2d');
-        ctx.drawImage(img, 0, 0, width, height);
-        
-        const compressedBase64 = canvas.toDataURL('image/jpeg', 0.7);
-        callback(compressedBase64);
-        toast.success('Gambar berhasil diupload');
+  // SIMPLE image converter - no compression, just convert to base64
+  const convertImageToBase64 = (file) => {
+    return new Promise((resolve, reject) => {
+      // Check file size (max 2MB for safety)
+      if (file.size > 2 * 1024 * 1024) {
+        reject(new Error('File terlalu besar! Maximum 2MB'));
+        return;
+      }
+
+      const reader = new FileReader();
+      reader.onload = () => {
+        resolve(reader.result);
       };
-      img.src = event.target.result;
-    };
-    reader.readAsDataURL(file);
+      reader.onerror = () => {
+        reject(new Error('Gagal membaca file'));
+      };
+      reader.readAsDataURL(file);
+    });
   };
 
   const handleLogoUpload = (e) => {
