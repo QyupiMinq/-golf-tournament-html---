@@ -144,18 +144,33 @@ const Settings = () => {
   const handleSave = async () => {
     setSaving(true);
     try {
-      console.log('Saving settings:', settings);
-      const response = await axios.post(`${API}/settings`, settings);
+      // Prepare data - ensure all fields are included
+      const dataToSave = {
+        organization_logo: settings.organization_logo || null,
+        club_logo: settings.club_logo || null,
+        login_logo: settings.login_logo || null,
+        dashboard_logo: settings.dashboard_logo || null,
+        footer_signature: settings.footer_signature || null,
+        vision: settings.vision || '',
+        mission: settings.mission || ''
+      };
+      
+      console.log('=== SAVING SETTINGS ===');
+      console.log('Organization logo length:', dataToSave.organization_logo ? dataToSave.organization_logo.length : 0);
+      console.log('Club logo length:', dataToSave.club_logo ? dataToSave.club_logo.length : 0);
+      
+      const response = await axios.post(`${API}/settings`, dataToSave);
       console.log('Save response:', response.data);
-      toast.success('Settings berhasil disimpan!');
-      // Reload page to see changes
+      
+      toast.success('Settings berhasil disimpan! Refresh dalam 2 detik...');
+      
+      // Force reload after 2 seconds
       setTimeout(() => {
-        window.location.reload();
-      }, 1500);
+        window.location.href = window.location.href;
+      }, 2000);
     } catch (error) {
-      console.error('Save error:', error);
-      console.error('Error response:', error.response?.data);
-      toast.error(`Gagal menyimpan settings: ${error.response?.data?.detail || error.message}`);
+      console.error('Failed to save settings:', error);
+      toast.error(error.response?.data?.detail || 'Gagal menyimpan settings');
       setSaving(false);
     }
   };
