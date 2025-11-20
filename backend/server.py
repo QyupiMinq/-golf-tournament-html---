@@ -696,12 +696,16 @@ async def update_settings(settings_data: AppSettings, current_user: User = Depen
     
     # Debug logging
     print("=== SETTINGS UPDATE DEBUG ===")
-    print(f"Organization logo present: {bool(settings_dict.get('organization_logo'))}")
-    print(f"Organization logo length: {len(settings_dict.get('organization_logo', ''))}")
-    print(f"Club logo present: {bool(settings_dict.get('club_logo'))}")
-    print(f"Club logo length: {len(settings_dict.get('club_logo', ''))}")
-    print(f"Login logo present: {bool(settings_dict.get('login_logo'))}")
-    print(f"Login logo length: {len(settings_dict.get('login_logo', ''))}")
+    org_logo = settings_dict.get('organization_logo')
+    club_logo = settings_dict.get('club_logo')
+    login_logo = settings_dict.get('login_logo')
+    
+    print(f"Organization logo present: {bool(org_logo)}")
+    print(f"Organization logo length: {len(org_logo) if org_logo else 0}")
+    print(f"Club logo present: {bool(club_logo)}")
+    print(f"Club logo length: {len(club_logo) if club_logo else 0}")
+    print(f"Login logo present: {bool(login_logo)}")
+    print(f"Login logo length: {len(login_logo) if login_logo else 0}")
     
     await db.settings.update_one(
         {"id": "app_settings"},
