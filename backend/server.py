@@ -715,8 +715,9 @@ async def update_settings(settings_data: AppSettings, current_user: User = Depen
     
     # Verify what was actually saved
     saved_settings = await db.settings.find_one({"id": "app_settings"}, {"_id": 0})
-    print(f"Saved organization_logo present: {bool(saved_settings.get('organization_logo'))}")
-    print(f"Saved organization_logo length: {len(saved_settings.get('organization_logo', ''))}")
+    saved_org_logo = saved_settings.get('organization_logo') if saved_settings else None
+    print(f"Saved organization_logo present: {bool(saved_org_logo)}")
+    print(f"Saved organization_logo length: {len(saved_org_logo) if saved_org_logo else 0}")
     print("=== END DEBUG ===")
     
     return {"message": "Settings updated successfully"}
