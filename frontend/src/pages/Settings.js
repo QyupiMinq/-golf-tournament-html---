@@ -125,13 +125,17 @@ const Settings = () => {
     }
   };
 
-  const handleOrganizationLogoUpload = (e) => {
+  const handleOrganizationLogoUpload = async (e) => {
     const file = e.target.files[0];
     if (file) {
-      compressImage(file, (compressedBase64) => {
-        setSettings(prev => ({ ...prev, organization_logo: compressedBase64 }));
+      try {
+        const base64 = await convertImageToBase64(file);
+        setSettings(prev => ({ ...prev, organization_logo: base64 }));
+        toast.success('Organization logo berhasil diupload');
         console.log('Organization logo updated in state');
-      });
+      } catch (error) {
+        toast.error(error.message);
+      }
     }
   };
 
