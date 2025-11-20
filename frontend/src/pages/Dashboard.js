@@ -207,15 +207,17 @@ const Dashboard = () => {
             {/* Logo Club (Kanan) - Hidden on mobile */}
             {settings.club_logo ? (
               <div className="hidden sm:block">
-                <img 
-                  key={`club-${logoTimestamp}`}
-                  src={`${settings.club_logo}?v=${logoTimestamp}`}
-                  alt="Club Logo" 
-                  className="h-24 sm:h-32 w-24 sm:w-32 object-cover rounded-full shadow-2xl border-4 border-amber-400/40 ring-4 ring-amber-500/20" 
-                />
+                <div className="h-24 sm:h-32 w-24 sm:w-32 rounded-lg overflow-hidden shadow-2xl border-2 border-amber-400/40 bg-white dark:bg-gray-800">
+                  <img 
+                    key={`club-${logoTimestamp}`}
+                    src={`${settings.club_logo}?v=${logoTimestamp}`}
+                    alt="Club Logo" 
+                    className="h-full w-full object-contain p-2" 
+                  />
+                </div>
               </div>
             ) : (
-              <div className="hidden sm:flex w-20 sm:w-24 h-20 sm:h-24 rounded-full bg-gradient-to-br from-yellow-400 to-yellow-600 items-center justify-center shadow-lg border-4 border-yellow-500/30">
+              <div className="hidden sm:flex w-20 sm:w-24 h-20 sm:h-24 rounded-lg bg-gradient-to-br from-yellow-400 to-yellow-600 items-center justify-center shadow-lg border-2 border-yellow-500/30">
                 <Trophy className="h-10 sm:h-12 w-10 sm:w-12 text-gray-900" />
               </div>
             )}
