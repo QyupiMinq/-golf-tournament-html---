@@ -83,13 +83,17 @@ const Settings = () => {
     });
   };
 
-  const handleLogoUpload = (e) => {
+  const handleLogoUpload = async (e) => {
     const file = e.target.files[0];
     if (file) {
-      compressImage(file, (compressedBase64) => {
-        setSettings(prev => ({ ...prev, dashboard_logo: compressedBase64 }));
+      try {
+        const base64 = await convertImageToBase64(file);
+        setSettings(prev => ({ ...prev, dashboard_logo: base64 }));
+        toast.success('Dashboard logo berhasil diupload');
         console.log('Dashboard logo updated in state');
-      });
+      } catch (error) {
+        toast.error(error.message);
+      }
     }
   };
 
