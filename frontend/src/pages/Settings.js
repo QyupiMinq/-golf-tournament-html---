@@ -155,37 +155,41 @@ const Settings = () => {
 
   const handleSave = async () => {
     setSaving(true);
+    
+    // Show loading toast
+    const loadingToast = toast.loading('Menyimpan settings...');
+    
     try {
-      // Prepare data - ensure all fields are included
+      // Simple data preparation
       const dataToSave = {
-        organization_logo: settings.organization_logo || null,
-        club_logo: settings.club_logo || null,
-        login_logo: settings.login_logo || null,
-        dashboard_logo: settings.dashboard_logo || null,
-        footer_signature: settings.footer_signature || null,
+        organization_logo: settings.organization_logo,
+        club_logo: settings.club_logo,
+        login_logo: settings.login_logo,
+        dashboard_logo: settings.dashboard_logo,
+        footer_signature: settings.footer_signature,
         vision: settings.vision || '',
         mission: settings.mission || ''
       };
       
-      console.log('=== SAVING SETTINGS ===');
-      console.log('Organization logo length:', dataToSave.organization_logo ? dataToSave.organization_logo.length : 0);
-      console.log('Club logo length:', dataToSave.club_logo ? dataToSave.club_logo.length : 0);
+      // Send to backend
+      await axios.post(`${API}/settings`, dataToSave);
       
-      const response = await axios.post(`${API}/settings`, dataToSave);
-      console.log('Save response:', response.data);
+      // Success!
+      toast.dismiss(loadingToast);
+      toast.success('✅ Settings berhasil disimpan! Halaman akan refresh...', {
+        duration: 2000
+      });
       
-      toast.success('✅ Settings berhasil disimpan!');
+      // Wait 1 second then force reload
+      await new Promise(resolve => setTimeout(resolve, 1000));
       
-      // Immediately refetch settings to update UI
-      await fetchSettings();
+      // Force complete reload - this will refresh all components
+      window.location.reload(true);
       
-      // Force complete page reload after 1 second to ensure all components update
-      setTimeout(() => {
-        window.location.reload();
-      }, 1000);
     } catch (error) {
-      console.error('Failed to save settings:', error);
-      toast.error(error.response?.data?.detail || 'Gagal menyimpan settings');
+      console.error('Save error:', error);
+      toast.dismiss(loadingToast);
+      toast.error('❌ Gagal menyimpan: ' + (error.response?.data?.detail || error.message));
       setSaving(false);
     }
   };
