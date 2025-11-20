@@ -210,6 +210,30 @@ const Settings = () => {
       });
     }
   };
+  
+  // Separate handler for Photo Gallery (no video)
+  const handlePhotoGalleryUpload = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      compressImage(file, (compressedBase64) => {
+        setPhotoGalleryForm(prev => ({ ...prev, photo: compressedBase64 }));
+        toast.success('Foto berhasil dipilih!');
+      });
+    }
+  };
+  
+  // Handler for Video Gallery upload
+  const handleVideoGalleryFileUpload = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = (event) => {
+        setVideoGalleryForm(prev => ({ ...prev, video_file: event.target.result }));
+        toast.success('Video berhasil dipilih!');
+      };
+      reader.readAsDataURL(file);
+    }
+  };
 
   const handleGalleryVideoUpload = (e) => {
     const file = e.target.files[0];
