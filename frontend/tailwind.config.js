@@ -74,6 +74,17 @@ module.exports = {
                                 400: '#facc15',
                                 500: '#eab308',
                                 600: '#ca8a04',
+                },
+                fontFamily: {
+                        'display': ['Playfair Display', 'serif'],
+                        'body': ['Inter', 'sans-serif'],
+                        'accent': ['Space Grotesk', 'sans-serif'],
+                },
+                boxShadow: {
+                        'golf': '0 4px 6px -1px rgba(34, 197, 94, 0.1), 0 2px 4px -1px rgba(34, 197, 94, 0.06)',
+                        'golf-lg': '0 10px 15px -3px rgba(34, 197, 94, 0.1), 0 4px 6px -2px rgba(34, 197, 94, 0.05)',
+                        'gold': '0 4px 6px -1px rgba(234, 179, 8, 0.1), 0 2px 4px -1px rgba(234, 179, 8, 0.06)',
+                        'gold-lg': '0 10px 15px -3px rgba(234, 179, 8, 0.1), 0 4px 6px -2px rgba(234, 179, 8, 0.05)',
                                 700: '#a16207',
                                 800: '#854d0e',
                                 900: '#713f12',
