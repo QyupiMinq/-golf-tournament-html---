@@ -640,16 +640,16 @@ async def get_dashboard_stats(current_user: User = Depends(get_current_user)):
 # ==================== Settings Routes ====================
 
 @api_router.get("/settings")
-async def get_settings(current_user: User = Depends(get_current_user)):
+async def get_settings():
+    """Get settings - public endpoint for all users"""
     settings = await db.settings.find_one({"id": "app_settings"}, {"_id": 0})
     if not settings:
         return {
             "id": "app_settings", 
-            "dashboard_logo": None, 
             "organization_logo": None,
             "club_logo": None,
-            "footer_signature": None, 
             "login_logo": None,
+            "footer_signature": None,
             "vision": None,
             "mission": None
         }
