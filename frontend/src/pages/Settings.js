@@ -732,7 +732,7 @@ const Settings = () => {
         <div className="bg-gradient-to-br from-green-50 to-emerald-50 rounded-2xl shadow-2xl p-8 border-4 border-green-500">
           <div className="flex items-center gap-3 mb-6">
             <div className="w-16 h-16 rounded-full bg-gradient-to-br from-green-600 to-emerald-700 flex items-center justify-center shadow-lg">
-              <ImageIcon className="h-8 w-8 text-white" />
+              <Upload className="h-8 w-8 text-white" />
             </div>
             <div>
               <h2 className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-green-600 to-emerald-600">📸 PHOTO GALLERY</h2>
@@ -763,62 +763,28 @@ const Settings = () => {
                 required
               />
             </div>
-            <div>
-              <Label className="text-gray-700 font-semibold">Video (Pilih salah satu)</Label>
-              <div className="space-y-3 mt-2">
-                <div>
-                  <Label className="text-sm text-gray-600">Opsi 1: YouTube URL</Label>
-                  <Input
-                    type="text"
-                    value={galleryForm.video_url}
-                    onChange={(e) => setGalleryForm({ ...galleryForm, video_url: e.target.value, video_file: null })}
-                    placeholder="https://youtube.com/watch?v=..."
-                    className="mt-1"
-                  />
-                </div>
-                <div className="text-center text-gray-500 font-semibold">ATAU</div>
-                <div>
-                  <Label className="text-sm text-gray-600">Opsi 2: Upload Video MP4 (No Size Limit)</Label>
-                  <p className="text-xs text-amber-600 mb-2">💡 Untuk 5 team opening videos - upload bebas tanpa batasan size</p>
-                  <div className="mt-1 p-4 border-2 border-dashed border-gray-300 rounded-lg hover:border-purple-500 transition-colors">
-                    <Input
-                      type="file"
-                      accept="video/mp4,video/webm,video/avi,video/mov"
-                      onChange={handleGalleryVideoUpload}
-                      className="border-0 p-0"
-                    />
-                  </div>
-                  {galleryForm.video_file && (
-                    <div className="mt-2 p-3 bg-green-50 border border-green-200 rounded-lg">
-                      <p className="text-sm text-green-700">✓ Video file loaded (size: {(galleryForm.video_file.length / 1024 / 1024).toFixed(1)}MB)</p>
-                      <p className="text-xs text-green-600 mt-1">Ready to upload! No size restrictions.</p>
-                    </div>
-                  )}
-                </div>
-              </div>
-            </div>
-            <div className="bg-white p-6 rounded-lg border-2 border-purple-200">
-              <Label className="text-purple-700 font-bold text-lg mb-3 block">📷 Upload Foto Kegiatan * (WAJIB)</Label>
-              <div className="mt-2 p-8 border-4 border-dashed border-purple-400 rounded-xl hover:border-purple-600 transition-colors bg-purple-50 cursor-pointer">
+            <div className="bg-white p-6 rounded-lg border-2 border-green-400">
+              <Label className="text-green-700 font-bold text-lg mb-3 block">📷 Upload Foto Kegiatan * (WAJIB)</Label>
+              <div className="mt-2 p-8 border-4 border-dashed border-green-400 rounded-xl hover:border-green-600 transition-colors bg-green-50 cursor-pointer">
                 <div className="text-center mb-4">
-                  <p className="text-purple-700 font-bold text-lg">Klik atau Drag & Drop Foto di sini</p>
+                  <p className="text-green-700 font-bold text-lg">Klik atau Drag & Drop Foto di sini</p>
                   <p className="text-sm text-gray-600 mt-2">Format: JPG, PNG • Tidak ada batasan ukuran</p>
                 </div>
                 <Input
                   type="file"
                   accept="image/*"
-                  onChange={handleGalleryPhotoUpload}
+                  onChange={handlePhotoGalleryUpload}
                   className="border-0 p-0 cursor-pointer"
                   required
                 />
               </div>
-              {galleryForm.photo && (
+              {photoGalleryForm.photo && (
                 <div className="mt-6 flex justify-center">
                   <div className="text-center">
                     <img 
-                      src={galleryForm.photo} 
-                      alt="Gallery Preview" 
-                      className="h-64 w-auto object-contain rounded-xl border-4 border-purple-500 shadow-2xl" 
+                      src={photoGalleryForm.photo} 
+                      alt="Photo Gallery Preview" 
+                      className="h-64 w-auto object-contain rounded-xl border-4 border-green-500 shadow-2xl" 
                     />
                     <p className="text-lg font-bold text-green-600 mt-3">✅ Preview Foto - Siap Upload!</p>
                   </div>
@@ -827,10 +793,10 @@ const Settings = () => {
             </div>
             <Button
               type="submit"
-              disabled={submittingGallery || !galleryForm.title || !galleryForm.description || !galleryForm.photo}
-              className="w-full bg-gradient-to-r from-purple-600 via-indigo-600 to-purple-700 hover:from-purple-700 hover:via-indigo-700 hover:to-purple-800 text-white text-xl font-bold py-8 shadow-2xl border-4 border-purple-300 disabled:opacity-50 disabled:cursor-not-allowed"
+              disabled={submittingPhotoGallery || !photoGalleryForm.title || !photoGalleryForm.description || !photoGalleryForm.photo}
+              className="w-full bg-gradient-to-r from-green-600 via-emerald-600 to-green-700 hover:from-green-700 hover:via-emerald-700 hover:to-green-800 text-white text-xl font-bold py-8 shadow-2xl border-4 border-green-300 disabled:opacity-50 disabled:cursor-not-allowed"
             >
-              {submittingGallery ? (
+              {submittingPhotoGallery ? (
                 <div className="flex items-center gap-3 justify-center">
                   <div className="animate-spin rounded-full h-6 w-6 border-b-3 border-white"></div>
                   <span>Uploading Photo Gallery...</span>
@@ -838,12 +804,112 @@ const Settings = () => {
               ) : (
                 <>
                   <Upload className="h-6 w-6 mr-3 inline" />
-                  📸 UPLOAD PHOTO GALLERY
+                  📸 UPLOAD PHOTO KE GALLERY
                 </>
               )}
             </Button>
             <p className="text-center text-sm text-gray-600 mt-4">
-              * Semua field <span className="font-bold text-purple-700">(Title, Description, dan Photo)</span> wajib diisi
+              * Semua field <span className="font-bold text-green-700">(Title, Description, dan Photo)</span> wajib diisi
+            </p>
+          </form>
+        </div>
+
+        {/* VIDEO GALLERY Section - Upload VIDEO OPENING/LOGO */}
+        <div className="bg-gradient-to-br from-purple-50 to-indigo-50 rounded-2xl shadow-2xl p-8 border-4 border-purple-500">
+          <div className="flex items-center gap-3 mb-6">
+            <div className="w-16 h-16 rounded-full bg-gradient-to-br from-purple-600 to-indigo-700 flex items-center justify-center shadow-lg">
+              <Upload className="h-8 w-8 text-white" />
+            </div>
+            <div>
+              <h2 className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-indigo-600">🎥 VIDEO GALLERY</h2>
+              <p className="text-lg text-purple-700 font-bold">Upload Video Opening/Logo (Title + Description + Video)</p>
+              <p className="text-sm text-gray-600">Video akan muncul di Dashboard Video Gallery</p>
+            </div>
+          </div>
+          <form onSubmit={handleVideoGallerySubmit} className="space-y-6">
+            <div className="bg-white p-4 rounded-lg border-2 border-purple-300">
+              <Label className="text-purple-700 font-bold text-lg mb-2 block">📝 Title Video *</Label>
+              <Input
+                type="text"
+                value={videoGalleryForm.title}
+                onChange={(e) => setVideoGalleryForm(prev => ({ ...prev, title: e.target.value }))}
+                placeholder="Contoh: Video Opening Manado Golf League 2025"
+                className="mt-2 border-2 border-purple-300 focus:border-purple-500 text-lg"
+                required
+              />
+            </div>
+            <div className="bg-white p-4 rounded-lg border-2 border-purple-300">
+              <Label className="text-purple-700 font-bold text-lg mb-2 block">📄 Description Video *</Label>
+              <textarea
+                value={videoGalleryForm.description}
+                onChange={(e) => setVideoGalleryForm(prev => ({ ...prev, description: e.target.value }))}
+                placeholder="Contoh: Video logo opening untuk Manado Golf League yang akan ditampilkan di halaman utama..."
+                className="mt-2 w-full px-4 py-3 border-2 border-purple-300 rounded-lg focus:border-purple-500 text-base"
+                rows="4"
+                required
+              />
+            </div>
+            <div className="bg-white p-6 rounded-lg border-2 border-purple-400">
+              <Label className="text-purple-700 font-bold text-lg mb-3 block">🎬 Upload Video (Pilih salah satu) *</Label>
+              
+              {/* Option 1: YouTube URL */}
+              <div className="mb-6 p-4 bg-red-50 border-2 border-red-300 rounded-lg">
+                <Label className="text-red-700 font-semibold mb-2 block">Opsi 1: YouTube URL</Label>
+                <Input
+                  type="text"
+                  value={videoGalleryForm.video_url}
+                  onChange={(e) => setVideoGalleryForm(prev => ({ ...prev, video_url: e.target.value, video_file: null }))}
+                  placeholder="https://youtube.com/watch?v=... atau https://youtu.be/..."
+                  className="mt-2 border-2 border-red-200"
+                />
+                <p className="text-xs text-gray-600 mt-2">💡 Paste link YouTube video di sini</p>
+              </div>
+
+              <div className="text-center text-gray-500 font-bold mb-6">ATAU</div>
+
+              {/* Option 2: Upload Video File */}
+              <div className="p-4 bg-purple-50 border-2 border-purple-300 rounded-lg">
+                <Label className="text-purple-700 font-semibold mb-2 block">Opsi 2: Upload Video File MP4</Label>
+                <p className="text-xs text-amber-600 mb-3">💡 Tidak ada batasan ukuran file</p>
+                <div className="mt-2 p-8 border-4 border-dashed border-purple-400 rounded-xl hover:border-purple-600 transition-colors bg-purple-50 cursor-pointer">
+                  <div className="text-center mb-4">
+                    <p className="text-purple-700 font-bold text-lg">Klik atau Drag & Drop Video di sini</p>
+                    <p className="text-sm text-gray-600 mt-2">Format: MP4, WebM, AVI, MOV</p>
+                  </div>
+                  <Input
+                    type="file"
+                    accept="video/mp4,video/webm,video/avi,video/mov"
+                    onChange={handleVideoGalleryFileUpload}
+                    className="border-0 p-0 cursor-pointer"
+                  />
+                </div>
+                {videoGalleryForm.video_file && (
+                  <div className="mt-4 p-3 bg-green-50 border border-green-200 rounded-lg">
+                    <p className="text-sm text-green-700">✓ Video file loaded (size: {(videoGalleryForm.video_file.length / 1024 / 1024).toFixed(1)}MB)</p>
+                    <p className="text-xs text-green-600 mt-1">✅ Ready to upload! No size restrictions.</p>
+                  </div>
+                )}
+              </div>
+            </div>
+            <Button
+              type="submit"
+              disabled={submittingVideoGallery || !videoGalleryForm.title || !videoGalleryForm.description || (!videoGalleryForm.video_url && !videoGalleryForm.video_file)}
+              className="w-full bg-gradient-to-r from-purple-600 via-indigo-600 to-purple-700 hover:from-purple-700 hover:via-indigo-700 hover:to-purple-800 text-white text-xl font-bold py-8 shadow-2xl border-4 border-purple-300 disabled:opacity-50 disabled:cursor-not-allowed"
+            >
+              {submittingVideoGallery ? (
+                <div className="flex items-center gap-3 justify-center">
+                  <div className="animate-spin rounded-full h-6 w-6 border-b-3 border-white"></div>
+                  <span>Uploading Video Gallery...</span>
+                </div>
+              ) : (
+                <>
+                  <Upload className="h-6 w-6 mr-3 inline" />
+                  🎥 UPLOAD VIDEO KE GALLERY
+                </>
+              )}
+            </Button>
+            <p className="text-center text-sm text-gray-600 mt-4">
+              * Semua field <span className="font-bold text-purple-700">(Title, Description, dan Video)</span> wajib diisi
             </p>
           </form>
         </div>
