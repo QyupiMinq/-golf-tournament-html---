@@ -18,6 +18,7 @@ import Settings from '@/pages/Settings';
 import UserManagement from '@/pages/UserManagement';
 import GuestDashboard from '@/pages/GuestDashboard';
 import GuestPlayers from '@/pages/GuestPlayers';
+import TestUpload from '@/pages/TestUpload';
 import Layout from '@/components/Layout';
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
