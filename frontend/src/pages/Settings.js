@@ -139,13 +139,17 @@ const Settings = () => {
     }
   };
 
-  const handleClubLogoUpload = (e) => {
+  const handleClubLogoUpload = async (e) => {
     const file = e.target.files[0];
     if (file) {
-      compressImage(file, (compressedBase64) => {
-        setSettings(prev => ({ ...prev, club_logo: compressedBase64 }));
+      try {
+        const base64 = await convertImageToBase64(file);
+        setSettings(prev => ({ ...prev, club_logo: base64 }));
+        toast.success('Club logo berhasil diupload');
         console.log('Club logo updated in state');
-      });
+      } catch (error) {
+        toast.error(error.message);
+      }
     }
   };
 
