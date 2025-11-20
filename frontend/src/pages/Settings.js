@@ -223,13 +223,16 @@ const Settings = () => {
   };
   
   // Separate handler for Photo Gallery (no video)
-  const handlePhotoGalleryUpload = (e) => {
+  const handlePhotoGalleryUpload = async (e) => {
     const file = e.target.files[0];
     if (file) {
-      compressImage(file, (compressedBase64) => {
-        setPhotoGalleryForm(prev => ({ ...prev, photo: compressedBase64 }));
+      try {
+        const base64 = await convertImageToBase64(file);
+        setPhotoGalleryForm(prev => ({ ...prev, photo: base64 }));
         toast.success('Foto berhasil dipilih!');
-      });
+      } catch (error) {
+        toast.error(error.message);
+      }
     }
   };
   
