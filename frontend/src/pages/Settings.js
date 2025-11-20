@@ -106,7 +106,8 @@ const Settings = () => {
     const file = e.target.files[0];
     if (file) {
       compressImage(file, (compressedBase64) => {
-        setSettings({ ...settings, dashboard_logo: compressedBase64 });
+        setSettings(prev => ({ ...prev, dashboard_logo: compressedBase64 }));
+        console.log('Dashboard logo updated in state');
       });
     }
   };
@@ -115,7 +116,8 @@ const Settings = () => {
     const file = e.target.files[0];
     if (file) {
       compressImage(file, (compressedBase64) => {
-        setSettings({ ...settings, footer_signature: compressedBase64 });
+        setSettings(prev => ({ ...prev, footer_signature: compressedBase64 }));
+        console.log('Footer signature updated in state');
       });
     }
   };
@@ -124,7 +126,8 @@ const Settings = () => {
     const file = e.target.files[0];
     if (file) {
       compressImage(file, (compressedBase64) => {
-        setSettings({ ...settings, login_logo: compressedBase64 });
+        setSettings(prev => ({ ...prev, login_logo: compressedBase64 }));
+        console.log('Login logo updated in state');
       });
     }
   };
