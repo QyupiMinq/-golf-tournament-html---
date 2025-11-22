@@ -394,29 +394,47 @@ const Settings = () => {
     <div data-testid="settings-page" className="pb-32">
       {/* Sticky Save Button at Top */}
       <div className="sticky top-0 z-50 bg-gradient-to-r from-green-700 to-green-800 shadow-2xl mb-6 -mx-4 sm:-mx-6 lg:-mx-8 px-4 sm:px-6 lg:px-8 py-4">
-        <div className="max-w-7xl mx-auto flex justify-between items-center">
+        <div className="max-w-7xl mx-auto flex justify-between items-center gap-4">
           <div>
             <h2 className="text-xl sm:text-2xl font-bold text-yellow-300">⚙️ Settings</h2>
             <p className="text-sm text-yellow-100">Upload logo dan klik "Simpan" untuk update</p>
           </div>
-          <Button
-            data-testid="save-settings-top-btn"
-            onClick={handleSave}
-            disabled={saving}
-            className="bg-gradient-to-r from-yellow-400 to-yellow-500 hover:from-yellow-500 hover:to-yellow-600 text-gray-900 shadow-2xl px-6 sm:px-8 py-4 sm:py-6 text-base sm:text-xl font-bold disabled:opacity-50 disabled:cursor-not-allowed border-4 border-yellow-300"
-          >
-            {saving ? (
-              <div className="flex items-center gap-2">
-                <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-gray-900"></div>
-                <span>Menyimpan...</span>
-              </div>
-            ) : (
-              <>
-                <Save className="h-5 w-5 sm:h-6 sm:w-6 mr-2" />
-                SIMPAN PENGATURAN
-              </>
-            )}
-          </Button>
+          <div className="flex gap-2">
+            <Button
+              onClick={() => {
+                toast.info('🔄 Membersihkan cache browser...');
+                if ('caches' in window) {
+                  caches.keys().then(names => {
+                    names.forEach(name => caches.delete(name));
+                  });
+                }
+                setTimeout(() => {
+                  window.location.href = window.location.pathname + '?hard_refresh=' + Date.now();
+                }, 500);
+              }}
+              className="bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white shadow-xl px-4 py-4 text-sm font-bold border-2 border-blue-300"
+            >
+              🔄 CLEAR CACHE
+            </Button>
+            <Button
+              data-testid="save-settings-top-btn"
+              onClick={handleSave}
+              disabled={saving}
+              className="bg-gradient-to-r from-yellow-400 to-yellow-500 hover:from-yellow-500 hover:to-yellow-600 text-gray-900 shadow-2xl px-6 sm:px-8 py-4 sm:py-6 text-base sm:text-xl font-bold disabled:opacity-50 disabled:cursor-not-allowed border-4 border-yellow-300"
+            >
+              {saving ? (
+                <div className="flex items-center gap-2">
+                  <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-gray-900"></div>
+                  <span>Menyimpan...</span>
+                </div>
+              ) : (
+                <>
+                  <Save className="h-5 w-5 sm:h-6 sm:w-6 mr-2" />
+                  SIMPAN PENGATURAN
+                </>
+              )}
+            </Button>
+          </div>
         </div>
       </div>
 
