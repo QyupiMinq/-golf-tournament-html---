@@ -160,6 +160,11 @@ const Settings = () => {
     const loadingToast = toast.loading('Menyimpan settings...');
     
     try {
+      // Log what we're about to save
+      console.log('=== SAVE ATTEMPT ===');
+      console.log('organization_logo length:', settings.organization_logo ? settings.organization_logo.length : 'NULL');
+      console.log('club_logo length:', settings.club_logo ? settings.club_logo.length : 'NULL');
+      
       // Simple data preparation
       const dataToSave = {
         organization_logo: settings.organization_logo,
@@ -172,19 +177,28 @@ const Settings = () => {
       };
       
       // Send to backend
-      await axios.post(`${API}/settings`, dataToSave);
+      const response = await axios.post(`${API}/settings`, dataToSave);
+      console.log('✅ Backend response:', response.status);
+      
+      // Clear all caches
+      console.log('🧹 Clearing browser cache...');
+      if ('caches' in window) {
+        caches.keys().then(names => {
+          names.forEach(name => caches.delete(name));
+        });
+      }
       
       // Success!
       toast.dismiss(loadingToast);
-      toast.success('✅ Settings berhasil disimpan! Halaman akan refresh...', {
+      toast.success('✅ Settings berhasil disimpan! Refresh cache dalam 2 detik...', {
         duration: 2000
       });
       
-      // Wait 1 second then force reload
-      await new Promise(resolve => setTimeout(resolve, 1000));
+      // Wait 2 seconds then force reload with cache busting
+      await new Promise(resolve => setTimeout(resolve, 2000));
       
-      // Force complete reload - this will refresh all components
-      window.location.reload(true);
+      // Force complete reload with cache busting
+      window.location.href = window.location.pathname + '?cache_bust=' + Date.now();
       
     } catch (error) {
       console.error('Save error:', error);
