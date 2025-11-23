@@ -78,8 +78,8 @@ const Layout = ({ children }) => {
                 {settings.organization_logo ? (
                   <div className="h-24 w-24 rounded-lg overflow-hidden shadow-xl border-2 border-amber-400/40 bg-white dark:bg-gray-800">
                     <img 
-                      key={`sidebar-logo-${logoKey}`}
-                      src={`${settings.organization_logo}?v=${logoKey}`}
+                      key={settings.organization_logo}
+                      src={settings.organization_logo}
                       alt="Organization Logo" 
                       className="h-full w-full object-contain p-2" 
                     />
