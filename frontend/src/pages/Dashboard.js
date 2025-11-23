@@ -179,8 +179,8 @@ const Dashboard = () => {
               <div className="hidden sm:block">
                 <div className="h-24 sm:h-32 w-24 sm:w-32 rounded-lg overflow-hidden shadow-2xl border-2 border-amber-400/40 bg-white dark:bg-gray-800">
                   <img 
-                    key={`org-${logoTimestamp}`}
-                    src={`${settings.organization_logo}?v=${logoTimestamp}`}
+                    key={settings.organization_logo}
+                    src={settings.organization_logo}
                     alt="Organization Logo" 
                     className="h-full w-full object-contain p-2" 
                   />
