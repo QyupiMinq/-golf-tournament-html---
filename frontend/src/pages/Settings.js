@@ -310,17 +310,12 @@ const Settings = () => {
         title: photoGalleryForm.title,
         description: photoGalleryForm.description,
         photo: photoGalleryForm.photo,
-        video_url: null,
+        video_url: '',
         video_file: null
       });
       console.log('✅ Response:', response.data);
-      toast.success('✅ Photo berhasil ditambahkan ke Gallery!');
+      toast.success('✅ Photo berhasil ditambahkan ke Gallery! Refresh halaman untuk lihat hasil.');
       setPhotoGalleryForm({ title: '', description: '', photo: null });
-      
-      // Force page reload to show new photo
-      setTimeout(() => {
-        window.location.href = '/';
-      }, 1500);
     } catch (error) {
       console.error('❌ Error:', error);
       toast.error('Gagal menambahkan photo ke gallery: ' + (error.response?.data?.detail || error.message));
