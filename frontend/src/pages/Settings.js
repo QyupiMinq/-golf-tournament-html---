@@ -343,19 +343,35 @@ const Settings = () => {
     }
     
     setSubmittingVideoGallery(true);
+    console.log('=== VIDEO GALLERY SUBMIT ===');
+    console.log('Title:', videoGalleryForm.title);
+    console.log('Video URL:', videoGalleryForm.video_url);
+    console.log('Video file length:', videoGalleryForm.video_file ? videoGalleryForm.video_file.length : 0);
+    
     try {
-      await axios.post(`${API}/gallery`, {
+      // Need to provide a thumbnail photo for video gallery
+      const thumbnailPhoto = videoGalleryForm.video_file ? 
+        'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg==' : 
+        null;
+      
+      const response = await axios.post(`${API}/match-gallery`, {
         title: videoGalleryForm.title,
         description: videoGalleryForm.description,
-        photo: null,
+        photo: thumbnailPhoto,
         video_url: videoGalleryForm.video_url || null,
         video_file: videoGalleryForm.video_file || null
       });
+      console.log('✅ Response:', response.data);
       toast.success('✅ Video berhasil ditambahkan ke Gallery!');
       setVideoGalleryForm({ title: '', description: '', video_url: '', video_file: null });
+      
+      // Force page reload to show new video
+      setTimeout(() => {
+        window.location.href = '/';
+      }, 1500);
     } catch (error) {
-      toast.error('Gagal menambahkan video ke gallery');
-      console.error(error);
+      console.error('❌ Error:', error);
+      toast.error('Gagal menambahkan video ke gallery: ' + (error.response?.data?.detail || error.message));
     } finally {
       setSubmittingVideoGallery(false);
     }
