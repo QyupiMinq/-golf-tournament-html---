@@ -301,19 +301,29 @@ const Settings = () => {
     }
     
     setSubmittingPhotoGallery(true);
+    console.log('=== PHOTO GALLERY SUBMIT ===');
+    console.log('Title:', photoGalleryForm.title);
+    console.log('Photo length:', photoGalleryForm.photo ? photoGalleryForm.photo.length : 0);
+    
     try {
-      await axios.post(`${API}/gallery`, {
+      const response = await axios.post(`${API}/match-gallery`, {
         title: photoGalleryForm.title,
         description: photoGalleryForm.description,
         photo: photoGalleryForm.photo,
         video_url: null,
         video_file: null
       });
+      console.log('✅ Response:', response.data);
       toast.success('✅ Photo berhasil ditambahkan ke Gallery!');
       setPhotoGalleryForm({ title: '', description: '', photo: null });
+      
+      // Force page reload to show new photo
+      setTimeout(() => {
+        window.location.href = '/';
+      }, 1500);
     } catch (error) {
-      toast.error('Gagal menambahkan photo ke gallery');
-      console.error(error);
+      console.error('❌ Error:', error);
+      toast.error('Gagal menambahkan photo ke gallery: ' + (error.response?.data?.detail || error.message));
     } finally {
       setSubmittingPhotoGallery(false);
     }
